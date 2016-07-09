@@ -1,0 +1,19 @@
+<resources>
+
+    <dimen name="score_monthly">50dp</dimen>
+    <dimen name="score_text_size">20dp</dimen>
+    <dimen name="label_dashboard">18dp</dimen>
+    <dimen name="button_radius_dashboard">10dp</dimen>
+    <dimen name="circle_progress_dashboard">150dp</dimen>
+    <dimen name="textsize_circle_progress">40dp</dimen>
+    <dimen name="textsize_label_circle_progress">20dp</dimen>
+    <dimen name="height_graph">300dp</dimen>
+
+    <dimen name="textsize_reminder_desc_dash">20dp</dimen>
+    <dimen name="textsize_reminder_time_dash">16dp</dimen>
+    <dimen name="textsize_rem_message">20dp</dimen>
+    <dimen name="textsize_reminder_time">16dp</dimen>
+    <dimen name="textsize_timespent">18dp</dimen>
+    <dimen name="textsize_timespent_value">30dp</dimen>
+
+</resources>

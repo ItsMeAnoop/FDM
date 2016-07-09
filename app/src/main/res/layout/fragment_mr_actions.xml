@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ten_dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/five_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                >
+                <!--row 1-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hundread_and_fiftry_dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!--Product Detailing-->
+                    <LinearLayout
+                        android:id="@+id/grid_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="#d1512f"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_product_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Product Detailing"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <!--Sample Issued-->
+                    <LinearLayout
+                        android:id="@+id/grid_8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#ed6c9e"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_sample_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sample Issue"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+                <!--row 2-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hundread_and_fiftry_dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!--Reminder-->
+                    <LinearLayout
+                        android:id="@+id/grid_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="#00aeef"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_reminder_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Remainder"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <!--Survey-->
+                    <LinearLayout
+                        android:id="@+id/grid_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#3b77b5"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_survey_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Take Survey"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <!--row 3-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hundread_and_fiftry_dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!--Take Video-->
+                    <LinearLayout
+                        android:id="@+id/grid_4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#bf5c96"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/temp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Take Videos"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <!--Take picture-->
+                    <LinearLayout
+                        android:id="@+id/grid_5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#e39b34"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_camera_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Take Picture"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--row 4-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hundread_and_fiftry_dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <!--Notes-->
+                    <LinearLayout
+                        android:id="@+id/grid_6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#cd4342"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_note_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Notes"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+
+
+                    <!--End Session-->
+                    <LinearLayout
+                        android:id="@+id/grid_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#C04FFB"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_mic_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Record Audio"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--row 5-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/hundread_and_fiftry_dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!--End Session-->
+                    <LinearLayout
+                        android:id="@+id/grid_7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_margin="@dimen/ten_dp"
+                        android:background="#31b573"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/fifty_dp"
+                            android:layout_height="@dimen/fifty_dp"
+                            android:background="@drawable/ic_end_session_new" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="End Session"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/fifteen_sp"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</ScrollView>

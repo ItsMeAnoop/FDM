@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                app:cardBackgroundColor="@color/doctor_feedback_bg">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="@string/doctor_feedback"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/feedback_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top"
+                app:cardBackgroundColor="#4caf50">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="Give your feedback here!"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </android.support.v7.widget.CardView>
+
+            <EditText
+                android:id="@+id/edt_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/feedback_label"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:gravity="top|left"
+                android:maxLength="160"
+                android:hint="@string/enter_feedback"
+                android:padding="2dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sign_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edt_feedback"
+                app:cardBackgroundColor="#4caf50">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="@string/sign_lable"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </android.support.v7.widget.CardView>
+
+            <ImageView
+                android:id="@+id/image_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/hundread_and_fiftry_dp"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hundread_and_fiftry_dp">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight=".30"
+            android:text="@string/cancel"
+            android:textColor="@android:color/white"
+            android:theme="@style/ButtonStyle" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/clear"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight=".35"
+            android:text="@string/clear_sign"
+            android:textColor="@android:color/white"
+            android:theme="@style/ButtonStyle" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/getsign"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight=".35"
+            android:text="@string/done"
+            android:textColor="@android:color/white"
+            android:theme="@style/ButtonStyle" />
+    </LinearLayout>
+</RelativeLayout>

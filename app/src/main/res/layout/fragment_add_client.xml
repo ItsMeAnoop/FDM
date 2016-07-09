@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--<android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_add"
+        android:id="@+id/rv_list"
+        />-->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_add"
+        android:id="@+id/list">
+
+    </ListView>
+    <TextView
+        android:id="@+id/tv_add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fifty_dp"
+        android:text="Save"
+        android:gravity="center"
+        android:background="@color/PrimaryDarkColor"
+        android:textColor="@color/white_color"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

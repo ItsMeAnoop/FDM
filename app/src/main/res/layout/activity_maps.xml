@@ -1,0 +1,163 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_pending"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/toolbar"
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="Show Pending Visits"
+        android:textColor="#fff"
+        android:theme="@style/ButtonStyle" />
+
+    <TextView
+        android:id="@+id/lbl_route_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#b71c1c"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="Route is loading..."
+        android:textColor="#fff"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lbl_route_progress"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/white"
+        android:padding="10dp">
+
+        <View
+            android:id="@+id/green_box"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#289824" />
+
+        <TextView
+            android:id="@+id/lbl_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/green_box"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/green_box"
+            android:text="To Visit"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:id="@+id/red_box"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/green_box"
+            android:layout_marginTop="10dp"
+            android:background="#d72100" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/red_box"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/red_box"
+            android:text="Pending"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/pin"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/red_box"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_pin" />
+
+        <TextView
+            android:id="@+id/tv_location_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/pin"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/pin"
+            android:text="Your location"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:layout_margin="10dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:text="filter"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radio_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_current_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Current location" />
+
+                    <RadioButton
+                        android:id="@+id/rb_office"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:checked="false"
+                        android:text="Office location" />
+
+                    <RadioButton
+                        android:id="@+id/rb_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Home location" />
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</RelativeLayout>

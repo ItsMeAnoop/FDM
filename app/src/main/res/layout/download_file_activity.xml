@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/PrimaryColor"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_width="@dimen/fifty_dp"
+            android:layout_height="@dimen/fifty_dp"
+            android:layout_above="@+id/tv_percentage"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar" />
+        <TextView
+            android:id="@+id/tv_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/hundread_dp"
+            android:text="0%"/>
+        <TextView
+            android:layout_below="@+id/tv_percentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="Please wait....."/>
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_sign_in"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/ten_dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/hundread_dp"
+            android:layout_height="@dimen/hundread_dp"
+            android:background="@drawable/ic_logo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Syncing"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/twenty_sp"/>
+    </LinearLayout>
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ten_dp"
+            android:max="100"/>
+    </RelativeLayout>-->
+
+</RelativeLayout>

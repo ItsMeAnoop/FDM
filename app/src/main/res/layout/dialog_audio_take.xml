@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_mic"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/tv_recording"/>
+    <TextView
+        android:id="@+id/tv_recording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recording....."
+        android:layout_marginLeft="@dimen/twenty_sp"
+        android:textSize="@dimen/twenty_sp"
+        android:textStyle="bold|italic"
+        android:layout_marginBottom="@dimen/ten_dp"
+        android:layout_above="@+id/container_bottom"
+        android:textColor="#f00"/>
+    <RelativeLayout
+        android:id="@+id/container_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:background="@color/PrimaryColor"
+            android:layout_alignParentLeft="true"
+            android:text="Start"/>
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:background="@color/PrimaryColor"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:text="Stop"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

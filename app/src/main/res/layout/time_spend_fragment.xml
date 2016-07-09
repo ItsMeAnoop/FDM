@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_color">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.cardiomood.android.controls.gauge.SpeedometerGauge
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/speedometer"/>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/card_time_spent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/twenty_sp"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/container_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <Button
+            android:id="@+id/btn_day1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="1dp"
+            android:background="@color/colorAccent"
+            android:text="D 1"/>
+        <Button
+            android:id="@+id/btn_day2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="1dp"
+            android:background="@color/colorAccent"
+            android:text="D 2"/>
+        <Button
+            android:id="@+id/btn_day3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="D 3"/>
+        <Button
+            android:id="@+id/btn_day4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_weight="1"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:text="D 4"/>
+        <Button
+            android:id="@+id/btn_day5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:layout_margin="1dp"
+            android:text="D 5"/>
+        <Button
+            android:id="@+id/btn_day6"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:text="D 6"/>
+        <Button
+            android:id="@+id/btn_day7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="D 7"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/container_weeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+        <Button
+            android:id="@+id/btn_week1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:text="Week 1"/>
+        <Button
+            android:id="@+id/btn_week2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:gravity="center"
+            android:text="Week 2"/>
+        <Button
+            android:id="@+id/btn_week3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:text="Week 3"/>
+        <Button
+            android:id="@+id/btn_week4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_margin="1dp"
+            android:text="Week 4"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/five_dp"
+        android:weightSum="4">
+        <TextView
+            android:id="@+id/tv_c1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#0f561f"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="green"/>
+        <TextView
+            android:id="@+id/tv_c2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#a0970e"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="green"/>
+        <TextView
+            android:id="@+id/tv_c3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#00f"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="green"/>
+        <TextView
+            android:id="@+id/tv_c4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#f00"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="green"/>
+
+    </LinearLayout>
+
+</LinearLayout>

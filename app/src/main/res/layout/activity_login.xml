@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/PrimaryColor">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tv_sign_in"
+        android:layout_marginTop="@dimen/fifty_dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/ten_dp">
+
+            <ImageView
+                android:layout_width="@dimen/hundread_dp"
+                android:layout_height="@dimen/hundread_dp"
+                android:background="@drawable/ic_logo" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/version"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="Login"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/thirty_sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty_dp"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:hint="User name"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/white_color"
+                android:textColorHint="#ffbfe5ff" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/fifty_dp"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:hint="password"
+                android:inputType="textPassword"
+                android:padding="@dimen/five_dp"
+                android:textColor="@color/white_color"
+                android:textColorHint="#ffbfe5ff" />
+
+            <TextView
+                android:id="@+id/btnRequestPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:text="Forgot Password?"
+                android:padding="10dp"
+                android:textColor="@color/white_color" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tv_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fifty_dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/PrimaryDarkColor"
+        android:gravity="center"
+        android:text="Sign In"
+        android:textColor="@color/white_color"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutGraphPref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            app:cardBackgroundColor="#f57c00">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Graph Preference"
+                    android:textColor="#000"
+                    android:textSize="16dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgGraphPref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbMonthly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Monthly" />
+
+                    <RadioButton
+                        android:id="@+id/rbDaily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:text="Daily" />
+                </RadioGroup>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblLineChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutGraphPref"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Schedule vs Actual"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutLineChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblLineChart">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/rgPerformance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rbMonthPerf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Monthly" />
+
+                    <RadioButton
+                        android:id="@+id/rbDailyPerf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="true"
+                        android:text="Daily" />
+                </RadioGroup>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_below="@+id/rgPerformance"
+                    android:layout_margin="5dp" />
+
+                <RelativeLayout
+                    android:id="@+id/progressPerformance"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_alignTop="@+id/lineChart"
+                    android:background="#fff">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblVisitByClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutLineChart"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Visits by Client"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutVisitByClientChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblVisitByClient"
+            android:layout_marginBottom="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chartVisitByClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_margin="5dp" />
+
+                <RelativeLayout
+                    android:id="@+id/progressVisitByClient"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_alignTop="@+id/chartVisitByClient"
+                    android:background="#fff">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblSampleChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutVisitByClientChart"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Samples issued by item"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutSampleChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblSampleChart">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/layoutActionSample"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:id="@+id/rgSample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioButton
+                            android:id="@+id/rbMonthSample"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Monthly" />
+
+                        <RadioButton
+                            android:id="@+id/rbDailySample"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:enabled="true"
+                            android:text="Daily" />
+                    </RadioGroup>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnChooseProducts"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/rgSample"
+                        android:layout_margin="2dp"
+                        android:minWidth="40dp"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_text="Choose Products (Max 10)" />
+                </RelativeLayout>
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/sampleChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_below="@+id/layoutActionSample"
+                    android:layout_margin="5dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/progressSamples"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_alignTop="@+id/sampleChart"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblSampleCatChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutSampleChart"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Samples issued by brand"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutSampleCatChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblSampleCatChart">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/layoutActionSampleCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:id="@+id/rgSampleCat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioButton
+                            android:id="@+id/rbMonthSampleCat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Monthly" />
+
+                        <RadioButton
+                            android:id="@+id/rbDailySampleCat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:enabled="true"
+                            android:text="Daily" />
+                    </RadioGroup>
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnChooseCategory"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/rgSampleCat"
+                        android:layout_margin="2dp"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_text="Choose Brand (Max 10)" />
+                </RelativeLayout>
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/sampleChartCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_below="@+id/layoutActionSampleCat"
+                    android:layout_margin="5dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/progressSamplesCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_alignTop="@+id/sampleChartCat"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutSampleCatChart"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Score"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblOverview"
+            app:cardBackgroundColor="@color/card_overview"
+            app:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lblMonthlyScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Monthly Score"
+                        android:textColor="#0facb4"
+                        android:textSize="@dimen/textsize_label_circle_progress" />
+
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/pgMothlyScore"
+                        android:layout_width="@dimen/circle_progress_dashboard"
+                        android:layout_height="@dimen/circle_progress_dashboard"
+                        android:layout_below="@+id/lblMonthlyScore"
+                        android:layout_centerHorizontal="true"
+                        app:donut_progress="0"
+                        app:donut_text_size="@dimen/textsize_circle_progress" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/lblTodaysVisit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Today's Score"
+                        android:textColor="#3cac53"
+                        android:textSize="@dimen/textsize_label_circle_progress" />
+
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        android:id="@+id/pgTodaysVisit"
+                        android:layout_width="@dimen/circle_progress_dashboard"
+                        android:layout_height="@dimen/circle_progress_dashboard"
+                        android:layout_below="@+id/lblTodaysVisit"
+                        android:layout_centerHorizontal="true"
+                        app:donut_finished_color="#3cac53"
+                        app:donut_progress="0"
+                        app:donut_text_color="#3cac53"
+                        app:donut_text_size="@dimen/textsize_circle_progress" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/lblTimeSpent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutOverview"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Time Spent in the market"
+                android:textColor="@color/label_text_dashboard"
+                android:textSize="@dimen/label_dashboard" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutTimeSpentChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblTimeSpent"
+            android:layout_marginBottom="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/container_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_margin="5dp" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chartTimeSpent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:layout_margin="5dp"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/progressTimeSpent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"
+                    android:background="#fff"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <!--Area-->
+        <RelativeLayout
+            android:id="@+id/layout_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTimeSpentChart">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/lbl_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/label_dashboard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Area Coverage"
+                    android:textColor="@color/label_text_dashboard"
+                    android:textSize="@dimen/label_dashboard" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbl_area"
+                android:layout_marginBottom="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/container_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"></RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+        <!--Area-->
+
+        <!--Visit Done Graph-->
+        <RelativeLayout
+            android:id="@+id/visit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_area">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/lblVisitDone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/label_dashboard">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Visit Done"
+                    android:textColor="@color/label_text_dashboard"
+                    android:textSize="@dimen/label_dashboard" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/layoutvisitDoneChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblVisitDone"
+                android:layout_marginBottom="4dp">
+
+                <RelativeLayout
+                    android:id="@+id/container_visit_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_graph"></RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutvisitDoneChart"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="#166c16"
+                app:elevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/lblMediaSize_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif"
+                        android:text="Last Sync on: "
+                        android:textColor="#fff"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/txt_last_sync_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lblMediaSize_"
+                        android:layout_centerHorizontal="true"
+                        android:text="Not Available"
+                        android:textColor="@color/text_time_spent"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutMediaSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/visit_container"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#166c16"
+            app:elevation="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/lblMediaSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif"
+                    android:text="Media file Size"
+                    android:textColor="#fff"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txtMediaSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblMediaSize"
+                    android:layout_centerHorizontal="true"
+                    android:text="0 MB"
+                    android:textColor="@color/text_time_spent"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/labelReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutMediaSize"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/label_dashboard">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Upcoming Reminders"
+                    android:textColor="@color/label_text_dashboard"
+                    android:textSize="@dimen/label_dashboard" />
+
+                <TextView
+                    android:id="@+id/txtBtnMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:text="more>>"
+                    android:textColor="#fff"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/listReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelReminder">
+
+            <LinearLayout
+                android:id="@+id/layoutReminder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/layoutActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listReminder"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnSheduleVsActual"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:fb_borderColor="#dd2c00"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_radius="@dimen/button_radius_dashboard"
+                        app:fb_text="Schedule Vs Actual" />
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnPending"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:fb_borderColor="#dd2c00"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_radius="@dimen/button_radius_dashboard"
+                        app:fb_text="Pending visits" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnSamples"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:fb_borderColor="#dd2c00"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_radius="@dimen/button_radius_dashboard"
+                        app:fb_text="Samples issued" />
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnScoreCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:fb_borderColor="#dd2c00"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_radius="@dimen/button_radius_dashboard"
+                        app:fb_text="Scorecard" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+
+</ScrollView>

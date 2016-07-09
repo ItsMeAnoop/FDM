@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="@dimen/textsize_reminder_desc_dash" />
+
+    <TextView
+        android:id="@+id/txtWhen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtDescription"
+        android:layout_marginTop="2dp"
+        android:textSize="@dimen/textsize_reminder_time_dash" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/txtWhen"
+        android:layout_marginTop="5dp"
+        android:background="@color/divider_reminder_dashboard" />
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/action_today_visit"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="@string/today_visit" />
+        <item
+            android:id="@+id/action_route_plan"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="Route Plan" />
+
+        <item
+            android:id="@+id/action_monthly_visit"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="@string/monthly_visit" />
+        <item
+            android:id="@+id/action_pending_list"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="Pending Visit" />
+        <item
+            android:id="@+id/action_core_card"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="Score Card" />
+        <item
+            android:id="@+id/action_global_msg"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="Send Global Message" />
+
+        <item
+            android:id="@+id/action_settings"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/action_log_out"
+            android:checked="false"
+            android:icon="@drawable/launcher"
+            android:title="@string/logout" />
+
+
+    </group>
+</menu>

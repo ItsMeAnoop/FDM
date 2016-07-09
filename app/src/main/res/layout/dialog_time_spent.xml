@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_time_spent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="222hr 30min"
+        android:textColor="#4caf50"
+        android:textSize="30dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt_time_spent"
+        android:layout_marginTop="10dp"
+        android:text="OK"
+        android:textColor="@android:color/white"
+        android:theme="@style/ButtonStyle" />
+
+</RelativeLayout>

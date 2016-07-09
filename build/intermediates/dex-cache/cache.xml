@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\net.rdrei.android.dirchooser\library\3.2\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6bcdf152d932e7d93904411ffd82a683ba27f5f8">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\net.rdrei.android.dirchooser-library-3.2_65393c136e59a091a2a9a08446c98815d6700d04\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\src\libs\jxl.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="7faf62e0697f7a88954622dfe8c8de33ed142ac7">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\2\jxl_ddfa7f4d724d724b288cea5961dbc7d7bcec9190\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.2.4\7abd1ecef320da6a7679b137083151401fe8bf43\MPAndroidChart-v2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="7abd1ecef320da6a7679b137083151401fe8bf43">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v2.2.4_08480c7399a5a29e834a2db3e2d9eb2d21345a62\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.0.1_69bb188e4d0d793afbb7fdb66116bff441bda2e6\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.0.1_55d96f303f0e33f1756aba8b3499cb50f969f175\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_d81d94d716bcbda0b4c9c7f437bb4cdf53c82996\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\1.9.0\a681c044244d9fc375198588297a39ba78028423\retrofit-1.9.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-1.9.0_490c4916c4e737d70d723be9317616e8af8c812a\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_ac03fdb256ff942f47470f709eb05c80ef026c3a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3.1_26a1d11126f54e5a1307ece78c485ce803ec3352\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_06f50d6c6794829923653bf6185825c5fbd16815\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.1.0_c005a88d83b787a03ea3e19ed46d208954c7ce34\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.cardiomood.android\android-widgets\0.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c05b677d8aca4e437294460acbc6f4d4bd9cfa0c">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.cardiomood.android-android-widgets-0.1.1_3624839865c8fb108ac0fa314199819e99990769\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.google.auto.value\auto-value\1.1\f6951c141ea3e89c0f8b01da16834880a1ebf162\auto-value-1.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f6951c141ea3e89c0f8b01da16834880a1ebf162">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\auto-value-1.1_8d9a017efde6cc6d3a7f644fe087c6a8542170c7\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\me.drakeet.materialdialog\library\1.2.8\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="0573d010bcb1ee874e1c258a31e98ab920e6805f">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.drakeet.materialdialog-library-1.2.8_d426688d5b9bcdba85200c8dc2c242963b654ff1\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-8.1.0_aefcfeb47316591cdca515c9bb36aee2ef5a8715\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8a187eb8788ba58dd7bf9f78b8a9fcfa9602bce2">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_1ab0ba94cdf3c39535932451b852864741e8cfd7\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.github.frankiesardo\auto-parcel\0.3.1\501393158454717fef27cba8d177f32a158b8955\auto-parcel-0.3.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="501393158454717fef27cba8d177f32a158b8955">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\auto-parcel-0.3.1_90af200d339f83b864a0db2ab9f5fa87f7899d8f\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_a23aa7f26d8e8ada8b1789275bf56cb441c2f254\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.github.medyo\fancybuttons\1.5\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="511320053169bdc5d8445a414db09e7cdd10d920">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.medyo-fancybuttons-1.5_af2ea8b9fa3c0182b7196d55dcb84d408305f913\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\cz.msebera.android\httpclient\4.3.6\526a9f794eab830eae4f23a62c572878b3f491ab\httpclient-4.3.6.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\httpclient-4.3.6_fec3c5139842062dcbe55bee54a91e9111aa984c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.gu\option\1.3\fa1ce7cb951145e96e3db1b585ded5d0292a330a\option-1.3.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="fa1ce7cb951145e96e3db1b585ded5d0292a330a">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\option-1.3_b2e12051cfe06ceef6d10c634d4f7985210aa756\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\2.0.0\afe8399d352713b66e597e9670c741d1e60ae923\okhttp-urlconnection-2.0.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="afe8399d352713b66e597e9670c741d1e60ae923">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-urlconnection-2.0.0_402f48251180319fbdedec3b3bf0f2bb762c9bed\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.github.lzyzsd\circleprogress\1.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="e6f9fb0d2ea982d656d6dca785a9097659395874">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.github.lzyzsd-circleprogress-1.1.0_14be3de02095cc885e1aa3b157c3c44355fa0dce\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.9\386a4339ffe52d5d63e80f9bed8d2b1d1a418249\android-async-http-1.4.9.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\android-async-http-1.4.9_1cc78d719e85cb15eb486c4209c46397a2479d78\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.0.0\2534c458682c73f5b9871131ab3098d3f987ca3\okio-1.0.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="02534c458682c73f5b9871131ab3098d3f987ca3">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.0.0_e62ed04d72b563f24b5f618581135d1cf8f8c8b3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_3ebdd8898c910bf41f05678b9090d09464748018\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.1.0_1f90d8b7386a58d3a5abf0c61a106112ea675b3b\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.raizlabs.android\DBFlow\2.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="53dc9d74b0ac22d201549cd806780597d9679e9a">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.raizlabs.android-DBFlow-2.2.1_56cc42bb86176cf097a6fa7cb04b9f123af3399a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.0.0\4c8d1536dba3812cc1592090dc20c47a4ed3c35e\okhttp-2.0.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4c8d1536dba3812cc1592090dc20c47a4ed3c35e">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.0.0_dfeb8f245f79d0f6c9ef79d91ad755dba7509e8e\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="0d7c65ca00c1ff19596771526a902edaea82ae78">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_953f0e813577246a5d305092a4a8fd6cc2136c70\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-8.1.0_af17694c47c04b564680c212c4726f64d67f28d4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.raizlabs.android\DBFlow-Core\2.2.1\e07bfc8e2041edf27469bd94e08bc19f52f4dee7\DBFlow-Core-2.2.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="e07bfc8e2041edf27469bd94e08bc19f52f4dee7">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\DBFlow-Core-2.2.1_176ff5b293c14bf8cc9493b68df34c2d111493fb\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.1.0_f2a1cc9b85833c9712fc07bd1f815e1cc6db32f5\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\de.greenrobot\eventbus\2.4.0\ddd166d01b3158d1c00576d29f7ed15c030df719\eventbus-2.4.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ddd166d01b3158d1c00576d29f7ed15c030df719">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\eventbus-2.4.0_f967d5a5cd22192ff4b0d14fc168bba42e887c08\classes.dex" />
+    </item>
+    <item
+        jar="E:\Data\FDM Final\FDM\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_62412e66d393783c5ca89dc15dacc67265b94b5a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Anoop\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_21226bd28c030dec7cbdc97032865ad55c8e654d\classes.dex" />
+    </item>
+    <item
+        jar="E:\Softwares\Android Studio\android-sdks\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="E:\Data\FDM Final\FDM\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_a0362f69e5fb48fa34d469d1a7d6d913155607e2\classes.dex" />
+    </item>
+
+</items>
