@@ -1,12 +1,14 @@
 package com.field.datamatics.views;
 
+import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.field.datamatics.R;
 import com.field.datamatics.Services.ApiService;
+import com.field.datamatics.Services.appservices.MyAlaramService;
 import com.field.datamatics.apimodels.AppoinmentResponse;
 import com.field.datamatics.apimodels.AppoinmentResponseBody;
 import com.field.datamatics.apimodels.ClientResponse;
@@ -49,7 +52,6 @@ import com.field.datamatics.database.Client;
 import com.field.datamatics.database.Client_Customer;
 import com.field.datamatics.database.Client_Product;
 import com.field.datamatics.database.Client_work_cal;
-import com.field.datamatics.database.CustomRoutePlan;
 import com.field.datamatics.database.Customer;
 import com.field.datamatics.database.Documents;
 import com.field.datamatics.database.GlobalMessages;
@@ -70,7 +72,6 @@ import com.field.datamatics.database.VisitedDetails;
 import com.field.datamatics.gcm.RegistrationIntentService;
 import com.field.datamatics.interfaces.ApiCallbacks;
 import com.field.datamatics.interfaces.DialogCallBacks;
-import com.field.datamatics.interfaces.IgcmApi;
 import com.field.datamatics.interfaces.IrequestPassword;
 import com.field.datamatics.synctables.SyncAppLog;
 import com.field.datamatics.synctables.SyncAppointment;
@@ -98,13 +99,10 @@ import com.raizlabs.android.dbflow.sql.language.Select;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -141,7 +139,6 @@ public class Login extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       // getClientWorkCalander();
         isLoginComplete = false;
         et_user_name = (EditText) findViewById(R.id.et_user_name);
         et_password = (EditText) findViewById(R.id.et_password);
@@ -1811,9 +1808,7 @@ public class Login extends BaseActivity {
                     index=workCalanderResponse.getBody()[workCalanderResponse.getBody().length-1].getWorkcalenderid();
                     getClientWorkCalanderApiCall();
                 }
-               // saveWorkCalenderData(workCalanderResponse);
-
-
+               //saveWorkCalenderData(workCalanderResponse);
             }
 
             @Override
@@ -1850,7 +1845,7 @@ public class Login extends BaseActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                //moveToNextActivity();
+               // moveToNextActivity();
             }
         }.execute();
 
@@ -1860,49 +1855,38 @@ public class Login extends BaseActivity {
         if (isLoginComplete)
             finish();
         isLoginComplete = true;
-        /*Calendar calendar=Calendar.getInstance();
-        Date date=calendar.getTime();
-        String today=new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());*/
-
-        /*Client_work_cal ob1=new Client_work_cal();
-        ob1.Clientfirstname="A P Ahamed Koya";
-        ob1.Customerid="12866";
-        ob1.Clientno="584";
-        ob1.Fromtime="09:00:00";
-        ob1.Availabledays=today.toLowerCase();
-        ob1.Customername="Oxford Medical Centre-Muroor-ADH";
-        ob1.Totime="13:22:35";
-        ob1.save();
-
-        Client_work_cal ob2=new Client_work_cal();
-        ob2.Clientfirstname="Asalem";
-        ob2.Customerid="13019";
-        ob2.Clientno="1365";
-        ob2.Fromtime="09:00:00";
-        ob2.Availabledays=today.toLowerCase();
-        ob2.Customername="City Medical centre-Al Bustan-AJM";
-        ob2.Totime="13:22:35";
-        ob2.save();*/
         dissmissProgressDialog();
         Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
         PreferenceUtil.getIntsance().setLastSyncDate(Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm a"));
         AppControllerUtil.getPrefs().edit().putString("user", et_user_name.getText().toString()).apply();
         PreferenceUtil.getIntsance().setSyncManul(false);
-        /*Bundle bundle = new Bundle();
+       /* Bundle bundle = new Bundle();
         bundle.putString("syncType", "PULL");
         bundle.putString("isSyncAllData", "no");
-        bundle.putString("from", "login");*/
-
-        //intent.putExtras(bundle);
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        bundle.putString("from", "login");
+        Intent intent = new Intent(getApplicationContext(), DownloadProductListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
-        finish();
+        finish();*/
+
+        SetAlarm();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        System.gc();
+    public void SetAlarm()
+    {
+        try {
+            //Create a new PendingIntent and add it to the AlarmManager
+            Intent intent = new Intent(this, MyAlaramService.class);
+            PendingIntent pendingIntent = PendingIntent.getService(this,
+                    0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager =(AlarmManager)getSystemService(Activity.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000, pendingIntent);
+
+        } catch (Exception e) {}
+        catch (Throwable e){
+
+        }
     }
 }

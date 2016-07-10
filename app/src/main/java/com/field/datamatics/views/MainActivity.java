@@ -1,6 +1,7 @@
 package com.field.datamatics.views;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
@@ -163,6 +164,7 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
         //save logged in status to preference
         PreferenceUtil.getIntsance().setIsLogin(true);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -611,6 +613,9 @@ public class MainActivity extends BaseActivity
                 } else if (id == R.id.nav_logout) {
                     PreferenceUtil.getIntsance().setIsLogin(false);
                     AppControllerUtil.setLoginStatus(false);
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     finish();
                 }
             }

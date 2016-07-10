@@ -144,7 +144,7 @@ public class AdditionalVisit extends BaseFragment {
 
         adapter = new AdditionalAdapter(getActivity(), (ArrayList<JoinClientRoutePlan>) data);
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -162,7 +162,7 @@ public class AdditionalVisit extends BaseFragment {
                         loadData();
                 }
             }
-        });
+        });*/
     }
     private void loadData(){
         new AsyncTask<Void, Void, Void>() {
@@ -181,7 +181,7 @@ public class AdditionalVisit extends BaseFragment {
                 ArrayList<Client_work_cal>client_work_cals= (ArrayList<Client_work_cal>) new Select().from(Client_work_cal.class)
                         .where(Condition.column(Client_work_cal$Table.AVAILABLEDAYS).eq(today))
                         .and(Condition.column(Client_work_cal$Table.CLIENTWORK_ID).greaterThan(index))
-                        .limit(100)
+                        //.limit(100)
                         .queryList();
                 if(client_work_cals!=null){
                     for(int i=0;i<client_work_cals.size();i++){

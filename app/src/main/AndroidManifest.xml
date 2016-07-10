@@ -110,6 +110,7 @@
         <!--Change start-->
         <service android:name=".Services.appservices.SignatureUploadService" />
         <service android:name=".Services.SaveProductService"/>
+        <service android:name=".Services.appservices.MyAlaramService"/>
         <!--Change end-->
 
     </application>
