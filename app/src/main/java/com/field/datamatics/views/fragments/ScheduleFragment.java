@@ -126,7 +126,7 @@ public class ScheduleFragment extends BaseFragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            String today = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+            //String today = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
             ColumnAlias c1 = ColumnAlias.column("Client." + Client$Table.CLIENT_NUMBER).as("Client_Number");
             ColumnAlias c2 = ColumnAlias.column("Client." + Client$Table.ADDRESS_NUMBER_JDE).as("Address_Number_JDE");
             ColumnAlias c3 = ColumnAlias.column("Client." + Client$Table.CLIENT_PREFIX).as("Client_Prefix");

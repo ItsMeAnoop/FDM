@@ -765,6 +765,26 @@
                         app:fb_text="Scorecard" />
                 </LinearLayout>
 
+                <!--Additional Visit-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                        android:id="@+id/btnAdditionalVisit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        app:fb_borderColor="#dd2c00"
+                        app:fb_defaultColor="#dd2c00"
+                        app:fb_focusColor="#9c2001"
+                        app:fb_radius="@dimen/button_radius_dashboard"
+                        app:fb_text="Additional Visit List" />
+                </LinearLayout>
+
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </RelativeLayout>

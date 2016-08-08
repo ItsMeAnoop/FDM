@@ -106,6 +106,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
     private FancyButton btnPending;
     private FancyButton btnSamples;
     private FancyButton btnScorecard;
+    private FancyButton btnAdditionalVisit;
     private TextView btnMoreReminder;
     private TextView txtMediaSize;
     private LinearLayout layoutReminder;
@@ -215,6 +216,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         btnPending = (FancyButton) view.findViewById(R.id.btnPending);
         btnSamples = (FancyButton) view.findViewById(R.id.btnSamples);
         btnScorecard = (FancyButton) view.findViewById(R.id.btnScoreCard);
+        btnAdditionalVisit = (FancyButton) view.findViewById(R.id.btnAdditionalVisit);
         btnMoreReminder = (TextView) view.findViewById(R.id.txtBtnMore);
         txtMediaSize = (TextView) view.findViewById(R.id.txtMediaSize);
         layoutReminder = (LinearLayout) view.findViewById(R.id.layoutReminder);
@@ -254,6 +256,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         btnPending.setOnClickListener(this);
         btnSamples.setOnClickListener(this);
         btnScorecard.setOnClickListener(this);
+        btnAdditionalVisit.setOnClickListener(this);
         btnMoreReminder.setOnClickListener(this);
         rbPerfDaily.setOnClickListener(this);
         rbPerfMonth.setOnClickListener(this);
@@ -278,6 +281,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         else if (v == btnPending) f = PendingTask.getInstance("PendingVisit");
         else if (v == btnSamples) f = SamplesIssuedFragment.getInstance();
         else if (v == btnScorecard) f = new ScoreCard();
+        else if (v == btnAdditionalVisit) f=new AdditionalVisitedList();
         else if (v == btnMoreReminder) f = new DashBoardRemainderList();
         else if (v == btnChooseProduct) {
             new DialogProducts(mContainer, DashBoardNewDesign.this, DialogProducts.TYPE_PRODUCT_NUM, selectedProducts).showDialogProductNumber();
@@ -657,6 +661,58 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         });
         dialog.show();
     }
+
+
+    /*private void showAdditionalDialog() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_schedule_vs_actual);
+        dialog.setTitle("Additional Visit");
+
+        edtDateFrom = (EditText) dialog.findViewById(R.id.edt_date_from);
+        edtDateTo = (EditText) dialog.findViewById(R.id.edt_date_to);
+        Spinner spFilterType = (Spinner) dialog.findViewById(R.id.sp_filter_type);
+        AppCompatButton btnOk = (AppCompatButton) dialog.findViewById(R.id.btn_done);
+        spFilterType.setVisibility(View.GONE);
+
+
+        Calendar calendar = Calendar.getInstance();
+        fromDate = toDate = calendar.getTime();
+        AdditionalVisitedList.dateFrom = Utilities.dateToString(calendar, "yyyy-MM-dd");
+        String today = Utilities.dateToString(calendar, "MMM dd, yyyy");
+        AdditionalVisitedList.dateTo = Utilities.dateToString(calendar, "yyyy-MM-dd");
+        edtDateFrom.setText(today);
+        edtDateTo.setText(today);
+        edtDateFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(), "datePicker");
+                type = 1;
+            }
+        });
+        edtDateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(), "datePicker");
+                type = 2;
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fromDate.after(toDate)) {
+                    edtDateTo.setError("Should not be less than 'from date'");
+                    Toast.makeText(getContext(), "Should not be less than 'from date'", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                dialog.dismiss();
+                addFragment(new AdditionalVisitedList());
+            }
+        });
+        dialog.show();
+    }*/
 
 
     public static class DatePickerFragment extends DialogFragment

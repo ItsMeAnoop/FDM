@@ -53,7 +53,8 @@ public class MonthlyVisit extends BaseFragment {
     public static int year_position=0;
     int start=1;
     int day=1;
-    public static ArrayList<RoutePlan>route_plan=new ArrayList<RoutePlan>();
+    //public static ArrayList<RoutePlan>route_plan=new ArrayList<RoutePlan>();
+    public static String SELECTED_DATE="";
     private int load =0;
     @Nullable
     @Override
@@ -270,7 +271,7 @@ public class MonthlyVisit extends BaseFragment {
     }
 
     private void readClientList(final String day_){
-        new AsyncTask<Void,Void,Void>(){
+        new AsyncTask<Void,RoutePlan,RoutePlan>(){
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -278,29 +279,20 @@ public class MonthlyVisit extends BaseFragment {
             }
 
             @Override
-            protected Void doInBackground(Void... params) {
-                route_plan.clear();
-                route_plan= (ArrayList<RoutePlan>) new Select().from(RoutePlan.class).where(Condition.column(RoutePlan$Table.DATE).eq(year_ + "-" + month_ + "-" + day_)).queryList();
-                return null;
+            protected RoutePlan doInBackground(Void... params) {
+                RoutePlan routePlan= new Select().from(RoutePlan.class).where(Condition.column(RoutePlan$Table.DATE).eq(year_ + "-" + month_ + "-" + day_)).querySingle();
+                SELECTED_DATE=year_ + "-" + month_ + "-" + day_;
+                return routePlan;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            protected void onPostExecute(RoutePlan routePlan) {
+                super.onPostExecute(routePlan);
                 showDialog(false);
-                // Toast.makeText(getActivity(),""+year_ + "-" + month_ + "-" + day_,Toast.LENGTH_LONG).show();
-                if(route_plan.size()>0) {
-                    /*for(int i=0;i<route_plan.size();i++) {
-                        try {
-                            Log.d("DATE", route_plan.get(i).client.Client_First_Name);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }*/
+                if(routePlan!=null) {
                     addFragment(new ClientList());
                 }
                 else{
-                    //Toast.makeText(getActivity(),"No route plan available for the day",Toast.LENGTH_SHORT).show();
                     DialogUtil.getInstance().getDialog(getActivity(), "Monthly Visit", "No route plan is schedule" +
                             " for " + year_ + "-" + month_ + "-" + day, new DialogCallBacks() {
                         @Override

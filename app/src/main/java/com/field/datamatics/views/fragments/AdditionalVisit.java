@@ -124,12 +124,19 @@ public class AdditionalVisit extends BaseFragment {
                 values.add(client.CustomerName);
                 values.add(String.valueOf(client.Route_Plan_Number));
                 values.add(client.RoutePlanDate);
+                values.add(client.Client_Prefix);
+                values.add(client.Location);
                 data.putStringArrayList("values", values);
                 data.putInt("route_plan_number", client.Route_Plan_Number);
                 data.putInt("apointment_id", client.Appointment_Id);
                 data.putBoolean("is_pending", true);
                 data.putBoolean("is_additional", true);
                 data.putString("fragmentName","Additional Visit Details");
+                if(client.Client_Prefix!=null)
+                    data.putString("time_availability",client.Client_Prefix);
+                if(client.Location!=null)
+                    data.putString("location",client.Location);
+                data.putString("use","ADDITIONAL");
                 PreferenceUtil.getIntsance().setCLIENT_ID(client.Client_Number+"");
                 PreferenceUtil.getIntsance().setCUSTOMER_ID(client.RoutePlanDate+"");
 
@@ -144,25 +151,7 @@ public class AdditionalVisit extends BaseFragment {
 
         adapter = new AdditionalAdapter(getActivity(), (ArrayList<JoinClientRoutePlan>) data);
         recyclerView.setAdapter(adapter);
-        /*recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(layoutManager.findFirstVisibleItemPosition()==0){
-                    Toast.makeText(getActivity(), "Top", Toast.LENGTH_SHORT).show();
-
-                }
-                if(layoutManager.findLastVisibleItemPosition()==data.size()-1){
-                    if(!isEnd)
-                        loadData();
-                }
-            }
-        });*/
     }
     private void loadData(){
         new AsyncTask<Void, Void, Void>() {

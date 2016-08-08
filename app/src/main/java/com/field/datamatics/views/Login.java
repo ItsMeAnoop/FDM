@@ -134,6 +134,7 @@ public class Login extends BaseActivity {
 
     //DB
     User myuser;
+    private int oldUserNum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -449,7 +450,7 @@ public class Login extends BaseActivity {
         }
     };
 
-    int oldUserNum = 0;
+
 
     private void checkLogin(String user_name, final String password) {
         if (!NetworkStatusUtil.getInstance().isNetworkAvailable()) {
@@ -472,7 +473,7 @@ public class Login extends BaseActivity {
                     final LoginResponseBody body = loginResponse.getBody()[0];
                     mrid = Integer.parseInt(body.getUserid());
                     PreferenceUtil.getIntsance().setUSER_ID(body.getUserid());
-                    Toast.makeText(Login.this, mrid+"", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Login.this, mrid+"", Toast.LENGTH_SHORT).show();
                     Log.i("mrid", "" + mrid);
                     new AsyncTask<Void, Void, Void>() {
 
@@ -519,14 +520,22 @@ public class Login extends BaseActivity {
                                     body.getGeocordinatehome(), body.getGeocordinateoffice(), body.getRemarks()
                             );
                             myuser = user;
-                            user.save();
+                            //user.save();
                             return null;
                         }
 
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
-                            Intent intent = null;
+                            Intent intent;
+                            if (oldUserNum != 0 && oldUserNum == mrid) {
+                                dissmissProgressDialog();
+                                myuser.save();
+                                intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
                              if (Utilities.checkPlayServices(Login.this)) {
                                 try {
                                     Delete.table(Client_work_cal.class);
@@ -1786,6 +1795,7 @@ public class Login extends BaseActivity {
     }
 
 	private void getClientWorkCalanderApiCall(){
+        //moveToNextActivity();
         //Work colender API
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
@@ -1795,7 +1805,7 @@ public class Login extends BaseActivity {
             @Override
             public void onSuccess(Object objects) {
                 final WorkCalanderResponse workCalanderResponse = gson.fromJson(objects.toString(), WorkCalanderResponse.class);
-                if(workCalanderResponse.getStatus().equals("failure")){
+                /*if(workCalanderResponse.getStatus().equals("failure")){
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1807,8 +1817,8 @@ public class Login extends BaseActivity {
                     saveWorkCalenderData(workCalanderResponse);
                     index=workCalanderResponse.getBody()[workCalanderResponse.getBody().length-1].getWorkcalenderid();
                     getClientWorkCalanderApiCall();
-                }
-               //saveWorkCalenderData(workCalanderResponse);
+                }*/
+               saveWorkCalenderData(workCalanderResponse);
             }
 
             @Override
@@ -1845,7 +1855,7 @@ public class Login extends BaseActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-               // moveToNextActivity();
+                moveToNextActivity();
             }
         }.execute();
 
@@ -1855,6 +1865,7 @@ public class Login extends BaseActivity {
         if (isLoginComplete)
             finish();
         isLoginComplete = true;
+        myuser.save();
         dissmissProgressDialog();
         Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
         PreferenceUtil.getIntsance().setLastSyncDate(Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm a"));

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
@@ -39,6 +40,7 @@ import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.data.Blob;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Select;
+import com.raizlabs.android.dbflow.sql.language.Update;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -89,6 +91,12 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
     private boolean isPendingTab;
     private boolean isVisited;
     private boolean disableActivities;
+    private boolean isAdditional;
+    private String time="";
+    private String location="";
+    private String speciality="";
+    private String client_name="";
+
 
     private MainActivity mContainer;
 
@@ -131,6 +139,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             setTitle("Additional Visit");
             tv_RoutePlanNumber.setText("Not available");
             tv_RoutePlandDate.setText("Not available");
+            isAdditional=true;
         }
         try {
             AppControllerUtil.getInstance().setCurrent_fragment(data.getString("fragmentName"));
@@ -206,6 +215,16 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
                 tv_Customer.setText((customerName = values.get(11)));
                 tv_RoutePlanNumber.setText(values.get(12));
                 tv_RoutePlandDate.setText(values.get(13));
+                try {
+                    time=values.get(14);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    location=values.get(15);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (isVisited) {
                     tvVisitedDate.setText(Utilities.dateToString(values.get(14), "yyyy-MM-dd", "MMM dd, yyyy"));
                     tvCheckinTime.setText(Utilities.dateToString(values.get(15), "yyyy-MM-dd HH:mm:ss", "MMM dd, yyyy hh:mm a"));
@@ -233,6 +252,14 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             Location loc = mContainer.mLastLocation;
             if (loc != null)
                 checkInCoordinates = loc.getLatitude() + "," + loc.getLongitude();
+            if(routePlanNumber!=-1){
+                String today = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+                RoutePlan updateRoutePlan=new Select().from(RoutePlan.class)
+                        .where(Condition.column(RoutePlan$Table.ROUTE_PLAN_NUMBER).eq(routePlanNumber))
+                        .querySingle();
+                updateRoutePlan.Date=today;
+                updateRoutePlan.update();
+            }
         } else if (v == cv_meet_client) {
             checkOutTime = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
             Location loc = mContainer.mLastLocation;
@@ -252,6 +279,21 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            //check is additional visit.
+            try {
+                if(isAdditional){
+                    AdditionalVisits additionalVisits=new AdditionalVisits();
+                    additionalVisits.visitdate=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+                    additionalVisits.clientName=clientName.replaceAll("null","");
+                    additionalVisits.speciality=customerName.replaceAll("null","");
+                    additionalVisits.time_availability=time;
+                    additionalVisits.location=location;
+                    additionalVisits.save();
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             /* to retain values in case of unexpected shutdown*/
             VisitHomePageJson jsonClass = new VisitHomePageJson(routePlanNumber, appointmentId, clientId, checkInTime, checkOutTime, checkInCoordinates, checkOutCoordinates, isPending);
             String jsonValue = new Gson().toJson(jsonClass);
@@ -261,103 +303,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         } else if (v == cv_add_to_pending) {
             manageAddToPending();
         }
-            /*mContainer.shouldUpdatePerformanceGraph = true;
-            mContainer.shouldUpdateScore = true;
-            AppControllerUtil.getInstance().setIsCheckIn(false);
-            //Time spent calculation
-            long timeSpent = System.currentTimeMillis() - AppControllerUtil.getCheckinTime();
-            SharedPreferences pref = AppControllerUtil.getPrefs();
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putLong(Constants.PREF_TIME_SPENT, pref.getLong(Constants.PREF_TIME_SPENT, 0) + timeSpent);
-            editor.commit();
-            *//**
-             * Save time spent to database table
-             *//*
-            TimeSpendInMarket timeSpendInMarket = new TimeSpendInMarket();
-            timeSpendInMarket.date_ = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
-            timeSpendInMarket.time_spend = Math.round((timeSpent / 1000));
-            timeSpendInMarket.save();
 
-            mContainer.shouldUpdateTimeSpent = true;
-
-            RoutePlan r = new Select().from(RoutePlan.class)
-                    .where(Condition.column(RoutePlan$Table.ROUTE_PLAN_NUMBER)
-                            .eq(routePlanNumber)).querySingle();
-            r.Visittype = 2;
-
-            final VisitedDetails visitedDetails = new VisitedDetails();
-            visitedDetails.routePlan = r;
-            visitedDetails.appointment = new Appointment();
-            if (appointmentId > 0)
-                visitedDetails.appointment.Appointment_Id = appointmentId;
-            visitedDetails.Visited_Date = Utilities.dateInSqliteFormat(Calendar.getInstance());
-            visitedDetails.checkintime = checkInTime;
-            visitedDetails.checkouttime = checkOutTime;
-            visitedDetails.Sessionend = checkOutTime;
-            visitedDetails.status = 2;
-            visitedDetails.signature = new Blob(new byte[1]);
-            visitedDetails.Geo_Cordinates_in = checkInCoordinates;
-            visitedDetails.Geo_Cordinates_out = checkOutCoordinates;
-            String coordinates = "";
-            Location loc = mContainer.mLastLocation;
-            if (loc != null)
-                coordinates = loc.getLatitude() + "," + loc.getLongitude();
-            visitedDetails.Geo_Cordinates_sessout = coordinates;
-
-            visitedDetails.save();
-            r.update();
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Set Reminder/Remark");
-            builder.setMessage("Do you want to set reminder/remark for this visit?");
-            builder.setPositiveButton("Set Reminder", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("Route Plan no. ")
-                            .append(visitedDetails.routePlan.Route_Plan_Number)
-                            .append(",\n").append("Client : ")
-                            .append(clientName)
-                            .append(",\n")
-                            .append("Customer : ")
-                            .append(customerName)
-                            .append(",\n")
-                            .append("Actual visit date :")
-                            .append(visitedDetails.Visited_Date);
-                    addFragment(AddReminder.getInstance(sb.toString()));
-                }
-            });
-            builder.setNegativeButton("Set Remark", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    final Dialog notesDialog = new Dialog(getContext());
-                    //notesDialog.setCancelable(false);
-                    //notesDialog.setCanceledOnTouchOutside(false);
-                    notesDialog.setContentView(R.layout.dialog_remark_dialog);
-                    notesDialog.setTitle("Remark");
-                    AppCompatButton btnDone = (AppCompatButton) notesDialog.findViewById(R.id.btn_done);
-                    final EditText edtNotes = (EditText) notesDialog.findViewById(R.id.edt_notes);
-                    btnDone.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //notes = edtNotes.getText().toString();
-                            PendingRemarks pendingRemarks=new PendingRemarks();
-                            pendingRemarks.remarks=edtNotes.getText().toString();
-                            pendingRemarks.datetime=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm");
-                            pendingRemarks.routeplanno=routePlanNumber;
-                            pendingRemarks.client_ID=clientId+"";
-                            pendingRemarks.save();
-                            notesDialog.dismiss();
-                            addFragment(TodaysVisitTabbed.getInstance());
-                        }
-                    });
-                    notesDialog.show();
-                }
-            });
-            builder.show();
-
-        }*/
     }
 
     private void manageAddToPending(){
