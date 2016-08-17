@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.field.datamatics.R;
@@ -20,8 +21,10 @@ import com.field.datamatics.database.JoinClientRoutePlan;
 import com.field.datamatics.database.RoutePlan$Table;
 import com.field.datamatics.ui.DividerDecoration;
 import com.field.datamatics.ui.RecyclerItemClickListener;
+import com.field.datamatics.utils.AppControllerUtil;
 import com.field.datamatics.views.adapters.AdditionalAdapter;
 import com.field.datamatics.views.adapters.ScheduleActualAdapter;
+import com.field.datamatics.views.dialogs.ClientDetailsDialog;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
@@ -36,6 +39,7 @@ public class AdditionalVisitedList extends BaseFragment {
     private ArrayList<JoinClientRoutePlan> data=new ArrayList<>();
     private ArrayList<AdditionalVisits>visitList=null;
     private AdditionalAdapter adapter;
+    private RelativeLayout search_layout;
 
     public static String dateFrom;
     public static String dateTo;
@@ -48,11 +52,15 @@ public class AdditionalVisitedList extends BaseFragment {
         return view;
     }
     private void initializeViews(View view) {
+        search_layout= (RelativeLayout) view.findViewById(R.id.search_layout);
+        search_layout.setVisibility(View.GONE);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         data = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
+        setTitle("Additional Visited List");
+        AppControllerUtil.getInstance().setCurrent_fragment("AdditionalVisitedList");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
@@ -62,6 +70,7 @@ public class AdditionalVisitedList extends BaseFragment {
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                ClientDetailsDialog.getInstance().ClientDetailsDialog(getActivity(),visitList.get(position));
                 /*JoinClientRoutePlan client = adapter.getItem(position);
                 Bundle data = new Bundle();
                 ArrayList<String> values = new ArrayList<String>();
@@ -95,7 +104,7 @@ public class AdditionalVisitedList extends BaseFragment {
             @Override
             protected Void doInBackground(Void... params) {
                 visitList= (ArrayList<AdditionalVisits>) new Select().from(AdditionalVisits.class)
-                        //.where(Condition.column(AdditionalVisits$Table.VISITDATE).between(dateFrom).and(dateTo))
+                        .where(Condition.column(AdditionalVisits$Table.VISITDATE).between(dateFrom).and(dateTo))
                         .queryList();
                 return null;
             }
@@ -107,7 +116,7 @@ public class AdditionalVisitedList extends BaseFragment {
                     for(int i=0;i<visitList.size();i++){
                         JoinClientRoutePlan joinClientRoutePlan=new JoinClientRoutePlan();
                         joinClientRoutePlan.Client_First_Name=visitList.get(i).clientName;
-                        joinClientRoutePlan.CustomerName=visitList.get(i).speciality;
+                        joinClientRoutePlan.CustomerName=visitList.get(i).customer_name;
                         joinClientRoutePlan.Client_Prefix=visitList.get(i).time_availability;
                         joinClientRoutePlan.Location=visitList.get(i).location;
                         data.add(joinClientRoutePlan);

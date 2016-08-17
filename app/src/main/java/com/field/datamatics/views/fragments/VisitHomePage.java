@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.field.datamatics.R;
@@ -137,8 +138,10 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         if(data.getBoolean("is_additional",false)){
             addFragmentTitle("Additional Visit");
             setTitle("Additional Visit");
-            tv_RoutePlanNumber.setText("Not available");
-            tv_RoutePlandDate.setText("Not available");
+            LinearLayout containerRPN= (LinearLayout) view.findViewById(R.id.containerRPN);
+            LinearLayout containerRPD= (LinearLayout) view.findViewById(R.id.containerRPD);
+            containerRPN.setVisibility(View.GONE);
+            containerRPD.setVisibility(View.GONE);
             isAdditional=true;
         }
         try {
@@ -284,10 +287,20 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
                 if(isAdditional){
                     AdditionalVisits additionalVisits=new AdditionalVisits();
                     additionalVisits.visitdate=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
-                    additionalVisits.clientName=clientName.replaceAll("null","");
-                    additionalVisits.speciality=customerName.replaceAll("null","");
+                    additionalVisits.clientName=tv_name.getText().toString().replaceAll("null","");
+                    additionalVisits.customer_name=tv_Customer.getText().toString().replaceAll("null","");
                     additionalVisits.time_availability=time;
                     additionalVisits.location=location;
+                    additionalVisits.gender=tv_gender.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.speciality=tv_speciality.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.marketClass=tv_market_class.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.steClass=tv_ste_class.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.email=tv_email.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.phone=tv_phone.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.mob=tv_mobile.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.fax=tv_fax.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.type=tv_type.getText().toString().replaceAll("null","")+"";
+                    additionalVisits.nationality=tv_nationality.getText().toString().replaceAll("null","")+"";
                     additionalVisits.save();
 
                 }

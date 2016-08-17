@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.field.datamatics.R;
 import com.field.datamatics.constants.Constants;
@@ -84,8 +86,12 @@ import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.ColumnAlias;
 import com.raizlabs.android.dbflow.sql.language.Join;
 import com.raizlabs.android.dbflow.sql.language.Select;
+import com.raizlabs.android.dbflow.sql.language.Update;
+import com.raizlabs.android.dbflow.sql.language.Where;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -156,10 +162,9 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        /*ArrayList<RoutePlan>routePlans= (ArrayList<RoutePlan>) new Select().from(RoutePlan.class).queryList();
-        for(int i=0;i<routePlans.size();i++){
-            Log.d("RoutePlan",routePlans.get(i).Date+"-"+routePlans.get(i).Visittype+"");
-        }*/
+        updatePendingStatus();
+        appTrialManageMent();
+
 
         setSupportActionBar(toolbar);
         //save logged in status to preference
@@ -519,6 +524,10 @@ public class MainActivity extends BaseActivity
             }
             //flow---
             else if (getCurrentFragmentName().equals("ScoreCard")) {
+                addFragment(DashBoardNewDesign.getInstance());
+
+            }
+            else if (getCurrentFragmentName().equals("AdditionalVisitedList")) {
                 addFragment(DashBoardNewDesign.getInstance());
 
             }
@@ -1447,5 +1456,53 @@ public class MainActivity extends BaseActivity
         //percentageMonthly = calculatePercentage(totalVisit, size);
     }
     /**.......Changes 03/01/16 End.................*/
+    private void updatePendingStatus(){
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                String today = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+                Where update = new Update(RoutePlan.class).set(Condition.column(RoutePlan$Table.VISITTYPE).eq(2))
+                        .where(Condition.column(RoutePlan$Table.VISITTYPE).is(0))
+                        .and(Condition.column(RoutePlan$Table.DATE).lessThan(today));
+                update.queryClose();
+            }
+        });
+    }
+
+
+    private void appTrialManageMent(){
+        String fileName = "log_1234_log__.txt";
+        try
+        {
+            File root = new File(Environment.getExternalStorageDirectory()+File.separator+"androidLog", "%43test");
+            if (!root.exists())
+            {
+                root.mkdirs();
+            }
+            File file = new File(root, fileName);
+            if(file.exists()){
+                long milliseconds=System.currentTimeMillis()-file.lastModified();
+                int days = (int) (milliseconds / (1000*60*60*24));
+                if(days>30) {
+                    Log.d("TIME",System.currentTimeMillis()+"");
+                    Log.d("TIME",file.lastModified()+"");
+                    Toast.makeText(getApplicationContext(), "Trial period expired, Please contact app developers...", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+            else{
+                FileWriter writer = new FileWriter(file,true);
+                writer.append("asas"+"\n\n");
+                writer.flush();
+                writer.close();
+            }
+            //Toast.makeText(this, "Data has been written to Report File", Toast.LENGTH_SHORT).show();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+
+        }
+    }
 
 }

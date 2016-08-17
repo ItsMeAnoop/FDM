@@ -591,13 +591,14 @@ public class SignatureFragment extends BaseFragment implements View.OnTouchListe
 
     private void goBack(boolean isPending) {
         Delete.table(PendingRemarks.class,Condition.column(PendingRemarks$Table.ROUTEPLANNO).eq(routePlan.Route_Plan_Number));
-        /*Delete.table(SurveyDetails.class,Condition.column(SurveyDetails$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(routePlan.Route_Plan_Number));
-        Delete.table(ProductSample.class,Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(routePlan.Route_Plan_Number));
-        Delete.table(Reminder.class,Condition.column(Reminder$Table.ROUTEPLANNUMBER).eq(routePlan.Route_Plan_Number));
-        Delete.table(Activities.class,Condition.column(Activities$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(routePlan.Route_Plan_Number));
-        Delete.table(Documents.class,Condition.column(Documents$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(routePlan.Route_Plan_Number));*/
+
         try {
             if(routePlan.Route_Plan_Number==-1){
+                Delete.table(SurveyDetails.class,Condition.column(SurveyDetails$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
+                Delete.table(ProductSample.class,Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
+                Delete.table(Reminder.class,Condition.column(Reminder$Table.ROUTEPLANNUMBER).eq(-1));
+                Delete.table(Activities.class,Condition.column(Activities$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
+                Delete.table(Documents.class,Condition.column(Documents$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
                 addFragment(TodaysVisitTabbed.getAdditionalVisitTabbed());
             }
             else{

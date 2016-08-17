@@ -281,7 +281,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         else if (v == btnPending) f = PendingTask.getInstance("PendingVisit");
         else if (v == btnSamples) f = SamplesIssuedFragment.getInstance();
         else if (v == btnScorecard) f = new ScoreCard();
-        else if (v == btnAdditionalVisit) f=new AdditionalVisitedList();
+        else if (v == btnAdditionalVisit) showAdditionalDialog();
         else if (v == btnMoreReminder) f = new DashBoardRemainderList();
         else if (v == btnChooseProduct) {
             new DialogProducts(mContainer, DashBoardNewDesign.this, DialogProducts.TYPE_PRODUCT_NUM, selectedProducts).showDialogProductNumber();
@@ -663,7 +663,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
     }
 
 
-    /*private void showAdditionalDialog() {
+    private void showAdditionalDialog() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.dialog_schedule_vs_actual);
         dialog.setTitle("Additional Visit");
@@ -712,7 +712,7 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
             }
         });
         dialog.show();
-    }*/
+    }
 
 
     public static class DatePickerFragment extends DialogFragment
@@ -738,11 +738,13 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
                 dateFrom = Utilities.dateToString(calendar, "yyyy-MM-dd");
                 edtDateFrom.setText(Utilities.dateToString(calendar, "MMM dd, yyyy"));
                 fromDate = calendar.getTime();
+                AdditionalVisitedList.dateFrom=Utilities.dateToString(calendar, "yyyy-MM-dd");
             } else {
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                //calendar.add(Calendar.DAY_OF_MONTH, 1);
                 dateTo = Utilities.dateToString(calendar, "yyyy-MM-dd");
                 edtDateTo.setText(Utilities.dateToString(calendar, "MMM dd, yyyy"));
                 toDate = calendar.getTime();
+                AdditionalVisitedList.dateTo=Utilities.dateToString(calendar, "yyyy-MM-dd");
             }
         }
 

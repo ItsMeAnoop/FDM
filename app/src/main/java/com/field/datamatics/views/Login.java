@@ -47,6 +47,7 @@ import com.field.datamatics.apimodels.WorkCalanderResponseBody;
 import com.field.datamatics.constants.ApiConstants;
 import com.field.datamatics.constants.Constants;
 import com.field.datamatics.database.Activities;
+import com.field.datamatics.database.AdditionalVisits;
 import com.field.datamatics.database.Appointment;
 import com.field.datamatics.database.Client;
 import com.field.datamatics.database.Client_Customer;
@@ -537,6 +538,11 @@ public class Login extends BaseActivity {
                                 return;
                             }
                              if (Utilities.checkPlayServices(Login.this)) {
+                                 try {
+                                     Delete.table(AdditionalVisits.class);
+                                 } catch (Exception e) {
+                                     e.printStackTrace();
+                                 }
                                 try {
                                     Delete.table(Client_work_cal.class);
                                 } catch (Exception e) {
@@ -1805,7 +1811,7 @@ public class Login extends BaseActivity {
             @Override
             public void onSuccess(Object objects) {
                 final WorkCalanderResponse workCalanderResponse = gson.fromJson(objects.toString(), WorkCalanderResponse.class);
-                /*if(workCalanderResponse.getStatus().equals("failure")){
+                if(workCalanderResponse.getStatus().equals("failure")){
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -1817,8 +1823,8 @@ public class Login extends BaseActivity {
                     saveWorkCalenderData(workCalanderResponse);
                     index=workCalanderResponse.getBody()[workCalanderResponse.getBody().length-1].getWorkcalenderid();
                     getClientWorkCalanderApiCall();
-                }*/
-               saveWorkCalenderData(workCalanderResponse);
+                }
+               //saveWorkCalenderData(workCalanderResponse);
             }
 
             @Override
@@ -1855,7 +1861,7 @@ public class Login extends BaseActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                moveToNextActivity();
+                //moveToNextActivity();
             }
         }.execute();
 
