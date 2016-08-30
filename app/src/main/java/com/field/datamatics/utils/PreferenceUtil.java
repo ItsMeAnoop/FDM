@@ -21,6 +21,9 @@ public class PreferenceUtil {
     private String CLIENT_ID="clientID";
     private String CUSTOMER_ID="customer_id";
     private String USER_ID="user_id";
+    private String ROUTE_PLAN_NUMBER="route_plan_number";
+    private String CLINET_NAME="client_name_";
+    private String CUSTOMER_NAME="customer_name_";
 
     private PreferenceUtil(){
     };
@@ -84,6 +87,27 @@ public class PreferenceUtil {
     }
     public void setUSER_ID(String date){
         editor.putString(USER_ID, date);
+        editor.commit();
+    }
+    public int getRoutePlanNumber(){
+        return  pref.getInt(ROUTE_PLAN_NUMBER, -1);
+    }
+    public void setRoutePlanNumber(int routePlanNumber){
+        editor.putInt(ROUTE_PLAN_NUMBER, routePlanNumber);
+        editor.commit();
+    }
+    public String getClientName(){
+        return  pref.getString(CLINET_NAME, "");
+    }
+    public void setClientName(String name){
+        editor.putString(CLINET_NAME, name);
+        editor.commit();
+    }
+    public String getCustomerName(){
+        return  pref.getString(CUSTOMER_NAME, "");
+    }
+    public void setCustomerName(String name){
+        editor.putString(CUSTOMER_NAME, name);
         editor.commit();
     }
 

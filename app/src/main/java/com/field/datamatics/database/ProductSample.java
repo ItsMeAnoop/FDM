@@ -56,4 +56,8 @@ public class ProductSample extends BaseModel {
     /* this column is only for sorting purpose */
     @Column
     public String category;
+    @Column
+    public String clientName;
+    @Column
+    public String customerName;
 }

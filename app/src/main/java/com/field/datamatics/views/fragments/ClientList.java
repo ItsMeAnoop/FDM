@@ -86,7 +86,8 @@ public class ClientList extends BaseFragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            String today = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+            //String selectedDate = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd");
+            String selectedDate=MonthlyVisit.SELECTED_DATE;
             ColumnAlias c1 = ColumnAlias.column("Client." + Client$Table.CLIENT_NUMBER).as("Client_Number");
             ColumnAlias c2 = ColumnAlias.column("Client." + Client$Table.ADDRESS_NUMBER_JDE).as("Address_Number_JDE");
             ColumnAlias c3 = ColumnAlias.column("Client." + Client$Table.CLIENT_PREFIX).as("Client_Prefix");
@@ -123,8 +124,7 @@ public class ClientList extends BaseFragment {
                     .join(Appointment.class, Join.JoinType.LEFT)
                     .on(Condition.column(ColumnAlias.columnWithTable("Appointment", Appointment$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER))
                             .is(ColumnAlias.columnWithTable("RoutePlan", RoutePlan$Table.ROUTE_PLAN_NUMBER)))
-                    .where(Condition.column(RoutePlan$Table.DATE).eq(today))
-                    .and(Condition.column(RoutePlan$Table.VISITTYPE).eq(0))
+                    .where(Condition.column(RoutePlan$Table.DATE).eq(selectedDate))
                     .and(Condition.column(RoutePlan$Table.AUTHORIZEDBY).isNot(0))
                     .orderBy(true, Customer$Table.LOCATION)
                     .queryCustomList(JoinClientRoutePlan.class);

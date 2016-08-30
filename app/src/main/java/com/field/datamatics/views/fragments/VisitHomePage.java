@@ -302,6 +302,8 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
                     additionalVisits.type=tv_type.getText().toString().replaceAll("null","")+"";
                     additionalVisits.nationality=tv_nationality.getText().toString().replaceAll("null","")+"";
                     additionalVisits.save();
+                    PreferenceUtil.getIntsance().setClientName(tv_name.getText().toString().replaceAll("null",""));
+                    PreferenceUtil.getIntsance().setCustomerName(tv_Customer.getText().toString().replaceAll("null",""));
 
                 }
             } catch (Exception e) {

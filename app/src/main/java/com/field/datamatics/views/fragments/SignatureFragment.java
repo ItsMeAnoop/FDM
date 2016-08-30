@@ -76,6 +76,8 @@ import com.raizlabs.android.dbflow.runtime.transaction.process.SaveModelTransact
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Select;
+import com.raizlabs.android.dbflow.sql.language.Update;
+import com.raizlabs.android.dbflow.sql.language.Where;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -594,8 +596,15 @@ public class SignatureFragment extends BaseFragment implements View.OnTouchListe
 
         try {
             if(routePlan.Route_Plan_Number==-1){
+                int routePlanNo=PreferenceUtil.getIntsance().getRoutePlanNumber()+-1;
+                PreferenceUtil.getIntsance().setRoutePlanNumber(routePlanNo);
+                Where update = new Update(ProductSample.class).set(Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(routePlanNo),
+                        Condition.column(ProductSample$Table.CLIENTNAME).eq(PreferenceUtil.getIntsance().getClientName()),
+                        Condition.column(ProductSample$Table.CUSTOMERNAME).eq(PreferenceUtil.getIntsance().getCustomerName()))
+                        .where(Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).is(-1));
+                update.queryClose();
+                //Delete.table(ProductSample.class,Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
                 Delete.table(SurveyDetails.class,Condition.column(SurveyDetails$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
-                Delete.table(ProductSample.class,Condition.column(ProductSample$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
                 Delete.table(Reminder.class,Condition.column(Reminder$Table.ROUTEPLANNUMBER).eq(-1));
                 Delete.table(Activities.class,Condition.column(Activities$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));
                 Delete.table(Documents.class,Condition.column(Documents$Table.ROUTEPLAN_ROUTE_PLAN_NUMBER).eq(-1));

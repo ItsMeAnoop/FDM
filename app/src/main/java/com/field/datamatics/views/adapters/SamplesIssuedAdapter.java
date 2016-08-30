@@ -38,8 +38,14 @@ public class SamplesIssuedAdapter extends RecyclerView.Adapter<SamplesIssuedAdap
 
         holder.txtProductNum.setText("" + ps.product.Product_Number);
         holder.txtProductDesc.setText(ps.product.Product_Description);
-        holder.txtClientName.setText(ps.routePlan.client.getName());
-        holder.txtCustomerName.setText(ps.routePlan.customer.Customer_Name);
+        if(ps.routePlan!=null) {
+            holder.txtClientName.setText(ps.routePlan.client.getName());
+            holder.txtCustomerName.setText(ps.routePlan.customer.Customer_Name);
+        }
+        else{
+            holder.txtClientName.setText(ps.clientName);
+            holder.txtCustomerName.setText(ps.customerName);
+        }
         holder.txtQuantity.setText("" + ps.quantity);
         String category = ps.category;
         if (position == 0) {
