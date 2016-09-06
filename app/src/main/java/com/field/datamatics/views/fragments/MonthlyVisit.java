@@ -193,16 +193,25 @@ public class MonthlyVisit extends BaseFragment {
             default:
                 break;
         }
-        if((Integer.parseInt(month_))%2==0)
-            days_count=30;
-        else
-            days_count=31;
-        if(month_.equals("2")){
+        if(month_.equals("02")){
             if((Integer.parseInt(year_))%4==0)
                 days_count=29;
             else
                 days_count=28;
         }
+        else if((Integer.parseInt(month_))<=7){
+            if((Integer.parseInt(month_))%2==0)
+                days_count=30;
+            else
+                days_count=31;
+        }
+        else{
+            if((Integer.parseInt(month_))%2==0)
+                days_count=31;
+            else
+                days_count=30;
+        }
+
         for(int i=1;i<=days_count;i++)
             data.add(i+"");
         monthlyVisitAdapter=new MonthlyVisitAdapter(getActivity(),data,visit,gridwidth);
