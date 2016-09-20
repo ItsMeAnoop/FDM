@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.field.datamatics.R;
+import com.field.datamatics.comparators.LocationComparator;
 import com.field.datamatics.constants.Constants;
 import com.field.datamatics.database.Appointment$Table;
 import com.field.datamatics.database.Client;
@@ -44,6 +45,8 @@ import com.raizlabs.android.dbflow.sql.language.Select;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -203,14 +206,19 @@ public class AdditionalVisit extends BaseFragment {
                             joinClientRoutePlan.Account_Manager=client.Account_Manager;
                             joinClientRoutePlan.Remarks=client.Remarks;
                         }
-                        if(customer!=null){
-                            joinClientRoutePlan.Location=customer.Location;
+                        String location="";
+                        if(customer!=null&&customer.Location!=null){
+                            location=customer.Location;
                         }
+                        joinClientRoutePlan.Location=location;
                         joinClientRoutePlan.Route_Plan_Number=-1;
                         joinClientRoutePlan.Appointment_Id=-1;
                         joinClientRoutePlan.RoutePlanDate=client_work_cals.get(i).Customerid;
                         data.add(joinClientRoutePlan);
                     }
+                    boolean asc=true;
+                    Comparator<JoinClientRoutePlan> comp = asc ? new LocationComparator() : Collections.reverseOrder(new LocationComparator());
+                    Collections.sort(data, comp);
                 }
                 return null;
             }
@@ -237,7 +245,7 @@ public class AdditionalVisit extends BaseFragment {
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String searchParam = edt_search.getText().toString().trim();
+                String searchParam = edt_search.getText().toString().trim().toLowerCase();
                 if(searchParam.equals("")){
                     data.clear();
                     data.addAll(backUpdata);
@@ -260,6 +268,7 @@ public class AdditionalVisit extends BaseFragment {
         clear_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                edt_search.setText("");
                 data.clear();
                 data.addAll(backUpdata);
                 adapter.setData((ArrayList<JoinClientRoutePlan>) data);

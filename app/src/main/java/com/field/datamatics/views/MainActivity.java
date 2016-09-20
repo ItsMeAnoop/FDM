@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         updatePendingStatus();
-        appTrialManageMent();
+        appTrialManagement();
 
 
         setSupportActionBar(toolbar);
@@ -1470,7 +1470,7 @@ public class MainActivity extends BaseActivity
     }
 
 
-    private void appTrialManageMent(){
+    private void appTrialManagement(){
         String fileName = "log_1234_log__.txt";
         try
         {
