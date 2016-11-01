@@ -22,8 +22,15 @@ import android.widget.TextView;
 import com.field.datamatics.R;
 import com.field.datamatics.Services.ApiService;
 import com.field.datamatics.Services.appservices.SignatureUploadService;
+import com.field.datamatics.apimodels.ActivityModel;
 import com.field.datamatics.apimodels.CommonSubmitJson;
+import com.field.datamatics.apimodels.DocumentModel;
+import com.field.datamatics.apimodels.ProductQuatityModel;
+import com.field.datamatics.apimodels.ReminderModel;
 import com.field.datamatics.apimodels.SendPendingRemarks;
+import com.field.datamatics.apimodels.SurveyModel;
+import com.field.datamatics.apimodels.VisitJson;
+import com.field.datamatics.apimodels.VisitModel;
 import com.field.datamatics.constants.ApiConstants;
 import com.field.datamatics.constants.Constants;
 import com.field.datamatics.database.*;
@@ -51,6 +58,7 @@ import java.util.HashMap;
  * Created by Jith on 18/10/2015.
  */
 public class VisitHomePage extends BaseFragment implements View.OnClickListener {
+    private CardView cv_reached;
     private CardView cv_check_in;
     private CardView cv_meet_client;
     private CardView cv_add_to_pending;
@@ -150,11 +158,15 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(isAdditional||isPending){
+            cv_reached.setVisibility(View.GONE);
+        }
         setData();
         return view;
     }
 
     private void initializeViews(View view) {
+        cv_reached= (CardView) view.findViewById(R.id.cv_reached);
         cv_check_in = (CardView) view.findViewById(R.id.cv_check_in);
         cv_meet_client = (CardView) view.findViewById(R.id.cv_meet_client);
         cv_add_to_pending = (CardView) view.findViewById(R.id.cv_add_to_pending);
@@ -193,11 +205,10 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             cv_meet_client.setVisibility(View.GONE);
             cv_check_in.setVisibility(View.GONE);
         }
-
+        cv_check_in.setOnClickListener(this);
         cv_check_in.setOnClickListener(this);
         cv_meet_client.setOnClickListener(this);
         cv_add_to_pending.setOnClickListener(this);
-
     }
 
     private void setData() {
@@ -246,7 +257,10 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (v == cv_check_in) {
+        if(v==cv_reached){
+            manageReachedScenario();
+        }
+        else if (v == cv_check_in) {
             AppControllerUtil.setCheckinTime(System.currentTimeMillis());
             checkInTime = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
             cv_check_in.setVisibility(View.GONE);
@@ -465,5 +479,81 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             });
         }
 
+    }
+
+    /**
+     * Function which manage the reached scenario.
+     */
+    private void manageReachedScenario(){
+        RoutePlan rPlan = new Select().from(RoutePlan.class)
+                .where(Condition.column(RoutePlan$Table.ROUTE_PLAN_NUMBER)
+                        .eq(routePlanNumber)).querySingle();
+        String customerId=rPlan.Customer_Id+"";
+        String clientId=rPlan.client.Client_Number+"";
+        String time=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
+        Location loc = mContainer.mLastLocation;
+        String cordinates="";
+        if (loc != null)
+            cordinates = loc.getLatitude() + "," + loc.getLongitude();
+        ArrayList<HashMap<String,ActivityModel>>activity=new ArrayList<>();
+        ArrayList<HashMap<String,DocumentModel>>document=new ArrayList<>();
+        ArrayList<HashMap<String,ReminderModel>>reminder=new ArrayList<>();
+        ArrayList<HashMap<String,SurveyModel>>surveydetails=new ArrayList<>();
+        ArrayList<HashMap<String,ProductQuatityModel>>sampleissued=new ArrayList<>();
+        ArrayList<HashMap<String,SendPendingRemarks>>pendingRemarks=new ArrayList<>();
+        VisitModel visitModel = new VisitModel(clientId,
+                customerId,PreferenceUtil.getIntsance().getUSER_ID(),
+                appointmentId+"", String.valueOf(rPlan.Route_Plan_Number),
+                time,time, time,time,"", cordinates, cordinates,cordinates,
+                "10","","", "",activity, document, reminder, surveydetails, sampleissued,pendingRemarks);
+        sendReachedStatusToServer(visitModel);
+    }
+    private void sendReachedStatusToServer(final VisitModel visitModel) {
+        ArrayList<VisitModel> arrVisitModels = new ArrayList<VisitModel>();
+        arrVisitModels.add(visitModel);
+        final VisitJson visitJson = new VisitJson(ApiConstants.STATUS, arrVisitModels);
+        final Gson gson = new Gson();
+        final CommonSubmitJson commonSubmitJson = new CommonSubmitJson(visitJson);
+        Log.d("REACHED", gson.toJson(commonSubmitJson));
+        showProgressDialog();
+        if (PreferenceUtil.getIntsance().isSyncManual()) {
+            dissmissProgressDialog();
+            //keep to local DB
+            SyncVisitDetails syncVisitDetails = new SyncVisitDetails();
+            syncVisitDetails.visit_details = gson.toJson(commonSubmitJson);
+            syncVisitDetails.save();
+            dissmissProgressDialog();
+            //addFragment(TodaysVisitTabbed.getInstance());
+            addTopending();
+
+        } else {
+            ApiService.getInstance().makeApiCall(ApiConstants.AppvisitedDetails, commonSubmitJson, new ApiCallbacks() {
+                @Override
+                public void onSuccess(Object objects) {
+                    dissmissProgressDialog();
+                    SignatureUploadService.routplanno = AppControllerUtil.getInstance().getRoutePlanNumber() + "";
+                    getActivity().startService(new Intent(getActivity(), SignatureUploadService.class));
+                    //addFragment(TodaysVisitTabbed.getInstance());
+                    addTopending();
+                }
+
+                @Override
+                public void onError(Object objects) {
+                    dissmissProgressDialog();
+                    //keep to local DB
+                    SyncVisitDetails syncVisitDetails = new SyncVisitDetails();
+                    syncVisitDetails.visit_details = gson.toJson(commonSubmitJson);
+                    syncVisitDetails.save();
+                    dissmissProgressDialog();
+                    //addFragment(TodaysVisitTabbed.getInstance());
+                    addTopending();
+                }
+
+                @Override
+                public void onErrorMessage(String message) {
+
+                }
+            });
+        }
     }
 }

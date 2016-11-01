@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.IBinder;
 
 import com.field.datamatics.Services.ApiService;
@@ -69,6 +70,7 @@ public class SecondSyncService extends Service {
     private User myUser;
     private String mrid;
     private static SyncingCallBack callBack;
+    private String index="0";
 
     @Override
     public void onCreate() {
@@ -1057,15 +1059,15 @@ public class SecondSyncService extends Service {
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
-                            callBack.onPerecentage(100,true);
-                            stopSelf();
+                            callBack.onPerecentage(95,true);
+                            getClientWorkCalanderApiCall();
 
                         }
                     }.execute();
 
                 } else {
-                    callBack.onPerecentage(100,true);
-                    stopSelf();
+                    callBack.onPerecentage(95,true);
+                    getClientWorkCalanderApiCall();
                 }
 
 
@@ -1073,8 +1075,8 @@ public class SecondSyncService extends Service {
 
             @Override
             public void onError(Object objects) {
-                callBack.onPerecentage(100,false);
-                stopSelf();
+                callBack.onPerecentage(95,true);
+                getClientWorkCalanderApiCall();
 
             }
 
@@ -1083,6 +1085,78 @@ public class SecondSyncService extends Service {
 
             }
         });
+    }
+
+
+    private void getClientWorkCalanderApiCall(){
+        try {
+            Delete.table(Client_work_cal.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //Work calender API
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
+        params.put("mrid", mrid+"");
+        params.put("index", index);
+        ApiService.getInstance().makeApiCall(ApiConstants.AppViewClientcalenderDetails, params, new ApiCallbacks() {
+            @Override
+            public void onSuccess(Object objects) {
+                final WorkCalanderResponse workCalanderResponse = gson.fromJson(objects.toString(), WorkCalanderResponse.class);
+                if(workCalanderResponse.getStatus().equals("failure")){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callBack.onPerecentage(100,true);
+                            stopSelf();
+                        }
+                    },1000);
+                }
+                else{
+                    saveWorkCalenderData(workCalanderResponse);
+                    index=workCalanderResponse.getBody()[workCalanderResponse.getBody().length-1].getWorkcalenderid();
+                    getClientWorkCalanderApiCall();
+                }
+            }
+            @Override
+            public void onError(Object objects) {
+                callBack.onPerecentage(100,true);
+                stopSelf();
+            }
+
+            @Override
+            public void onErrorMessage(String message) {
+            }
+
+        });
+    }
+    private void saveWorkCalenderData(final WorkCalanderResponse workCalanderResponse){
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                WorkCalanderResponseBody[] body=workCalanderResponse.getBody();
+                for(int i=0;i<body.length;i++){
+                    Client_work_cal cal=new Client_work_cal();
+                    cal.Clientfirstname=body[i].getClientfirstname();
+                    cal.Customerid=body[i].getCustomerid();
+                    cal.Availabledays=body[i].getAvailabledays().toLowerCase();
+                    cal.Clientno=body[i].getClientno();
+                    cal.Fromtime=body[i].getFromtime();
+                    cal.Customername=body[i].getCustomername();
+                    cal.Totime=body[i].getTotime();
+                    cal.save();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }.execute();
 
     }
+
+
+
 }

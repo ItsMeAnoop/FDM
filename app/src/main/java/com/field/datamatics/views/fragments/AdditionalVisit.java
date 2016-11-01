@@ -171,11 +171,12 @@ public class AdditionalVisit extends BaseFragment {
                 String today=new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
                 today=today.toLowerCase();
                 ArrayList<Client_work_cal>client_work_cals= (ArrayList<Client_work_cal>) new Select().from(Client_work_cal.class)
-                        .where(Condition.column(Client_work_cal$Table.AVAILABLEDAYS).eq(today))
-                        .and(Condition.column(Client_work_cal$Table.CLIENTWORK_ID).greaterThan(index))
+                        //.where(Condition.column(Client_work_cal$Table.AVAILABLEDAYS).eq(today))
+                        //.and(Condition.column(Client_work_cal$Table.CLIENTWORK_ID).greaterThan(index))
                         //.limit(100)
                         .queryList();
                 if(client_work_cals!=null){
+                    final int sizeee=client_work_cals.size();
                     for(int i=0;i<client_work_cals.size();i++){
                         index=client_work_cals.get(i).Clientwork_Id;
                         Client client=  new Select().from(Client.class)
@@ -225,7 +226,6 @@ public class AdditionalVisit extends BaseFragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                progressBar.setVisibility(View.GONE);
                 if (data == null || data.size() == 0) {
                     isEnd=true;
                     emptyView.setVisibility(View.VISIBLE);
@@ -238,6 +238,7 @@ public class AdditionalVisit extends BaseFragment {
                     searchManagement();
                 }
                 adapter.setData((ArrayList<JoinClientRoutePlan>) data);
+                progressBar.setVisibility(View.GONE);
             }
         }.execute();
     }

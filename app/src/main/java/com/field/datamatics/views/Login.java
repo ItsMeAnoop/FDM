@@ -1877,16 +1877,6 @@ public class Login extends BaseActivity {
         PreferenceUtil.getIntsance().setLastSyncDate(Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm a"));
         AppControllerUtil.getPrefs().edit().putString("user", et_user_name.getText().toString()).apply();
         PreferenceUtil.getIntsance().setSyncManul(false);
-       /* Bundle bundle = new Bundle();
-        bundle.putString("syncType", "PULL");
-        bundle.putString("isSyncAllData", "no");
-        bundle.putString("from", "login");
-        Intent intent = new Intent(getApplicationContext(), DownloadProductListActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        finish();*/
-
         SetAlarm();
         android.os.Process.killProcess(android.os.Process.myPid());
     }

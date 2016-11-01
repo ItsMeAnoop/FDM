@@ -1471,7 +1471,7 @@ public class MainActivity extends BaseActivity
 
 
     private void appTrialManagement(){
-        String fileName = "log_1234_log__.txt";
+        String fileName = "log_19_10_16.txt";
         try
         {
             File root = new File(Environment.getExternalStorageDirectory()+File.separator+"androidLog", "%43test");
@@ -1483,7 +1483,7 @@ public class MainActivity extends BaseActivity
             if(file.exists()){
                 long milliseconds=System.currentTimeMillis()-file.lastModified();
                 int days = (int) (milliseconds / (1000*60*60*24));
-                if(days>30) {
+                if(days>40) {
                     Log.d("TIME",System.currentTimeMillis()+"");
                     Log.d("TIME",file.lastModified()+"");
                     Toast.makeText(getApplicationContext(), "Trial period expired, Please contact app developers...", Toast.LENGTH_LONG).show();

@@ -44,6 +44,7 @@
                 android:layout_marginTop="@dimen/ten_dp"
                 android:hint="User name"
                 android:padding="@dimen/five_dp"
+                android:singleLine="true"
                 android:textColor="@color/white_color"
                 android:textColorHint="#ffbfe5ff" />
 
@@ -55,6 +56,7 @@
                 android:hint="password"
                 android:inputType="textPassword"
                 android:padding="@dimen/five_dp"
+                android:singleLine="true"
                 android:textColor="@color/white_color"
                 android:textColorHint="#ffbfe5ff" />
 
