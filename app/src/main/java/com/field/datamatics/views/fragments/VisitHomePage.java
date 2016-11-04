@@ -205,7 +205,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             cv_meet_client.setVisibility(View.GONE);
             cv_check_in.setVisibility(View.GONE);
         }
-        cv_check_in.setOnClickListener(this);
+        cv_reached.setOnClickListener(this);
         cv_check_in.setOnClickListener(this);
         cv_meet_client.setOnClickListener(this);
         cv_add_to_pending.setOnClickListener(this);
@@ -261,6 +261,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             manageReachedScenario();
         }
         else if (v == cv_check_in) {
+            cv_reached.setVisibility(View.GONE);
             AppControllerUtil.setCheckinTime(System.currentTimeMillis());
             checkInTime = Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
             cv_check_in.setVisibility(View.GONE);
@@ -488,7 +489,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         RoutePlan rPlan = new Select().from(RoutePlan.class)
                 .where(Condition.column(RoutePlan$Table.ROUTE_PLAN_NUMBER)
                         .eq(routePlanNumber)).querySingle();
-        String customerId=rPlan.Customer_Id+"";
+        String customerId=rPlan.customer.Customer_Id+"";
         String clientId=rPlan.client.Client_Number+"";
         String time=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
         Location loc = mContainer.mLastLocation;

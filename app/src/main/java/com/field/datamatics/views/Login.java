@@ -1400,7 +1400,6 @@ public class Login extends BaseActivity {
                                 try {
                                     routePlan.Customer_Id = Integer.parseInt(body.getCustomerid());
 
-
                                 } catch (Exception e) {
 
                                 }

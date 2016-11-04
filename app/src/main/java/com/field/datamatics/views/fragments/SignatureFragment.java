@@ -179,9 +179,6 @@ public class SignatureFragment extends BaseFragment implements View.OnTouchListe
                 mSignature.save(mView);
                 Utilities.hideKeyboard(getActivity());
                 saveVisitedDetails();
-//                cv.setVisibility(View.GONE);
-//                image.setImageBitmap(Utilities.getBitmap(mBitmap));
-//                image.setVisibility(View.VISIBLE);
             }
         });
 
