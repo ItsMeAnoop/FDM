@@ -152,7 +152,7 @@ public class AdditionalVisit extends BaseFragment {
             }
         }));
 
-        adapter = new AdditionalAdapter(getActivity(), (ArrayList<JoinClientRoutePlan>) data);
+        adapter = new AdditionalAdapter(getActivity());
         recyclerView.setAdapter(adapter);
 
     }
@@ -171,7 +171,7 @@ public class AdditionalVisit extends BaseFragment {
                 String today=new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
                 today=today.toLowerCase();
                 ArrayList<Client_work_cal>client_work_cals= (ArrayList<Client_work_cal>) new Select().from(Client_work_cal.class)
-                        //.where(Condition.column(Client_work_cal$Table.AVAILABLEDAYS).eq(today))
+                        .where(Condition.column(Client_work_cal$Table.AVAILABLEDAYS).eq(today))
                         //.and(Condition.column(Client_work_cal$Table.CLIENTWORK_ID).greaterThan(index))
                         //.limit(100)
                         .queryList();
@@ -251,7 +251,6 @@ public class AdditionalVisit extends BaseFragment {
                     data.clear();
                     data.addAll(backUpdata);
                     adapter.setData((ArrayList<JoinClientRoutePlan>) data);
-                    adapter.notifyDataSetChanged();
                 }
                 else{
                     data.clear();
@@ -273,7 +272,6 @@ public class AdditionalVisit extends BaseFragment {
                 data.clear();
                 data.addAll(backUpdata);
                 adapter.setData((ArrayList<JoinClientRoutePlan>) data);
-                adapter.notifyDataSetChanged();
             }
         });
 

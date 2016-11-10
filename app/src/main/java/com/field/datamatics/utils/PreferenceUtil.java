@@ -33,6 +33,10 @@ public class PreferenceUtil {
         editor=pref.edit();
         return intsance;
     }
+    public void clearPreference(){
+        pref.edit().clear().commit();
+
+    }
     public boolean isLogin(){
         return  pref.getBoolean(ISLOGIN,false);
     }
@@ -110,5 +114,6 @@ public class PreferenceUtil {
         editor.putString(CUSTOMER_NAME, name);
         editor.commit();
     }
+
 
 }

@@ -158,9 +158,9 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(isAdditional||isPending){
+        /*if(isAdditional||isPending){
             cv_reached.setVisibility(View.GONE);
-        }
+        }*/
         setData();
         return view;
     }
@@ -486,11 +486,16 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
      * Function which manage the reached scenario.
      */
     private void manageReachedScenario(){
+        String customerId=PreferenceUtil.getIntsance().getCUSTOMER_ID()+"";
+        String clientId=PreferenceUtil.getIntsance().getCLIENT_ID()+"";
         RoutePlan rPlan = new Select().from(RoutePlan.class)
                 .where(Condition.column(RoutePlan$Table.ROUTE_PLAN_NUMBER)
                         .eq(routePlanNumber)).querySingle();
-        String customerId=rPlan.customer.Customer_Id+"";
-        String clientId=rPlan.client.Client_Number+"";
+        if(routePlanNumber!=-1){
+            customerId=rPlan.customer.Customer_Id+"";
+            clientId=rPlan.client.Client_Number+"";
+        }
+
         String time=Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss");
         Location loc = mContainer.mLastLocation;
         String cordinates="";
@@ -504,7 +509,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         ArrayList<HashMap<String,SendPendingRemarks>>pendingRemarks=new ArrayList<>();
         VisitModel visitModel = new VisitModel(clientId,
                 customerId,PreferenceUtil.getIntsance().getUSER_ID(),
-                appointmentId+"", String.valueOf(rPlan.Route_Plan_Number),
+                appointmentId+"", String.valueOf(routePlanNumber),
                 time,time, time,time,"", cordinates, cordinates,cordinates,
                 "10","","", "",activity, document, reminder, surveydetails, sampleissued,pendingRemarks);
         sendReachedStatusToServer(visitModel);
@@ -524,8 +529,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
             syncVisitDetails.visit_details = gson.toJson(commonSubmitJson);
             syncVisitDetails.save();
             dissmissProgressDialog();
-            //addFragment(TodaysVisitTabbed.getInstance());
-            addTopending();
+            moveBackFromReachedClick();
 
         } else {
             ApiService.getInstance().makeApiCall(ApiConstants.AppvisitedDetails, commonSubmitJson, new ApiCallbacks() {
@@ -534,8 +538,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
                     dissmissProgressDialog();
                     SignatureUploadService.routplanno = AppControllerUtil.getInstance().getRoutePlanNumber() + "";
                     getActivity().startService(new Intent(getActivity(), SignatureUploadService.class));
-                    //addFragment(TodaysVisitTabbed.getInstance());
-                    addTopending();
+                    moveBackFromReachedClick();
                 }
 
                 @Override
@@ -546,8 +549,7 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
                     syncVisitDetails.visit_details = gson.toJson(commonSubmitJson);
                     syncVisitDetails.save();
                     dissmissProgressDialog();
-                    //addFragment(TodaysVisitTabbed.getInstance());
-                    addTopending();
+                    moveBackFromReachedClick();
                 }
 
                 @Override
@@ -555,6 +557,21 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
 
                 }
             });
+        }
+    }
+
+    /**
+     * Function which decide to where to go back when user click on reached button.
+     */
+    private void moveBackFromReachedClick(){
+        if(isAdditional){
+            addFragment(TodaysVisitTabbed.getAdditionalVisitTabbed());
+        }
+        else if(isPending){
+            addFragment(TodaysVisitTabbed.getPendingVisitTabbed());
+        }
+        else{
+            addFragment(TodaysVisitTabbed.getInstance());
         }
     }
 }

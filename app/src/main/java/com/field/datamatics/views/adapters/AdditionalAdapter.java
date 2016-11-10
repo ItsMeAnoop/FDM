@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by Anoop on 12-06-2016.
  */
 public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.ViewHolder> {
-    private ArrayList<JoinClientRoutePlan> data;
+    private ArrayList<JoinClientRoutePlan> data=new ArrayList<>();
     private Activity activity;
 
 
@@ -45,13 +45,14 @@ public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.Vi
 
     }
 
-    public AdditionalAdapter(Activity activity, ArrayList<JoinClientRoutePlan> data) {
-        this.data = data;
+    public AdditionalAdapter(Activity activity) {
+        //this.data = data;
         this.activity = activity;
     }
 
-    public void setData(ArrayList<JoinClientRoutePlan> data) {
-        this.data = new ArrayList<>(data);
+    public void setData(ArrayList<JoinClientRoutePlan> dataRec) {
+        this.data.clear();
+        this.data.addAll(dataRec);
         notifyDataSetChanged();
     }
 

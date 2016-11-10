@@ -65,7 +65,7 @@ public class AdditionalVisitedList extends BaseFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
 
-        adapter = new AdditionalAdapter(getActivity(), data);
+        adapter = new AdditionalAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -121,7 +121,7 @@ public class AdditionalVisitedList extends BaseFragment {
                         joinClientRoutePlan.Location=visitList.get(i).location;
                         data.add(joinClientRoutePlan);
                     }
-                    adapter.notifyDataSetChanged();
+                    adapter.setData(data);
                     dissmissProgressDialog();
                 }
                 dissmissProgressDialog();

@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.field.datamatics.R;
 import com.field.datamatics.constants.ApiConstants;
 import com.field.datamatics.constants.Constants;
+import com.field.datamatics.database.User;
 import com.field.datamatics.interfaces.DialogCallBacks;
 import com.field.datamatics.utils.AppControllerUtil;
 import com.field.datamatics.utils.DialogUtil;
@@ -25,6 +27,7 @@ import com.field.datamatics.views.Login;
 import com.field.datamatics.views.MainActivity;
 import com.field.datamatics.views.helper.DirectoryChooserDialog;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.raizlabs.android.dbflow.sql.language.Delete;
 
 import net.rdrei.android.dirchooser.DirectoryChooserActivity;
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
@@ -151,7 +154,15 @@ public class Settings extends BaseFragment {
     private void logout() {
         PreferenceUtil.getIntsance().setIsLogin(false);
         AppControllerUtil.setLoginStatus(false);
-        startActivity(new Intent(getActivity(), Login.class));
+        boolean urlMode=PreferenceUtil.getIntsance().isTesting();
+        PreferenceUtil.getIntsance().clearPreference();
+        PreferenceUtil.getIntsance().setIsTesting(urlMode);
+        Delete.table(User.class);
+
+        //Move to login screen.
+        Intent next = new Intent(getActivity(), Login.class);
+        next.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(next);
         getActivity().finish();
     }
 
