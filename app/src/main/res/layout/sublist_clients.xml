@@ -37,6 +37,14 @@
                     android:text="Client Name"
                     android:textColor="#000"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/ten_dp"
+                    android:text="Client Name"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_speciality"

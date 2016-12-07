@@ -16,7 +16,7 @@ public class MyAlaramService extends IntentService {
     }
     @Override
     protected void onHandleIntent(Intent intent_) {
-        Toast.makeText(getApplicationContext(), "Service", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Service", Toast.LENGTH_SHORT).show();
         Bundle bundle = new Bundle();
         bundle.putString("syncType", "PULL");
         bundle.putString("isSyncAllData", "no");

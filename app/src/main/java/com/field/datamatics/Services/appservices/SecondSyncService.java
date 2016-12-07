@@ -600,7 +600,7 @@ public class SecondSyncService extends Service {
 
 
                             }
-                            for (int k = 0; k < clientResponse.getBody1().length; k++) {
+                            /*for (int k = 0; k < clientResponse.getBody1().length; k++) {
                                 Client_Customer client_customer = new Client_Customer();
                                 ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
                                 Customer customer = new Select().from(Customer.class).where(Condition.column(Customer$Table.CUSTOMER_ID)
@@ -610,7 +610,7 @@ public class SecondSyncService extends Service {
                                 client_customer.client = client1;
                                 client_customer.customer = customer;
                                 client_customers.add(client_customer);
-                            }
+                            }*/
 
                             TransactionListener<List<Client>> onClientsSavedListener = new TransactionListener<List<Client>>() {
                                 @Override
@@ -626,6 +626,16 @@ public class SecondSyncService extends Service {
                                 @Override
                                 public boolean hasResult(BaseTransaction<List<Client>> transaction, List<Client> result) {
                                     Delete.table(Client_Customer.class);
+                                    client_customers.clear();
+                                    for (int k = 0; k < clientResponse.getBody1().length; k++) {
+                                        Client_Customer client_customer = new Client_Customer();
+                                        ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
+                                        client_customer.client = new Client();
+                                        client_customer.client.Client_Number = Integer.parseInt(bodyOne.getClient_number());
+                                        client_customer.customer = new Customer();
+                                        client_customer.customer.Customer_Id = Integer.parseInt(bodyOne.getCustomerid());
+                                        client_customers.add(client_customer);
+                                    }
                                     if (client_customers != null && client_customers.size() > 0) {
                                         TransactionManager.getInstance()
                                                 .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(client_customers).result(onClientCustomerSavedListener)));
@@ -1089,7 +1099,9 @@ public class SecondSyncService extends Service {
 
 
     private void getClientWorkCalanderApiCall(){
-        try {
+        callBack.onPerecentage(100,true);
+        stopSelf();
+        /*try {
             Delete.table(Client_work_cal.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1128,9 +1140,9 @@ public class SecondSyncService extends Service {
             public void onErrorMessage(String message) {
             }
 
-        });
+        });*/
     }
-    private void saveWorkCalenderData(final WorkCalanderResponse workCalanderResponse){
+   /* private void saveWorkCalenderData(final WorkCalanderResponse workCalanderResponse){
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -1155,7 +1167,7 @@ public class SecondSyncService extends Service {
             }
         }.execute();
 
-    }
+    }*/
 
 
 

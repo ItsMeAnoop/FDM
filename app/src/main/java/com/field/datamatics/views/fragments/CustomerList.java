@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.field.datamatics.R;
 import com.field.datamatics.views.adapters.ClientListAdapter;
-import com.field.datamatics.views.adapters.CustomerListAdapter;
 
 import java.util.ArrayList;
 
@@ -20,19 +19,19 @@ import java.util.ArrayList;
 public class CustomerList extends BaseFragment {
     private RecyclerView rv_list;
     private ArrayList<String> data=new ArrayList<String>();
-    private CustomerListAdapter adapter;
+    //private CustomerListAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_list,container,false);
         addFragmentTitle("CustomerList");
-        rv_list= (RecyclerView) view.findViewById(R.id.rv_list);
+        /*rv_list= (RecyclerView) view.findViewById(R.id.rv_list);
         listSetUp();
-        registerEvents();
+        registerEvents();*/
         return view;
     }
-    private void listSetUp(){
+    /*private void listSetUp(){
         for(int i=0;i<20;i++)
             data.add("");
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -49,5 +48,5 @@ public class CustomerList extends BaseFragment {
             }
         });
 
-    }
+    }*/
 }

@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         updatePendingStatus();
-        appTrialManagement();
+        //appTrialManagement();
 
 
         setSupportActionBar(toolbar);

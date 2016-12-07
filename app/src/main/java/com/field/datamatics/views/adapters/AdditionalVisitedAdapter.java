@@ -1,29 +1,21 @@
 package com.field.datamatics.views.adapters;
 
 import android.app.Activity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.field.datamatics.R;
-import com.field.datamatics.database.Client_work_cal;
 import com.field.datamatics.database.JoinClientRoutePlan;
-import com.field.datamatics.database.PendingRemarks;
-import com.field.datamatics.database.PendingRemarks$Table;
-import com.field.datamatics.views.helper.ListDialogHelper;
-import com.raizlabs.android.dbflow.sql.builder.Condition;
-import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
 
 /**
  * Created by Anoop on 12-06-2016.
  */
-public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.ViewHolder> {
+public class AdditionalVisitedAdapter extends RecyclerView.Adapter<AdditionalVisitedAdapter.ViewHolder> {
     private ArrayList<JoinClientRoutePlan> data=new ArrayList<>();
     private Activity activity;
 
@@ -45,7 +37,7 @@ public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.Vi
 
     }
 
-    public AdditionalAdapter(Activity activity) {
+    public AdditionalVisitedAdapter(Activity activity) {
         //this.data = data;
         this.activity = activity;
     }

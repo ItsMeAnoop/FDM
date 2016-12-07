@@ -51,6 +51,7 @@ import com.field.datamatics.database.AdditionalVisits;
 import com.field.datamatics.database.Appointment;
 import com.field.datamatics.database.Client;
 import com.field.datamatics.database.Client_Customer;
+import com.field.datamatics.database.Client_Customer$Table;
 import com.field.datamatics.database.Client_Product;
 import com.field.datamatics.database.Client_work_cal;
 import com.field.datamatics.database.Customer;
@@ -330,7 +331,6 @@ public class Login extends BaseActivity {
 
         @Override
         public boolean hasResult(BaseTransaction<List<Client_Customer>> transaction, List<Client_Customer> result) {
-            // getClientproduct();
             return true;
         }
     };
@@ -989,51 +989,35 @@ public class Login extends BaseActivity {
                                     Client client = new Client();
                                     try {
                                         client.Client_Number = Integer.parseInt(body.getClient_number());
-
-
                                     } catch (Exception e) {
-
                                     }
+
                                     try {
-                                        //client.Address_Number_JDE=Long.parseLong(body.getNu);
                                         client.Client_Prefix = body.getClientprefix();
-
-
                                     } catch (Exception e) {
-
                                     }
+
                                     try {
                                         client.Client_First_Name = body.getClientfirstname();
-
-
                                     } catch (Exception e) {
-
                                     }
+
                                     try {
                                         client.Client_Last_Name = body.getClientlastname();
-
-
                                     } catch (Exception e) {
-
                                     }
+
                                     try {
                                         client.Client_Gender = body.getClientgender();
-
-
                                     } catch (Exception e) {
-
                                     }
                                     try {
                                         client.Client_Email = body.getClientemail();
-
-
                                     } catch (Exception e) {
-
                                     }
+
                                     try {
                                         client.Client_Phone = Long.parseLong(body.getClientphone());
-
-
                                     } catch (Exception e) {
 
                                     }
@@ -1122,9 +1106,8 @@ public class Login extends BaseActivity {
                                 } catch (Exception e) {
 
                                 }
-
-
                             }
+                            /*client_customers.clear();
                             for (int k = 0; k < clientResponse.getBody1().length; k++) {
                                 Client_Customer client_customer = new Client_Customer();
                                 ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
@@ -1133,7 +1116,7 @@ public class Login extends BaseActivity {
                                 client_customer.customer = new Customer();
                                 client_customer.customer.Customer_Id = Integer.parseInt(bodyOne.getCustomerid());
                                 client_customers.add(client_customer);
-                            }
+                            }*/
 
                             TransactionListener<List<Client>> onClientsSavedListener = new TransactionListener<List<Client>>() {
                                 @Override
@@ -1149,10 +1132,21 @@ public class Login extends BaseActivity {
                                 @Override
                                 public boolean hasResult(BaseTransaction<List<Client>> transaction, List<Client> result) {
                                     Delete.table(Client_Customer.class);
+                                    client_customers.clear();
+                                    for (int k = 0; k < clientResponse.getBody1().length; k++) {
+                                        Client_Customer client_customer = new Client_Customer();
+                                        ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
+                                        client_customer.client = new Client();
+                                        client_customer.client.Client_Number = Integer.parseInt(bodyOne.getClient_number());
+                                        client_customer.customer = new Customer();
+                                        client_customer.customer.Customer_Id = Integer.parseInt(bodyOne.getCustomerid());
+                                        client_customers.add(client_customer);
+                                    }
                                     if (client_customers != null && client_customers.size() > 0) {
                                         TransactionManager.getInstance()
                                                 .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(client_customers).result(onClientCustomerSavedListener)));
                                     }
+
                                     return true;
                                 }
                             };
@@ -1766,14 +1760,14 @@ public class Login extends BaseActivity {
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
                             Log.d("COUNT", count);
-                            //moveToNextActivity();
-                            getClientWorkCalander();
+                            moveToNextActivity();
+                            //getClientWorkCalander();
                         }
                     }.execute();
 
                 } else {
-                    //moveToNextActivity();
-                    getClientWorkCalander();
+                    moveToNextActivity();
+                    //getClientWorkCalander();
                 }
 
 
@@ -1793,7 +1787,7 @@ public class Login extends BaseActivity {
         });
 
     }
-    private void getClientWorkCalander(){
+    /*private void getClientWorkCalander(){
         index="0";
         Delete.table(Client_work_cal.class);
         getClientWorkCalanderApiCall();
@@ -1864,7 +1858,7 @@ public class Login extends BaseActivity {
             }
         }.execute();
 
-    }
+    }*/
 
     private void moveToNextActivity() {
         if (isLoginComplete)

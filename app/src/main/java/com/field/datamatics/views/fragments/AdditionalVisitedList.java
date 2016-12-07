@@ -3,33 +3,27 @@ package com.field.datamatics.views.fragments;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.field.datamatics.R;
 import com.field.datamatics.database.AdditionalVisits;
 import com.field.datamatics.database.AdditionalVisits$Table;
 import com.field.datamatics.database.JoinClientRoutePlan;
-import com.field.datamatics.database.RoutePlan$Table;
 import com.field.datamatics.ui.DividerDecoration;
 import com.field.datamatics.ui.RecyclerItemClickListener;
 import com.field.datamatics.utils.AppControllerUtil;
-import com.field.datamatics.views.adapters.AdditionalAdapter;
-import com.field.datamatics.views.adapters.ScheduleActualAdapter;
+import com.field.datamatics.views.adapters.AdditionalVisitedAdapter;
 import com.field.datamatics.views.dialogs.ClientDetailsDialog;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Anoop on 07-08-2016.
@@ -38,7 +32,7 @@ public class AdditionalVisitedList extends BaseFragment {
     private RecyclerView recyclerView;
     private ArrayList<JoinClientRoutePlan> data=new ArrayList<>();
     private ArrayList<AdditionalVisits>visitList=null;
-    private AdditionalAdapter adapter;
+    private AdditionalVisitedAdapter adapter;
     private RelativeLayout search_layout;
 
     public static String dateFrom;
@@ -65,7 +59,7 @@ public class AdditionalVisitedList extends BaseFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
 
-        adapter = new AdditionalAdapter(getActivity());
+        adapter = new AdditionalVisitedAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override

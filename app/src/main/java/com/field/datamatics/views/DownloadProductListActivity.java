@@ -180,7 +180,7 @@ public class DownloadProductListActivity extends BaseActivity {
             // dismiss the dialog after the file was downloaded
             //dismissDialog(progress_bar_type);
             Log.e("Success: ", "S");
-            Toast.makeText(getApplicationContext(), "File downloaded", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "File downloaded", Toast.LENGTH_SHORT).show();
 
             // Displaying downloaded image into image view
             // Reading image path from sdcard
