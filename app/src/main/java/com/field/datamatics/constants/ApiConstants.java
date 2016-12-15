@@ -4,11 +4,11 @@ package com.field.datamatics.constants;
  * Created by anoop on 20/9/15.
  */
 public class ApiConstants {
-    public static final String BASE_URL = "http://202.88.233.164:8080";
-    public static final String url = "webapp0710";
+    //public static final String BASE_URL = "http://202.88.233.164:8080";
+    //public static final String url = "webapp0710";
 
-    //public static final String BASE_URL = "http://sarauae.dyndns.org:8099";
-    //public static final String url="fdm";
+    public static final String BASE_URL = "http://sarauae.dyndns.org:8099";
+    public static final String url="fdm";
     //public static final String url="fdmtest";
     public static final String url_test="fdmtest";
 
