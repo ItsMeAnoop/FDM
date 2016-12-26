@@ -180,8 +180,8 @@ public class MainActivity extends BaseActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView tvUserName = (TextView) navigationView.findViewById(R.id.tv_user_name);
-        TextView tvEmail = (TextView) navigationView.findViewById(R.id.tv_email);
+        TextView tvUserName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_user_name);
+        TextView tvEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_email);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading... Please wait a moment.");

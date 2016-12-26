@@ -31,9 +31,11 @@ import com.field.datamatics.database.Appointment;
 import com.field.datamatics.database.Client;
 import com.field.datamatics.database.Client$Table;
 import com.field.datamatics.database.Client_Customer;
+import com.field.datamatics.database.Client_Customer$Table;
 import com.field.datamatics.database.Client_Product;
 import com.field.datamatics.database.Client_work_cal;
 import com.field.datamatics.database.Customer;
+import com.field.datamatics.database.Customer$Adapter;
 import com.field.datamatics.database.Customer$Table;
 import com.field.datamatics.database.Product;
 import com.field.datamatics.database.Reminder;
@@ -41,6 +43,7 @@ import com.field.datamatics.database.RoutePlan;
 import com.field.datamatics.database.RoutePlan$Table;
 import com.field.datamatics.database.SurveyMaster;
 import com.field.datamatics.database.User;
+import com.field.datamatics.database.User$Table;
 import com.field.datamatics.database.UserRegion;
 import com.field.datamatics.interfaces.ApiCallbacks;
 import com.field.datamatics.interfaces.SyncingCallBack;
@@ -71,6 +74,8 @@ public class SecondSyncService extends Service {
     private String mrid;
     private static SyncingCallBack callBack;
     private String index="0";
+    private int cutomer_index = 0;
+    private int client_index = 0;
 
     @Override
     public void onCreate() {
@@ -134,7 +139,7 @@ public class SecondSyncService extends Service {
 
         @Override
         public boolean hasResult(BaseTransaction<List<Customer>> transaction, List<Customer> result) {
-            getClients();
+            //getClients();
             return true;
         }
     };
@@ -153,7 +158,7 @@ public class SecondSyncService extends Service {
 
         @Override
         public boolean hasResult(BaseTransaction<List<Client_Customer>> transaction, List<Client_Customer> result) {
-            getClientproduct();
+            //getClientproduct();
             return true;
         }
     };
@@ -302,10 +307,10 @@ public class SecondSyncService extends Service {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
         params.put("mrid", mrid);
+        params.put("index",cutomer_index+"");
         ApiService.getInstance().makeApiCall(ApiConstants.AppViewCustomerDetails, params, new ApiCallbacks() {
             @Override
             public void onSuccess(Object objects) {
-                callBack.onPerecentage(60,true);
                 final CustomerResponse customerResponse = gson.fromJson(objects.toString(), CustomerResponse.class);
                 if (customerResponse.getStatus().equals(ApiConstants.STATUS)) {
                     new AsyncTask<Void, Void, Void>() {
@@ -320,14 +325,13 @@ public class SecondSyncService extends Service {
                                 CustomerResponseBody body = customerResponse.getBody()[i];
                                 try {
                                     customer.Customer_Id = Integer.parseInt(body.getCustomerid());
+                                    Delete.table(Customer.class, Condition.column(Customer$Table.CUSTOMER_ID).eq(customer.Customer_Id));
 
                                 } catch (Exception e) {
 
                                 }
                                 try {
-
                                     customer.Customer_Name = body.getCustomername();
-
 
                                 } catch (Exception e) {
 
@@ -407,10 +411,13 @@ public class SecondSyncService extends Service {
                             }
 
                             if (data != null && data.size() > 0) {
-                                Delete.table(Customer.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data).result(onCustomerSaveListener)));
+                                cutomer_index = data.get(data.size() - 1).Customer_Id;
+                                getCustomers();
                             } else {
+                                callBack.onPerecentage(60,false);
+                                Delete.table(Client_Customer.class);
                                 getClients();
                             }
                             return null;
@@ -423,6 +430,8 @@ public class SecondSyncService extends Service {
                     }.execute();
 
                 } else {
+                    callBack.onPerecentage(60,false);
+                    Delete.table(Client_Customer.class);
                     getClients();
                 }
 
@@ -447,10 +456,10 @@ public class SecondSyncService extends Service {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
         params.put("mrid", mrid);
+        params.put("index",client_index+"");
         ApiService.getInstance().makeApiCall(ApiConstants.AppClientDetails, params, new ApiCallbacks() {
             @Override
             public void onSuccess(Object objects) {
-                callBack.onPerecentage(70,true);
                 final ClientResponse clientResponse = gson.fromJson(objects.toString(), ClientResponse.class);
                 if (clientResponse.getStatus().equals(ApiConstants.STATUS)) {
                     new AsyncTask<Void, Void, Void>() {
@@ -464,6 +473,7 @@ public class SecondSyncService extends Service {
                                     Client client = new Client();
                                     try {
                                         client.Client_Number = Integer.parseInt(body.getClient_number());
+                                        Delete.table(Client.class, Condition.column(Client$Table.CLIENT_NUMBER).eq(client.Client_Number));
 
 
                                     } catch (Exception e) {
@@ -600,17 +610,6 @@ public class SecondSyncService extends Service {
 
 
                             }
-                            /*for (int k = 0; k < clientResponse.getBody1().length; k++) {
-                                Client_Customer client_customer = new Client_Customer();
-                                ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
-                                Customer customer = new Select().from(Customer.class).where(Condition.column(Customer$Table.CUSTOMER_ID)
-                                        .eq(Integer.parseInt(bodyOne.getCustomerid()))).querySingle();
-                                Client client1 = new Select().from(Client.class).where(Condition.column(Client$Table.CLIENT_NUMBER)
-                                        .eq(Integer.parseInt(bodyOne.getClient_number()))).querySingle();
-                                client_customer.client = client1;
-                                client_customer.customer = customer;
-                                client_customers.add(client_customer);
-                            }*/
 
                             TransactionListener<List<Client>> onClientsSavedListener = new TransactionListener<List<Client>>() {
                                 @Override
@@ -625,7 +624,7 @@ public class SecondSyncService extends Service {
 
                                 @Override
                                 public boolean hasResult(BaseTransaction<List<Client>> transaction, List<Client> result) {
-                                    Delete.table(Client_Customer.class);
+
                                     client_customers.clear();
                                     for (int k = 0; k < clientResponse.getBody1().length; k++) {
                                         Client_Customer client_customer = new Client_Customer();
@@ -639,16 +638,18 @@ public class SecondSyncService extends Service {
                                     if (client_customers != null && client_customers.size() > 0) {
                                         TransactionManager.getInstance()
                                                 .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(client_customers).result(onClientCustomerSavedListener)));
+                                        client_index = Integer.parseInt(clientResponse.getBody1()[clientResponse.getBody1().length - 1].getRowNo());
+                                        getClients();
                                     }
                                     return true;
                                 }
                             };
 
                             if (clients != null && clients.size() > 0) {
-                                Delete.table(Client.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(clients).result(onClientsSavedListener)));
                             } else {
+                                callBack.onPerecentage(70,true);
                                 getClientproduct();
                             }
                             return null;
@@ -663,6 +664,7 @@ public class SecondSyncService extends Service {
 
                 } else {
                     //failed to load clients
+                    callBack.onPerecentage(70,true);
                     getClientproduct();
                 }
 

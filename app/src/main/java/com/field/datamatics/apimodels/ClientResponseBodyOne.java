@@ -7,6 +7,15 @@ public class ClientResponseBodyOne {
     private String customerid;
 
     private String client_number;
+    private String rowNo;
+
+    public String getRowNo() {
+        return rowNo;
+    }
+
+    public void setRowNo(String rowNo) {
+        this.rowNo = rowNo;
+    }
 
     public String getCustomerid ()
     {

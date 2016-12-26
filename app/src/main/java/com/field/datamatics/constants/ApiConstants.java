@@ -8,8 +8,8 @@ public class ApiConstants {
     //public static final String url = "webapp0710";
 
     public static final String BASE_URL = "http://sarauae.dyndns.org:8099";
-    public static final String url="fdm";
-    //public static final String url="fdmtest";
+    //public static final String url="fdm";
+    public static final String url="fdmtest";
     public static final String url_test="fdmtest";
 
     /**
@@ -18,8 +18,8 @@ public class ApiConstants {
 
     public static final String AppLoginDetails = "AppLoginDetails";
     public static final String AppUserRegionDetails = "AppUserRegionDetails";
-    public static final String AppViewCustomerDetails = "AppViewCustomerDetails";
-    public static final String AppClientDetails = "AppClientDetails";
+    public static final String AppViewCustomerDetails = "AppViewCustomerDetailsNew";/*"AppViewCustomerDetails";*/
+    public static final String AppClientDetails = "AppClientDetailsNew";/*"AppClientDetails";*/
     public static final String AppClietProductDetails = "AppClietProductDetails";
     public static final String AppViewRoutePlaneDetails = "AppViewRoutePlaneDetails";
     public static final String AppViewReminderDetails = "AppViewReminderDetails";

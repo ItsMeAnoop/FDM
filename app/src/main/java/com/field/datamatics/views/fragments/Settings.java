@@ -3,7 +3,9 @@ package com.field.datamatics.views.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
@@ -27,6 +29,7 @@ import com.field.datamatics.views.Login;
 import com.field.datamatics.views.MainActivity;
 import com.field.datamatics.views.helper.DirectoryChooserDialog;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 
 import net.rdrei.android.dirchooser.DirectoryChooserActivity;
@@ -193,7 +196,8 @@ public class Settings extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                startActivityForResult(chooserIntent, REQ_STORAGE_LOC_AUDIO);
+                //startActivityForResult(chooserIntent, REQ_STORAGE_LOC_AUDIO);
+                startFolderPicker(REQ_STORAGE_LOC_AUDIO);
 
             }
         });
@@ -201,7 +205,8 @@ public class Settings extends BaseFragment {
 
             @Override
             public void onClick(View view) {
-                startActivityForResult(chooserIntent, REQ_STORAGE_LOC_IMAGES);
+                //startActivityForResult(chooserIntent, REQ_STORAGE_LOC_IMAGES);
+                startFolderPicker(REQ_STORAGE_LOC_IMAGES);
 
             }
         });
@@ -209,7 +214,8 @@ public class Settings extends BaseFragment {
         btnStorageLocationVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(chooserIntent, REQ_STORAGE_LOC_VIDEOS);
+                //startActivityForResult(chooserIntent, REQ_STORAGE_LOC_VIDEOS);
+                startFolderPicker(REQ_STORAGE_LOC_VIDEOS);
 
             }
         });
@@ -217,7 +223,8 @@ public class Settings extends BaseFragment {
         btnProductDocLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(chooserIntent, REQ_STORAGE_LOC_PRODUCTS);
+                //startActivityForResult(chooserIntent, REQ_STORAGE_LOC_PRODUCTS);
+                startFolderPicker(REQ_STORAGE_LOC_PRODUCTS);
             }
         });
 
@@ -256,51 +263,110 @@ public class Settings extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(data == null || data.getData() == null || data.getData().getEncodedPath() == null || data.getData().getEncodedPath().equals("")){
+            return;
+        }
+        Uri uri = data.getData();
+        String chosenDir = uri.getEncodedPath();
+
         if (requestCode == REQ_STORAGE_LOC_IMAGES) {
-            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
-                String chosenDir = data
-                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+
+            AppControllerUtil.getPrefs().edit()
+                    .putString(Constants.PREF_STORAGE_LOCATION_IMAGE, chosenDir)
+                    .apply();
+            txtStorageLocImages.setText(prefix_storage_loc_images + chosenDir);
+            Utilities.showAlertDialog(getActivity(),
+                    "Successfully updated storage location for images!");
+
+            /*if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                *//*String chosenDir = data
+                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);*//*
                 AppControllerUtil.getPrefs().edit()
                         .putString(Constants.PREF_STORAGE_LOCATION_IMAGE, chosenDir)
                         .apply();
                 txtStorageLocImages.setText(prefix_storage_loc_images + chosenDir);
                 Utilities.showAlertDialog(getActivity(),
                         "Successfully updated storage location for images!");
-            }
+            }*/
         } else if (requestCode == REQ_STORAGE_LOC_VIDEOS) {
-            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
-                String chosenDir = data
-                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+
+            AppControllerUtil.getPrefs().edit()
+                    .putString(Constants.PREF_STORAGE_LOCATION_VIDEO, chosenDir)
+                    .apply();
+            txtStorageLocVideos.setText(prefix_storage_loc_video + chosenDir);
+            Utilities.showAlertDialog(getActivity(),
+                    "Successfully updated storage location for videos!");
+
+            /*if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                *//*String chosenDir = data
+                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);*//*
                 AppControllerUtil.getPrefs().edit()
                         .putString(Constants.PREF_STORAGE_LOCATION_VIDEO, chosenDir)
                         .apply();
                 txtStorageLocVideos.setText(prefix_storage_loc_video + chosenDir);
                 Utilities.showAlertDialog(getActivity(),
                         "Successfully updated storage location for videos!");
-            }
+            }*/
         } else if (requestCode == REQ_STORAGE_LOC_PRODUCTS) {
-            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
-                String chosenDir = data
-                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+
+            AppControllerUtil.getPrefs().edit()
+                    .putString(Constants.PREF_PRODUCT_DOCUMENT_LOCATION, chosenDir)
+                    .apply();
+            txtProductDocLoc.setText(prefix_product_doc_loc + chosenDir);
+            Utilities.showAlertDialog(getActivity(),
+                    "Successfully updated product document directory!");
+
+            /*if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                *//*String chosenDir = data
+                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);*//*
                 AppControllerUtil.getPrefs().edit()
                         .putString(Constants.PREF_PRODUCT_DOCUMENT_LOCATION, chosenDir)
                         .apply();
                 txtProductDocLoc.setText(prefix_product_doc_loc + chosenDir);
                 Utilities.showAlertDialog(getActivity(),
                         "Successfully updated product document directory!");
-            }
+            }*/
         }
         else if (requestCode == REQ_STORAGE_LOC_AUDIO) {
-            if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
-                String chosenDir = data
-                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);
+
+            AppControllerUtil.getPrefs().edit()
+                    .putString(Constants.PREF_STORAGE_LOCATION_AUDIO, chosenDir)
+                    .apply();
+            txtStorageLocationAudio.setText(prefix_storage_loc_audio + chosenDir);
+            Utilities.showAlertDialog(getActivity(),
+                    "Successfully updated storage location for audio!");
+
+            /*if (resultCode == DirectoryChooserActivity.RESULT_CODE_DIR_SELECTED) {
+                *//*String chosenDir = data
+                        .getStringExtra(DirectoryChooserActivity.RESULT_SELECTED_DIR);*//*
                 AppControllerUtil.getPrefs().edit()
                         .putString(Constants.PREF_STORAGE_LOCATION_AUDIO, chosenDir)
                         .apply();
                 txtStorageLocationAudio.setText(prefix_storage_loc_audio + chosenDir);
                 Utilities.showAlertDialog(getActivity(),
                         "Successfully updated storage location for audio!");
-            }
+            }*/
         }
+    }
+
+    private void startFolderPicker(int intentCode){
+        // This always works
+        Intent i = new Intent(getActivity(), FilePickerActivity.class);
+        // This works if you defined the intent filter
+        // Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+
+        // Set these depending on your use case. These are the defaults.
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
+
+        // Configure initial directory by specifying a String.
+        // You could specify a String like "/storage/emulated/0/", but that can
+        // dangerous. Always use Android's API calls to get paths to the SD-card or
+        // internal memory.
+        i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+
+        startActivityForResult(i, intentCode);
+
     }
 }

@@ -19,7 +19,6 @@
         android:name=".utils.AppControllerUtil"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:largeHeap="true"
         android:label="@string/app_name">
         <activity
             android:name=".views.SplashScreen"
@@ -105,6 +104,15 @@
         <activity android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity"
             android:label="@string/pick_directory"
             android:theme="@style/AppTheme.WithActionBar" />
+        <activity
+            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/FilePickerTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".Services.appservices.UpdateSyncService" />
         <service android:name=".Services.appservices.SecondSyncService" />

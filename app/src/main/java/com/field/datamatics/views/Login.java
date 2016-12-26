@@ -132,7 +132,8 @@ public class Login extends BaseActivity {
     private ArrayList<Client_Customer> client_customers = new ArrayList<>();
     private String count = "";
     public static boolean isLoginComplete;
-    private String index="0";
+    private int cutomer_index = 0;
+    private int client_index = 0;
 
     //DB
     User myuser;
@@ -168,12 +169,8 @@ public class Login extends BaseActivity {
                 if(mrid==-1)
                     return;
                 boolean sentToken = AppControllerUtil.getPrefs().getBoolean(Constants.PREF_GCM_IS_SENT, false);
-                if (sentToken) {
-                    getUserRegion();
-                } else {
-                    //Toast.makeText(getApplicationContext(), "GCM registration failed, try again.", Toast.LENGTH_SHORT).show();
-                    getUserRegion();
-                }
+                getUserRegion();
+
             }
         };
         btnRequestPwd.setOnClickListener(new View.OnClickListener() {
@@ -292,7 +289,6 @@ public class Login extends BaseActivity {
 
         @Override
         public boolean hasResult(BaseTransaction<List<UserRegion>> transaction, List<UserRegion> result) {
-            //getCustomers();
             return true;
         }
     };
@@ -312,7 +308,6 @@ public class Login extends BaseActivity {
 
         @Override
         public boolean hasResult(BaseTransaction<List<Customer>> transaction, List<Customer> result) {
-            //getClients();
             return true;
         }
     };
@@ -354,25 +349,6 @@ public class Login extends BaseActivity {
             return true;
         }
     };
-    /* TransactionListener<List<Client_work_cal>> onClientWorkCalenderSavedListener = new TransactionListener<List<Client_work_cal>>() {
-
-
-         @Override
-         public void onResultReceived(List<Client_work_cal> result) {
-
-         }
-
-         @Override
-         public boolean onReady(BaseTransaction<List<Client_work_cal>> transaction) {
-             return false;
-         }
-
-         @Override
-         public boolean hasResult(BaseTransaction<List<Client_work_cal>> transaction, List<Client_work_cal> result) {
-             getRoutePlan();
-             return true;
-         }
-     };*/
     TransactionListener<List<RoutePlan>> onRoutePlanSavedListener = new TransactionListener<List<RoutePlan>>() {
 
 
@@ -459,6 +435,8 @@ public class Login extends BaseActivity {
             return;
         }
         showProgressDialog();
+        cutomer_index = 0;
+        client_index = 0;
         //login-success
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("username", user_name);
@@ -712,7 +690,6 @@ public class Login extends BaseActivity {
             public void onError(Object objects) {
                 showMessage("Loging and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
-                //Toast.makeText(getApplicationContext(), "S", Toast.LENGTH_LONG).show();
 
             }
 
@@ -826,6 +803,7 @@ public class Login extends BaseActivity {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
         params.put("mrid", mrid + "");
+        params.put("index",cutomer_index+"");
         ApiService.getInstance().makeApiCall(ApiConstants.AppViewCustomerDetails, params, new ApiCallbacks() {
             @Override
             public void onSuccess(Object objects) {
@@ -931,12 +909,14 @@ public class Login extends BaseActivity {
 
                             if (data != null && data.size() > 0) {
                                 count = count + "\n" + "Customers-" + data.size();
-                                Delete.table(Customer.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data).result(onCustomerSaveListener)));
-                            } /*else {
+                                cutomer_index = data.get(data.size() - 1).Customer_Id;
+                                getCustomers();
+                            }
+                            else{
                                 getClients();
-                            }*/
+                            }
                             return null;
                         }
 
@@ -946,12 +926,9 @@ public class Login extends BaseActivity {
                         }
                     }.execute();
 
-                } /*else {
+                } else {
                     getClients();
-                }*/
-
-                getClients();
-
+                }
             }
 
             @Override
@@ -973,13 +950,13 @@ public class Login extends BaseActivity {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
         params.put("mrid", mrid + "");
+        params.put("index",client_index+"");
         ApiService.getInstance().makeApiCall(ApiConstants.AppClientDetails, params, new ApiCallbacks() {
             @Override
             public void onSuccess(Object objects) {
                 final ClientResponse clientResponse = gson.fromJson(objects.toString(), ClientResponse.class);
                 if (clientResponse.getStatus().equals(ApiConstants.STATUS)) {
                     new AsyncTask<Void, Void, Void>() {
-
                         @Override
                         protected Void doInBackground(Void... params) {
                             //save data to table
@@ -1107,17 +1084,6 @@ public class Login extends BaseActivity {
 
                                 }
                             }
-                            /*client_customers.clear();
-                            for (int k = 0; k < clientResponse.getBody1().length; k++) {
-                                Client_Customer client_customer = new Client_Customer();
-                                ClientResponseBodyOne bodyOne = clientResponse.getBody1()[k];
-                                client_customer.client = new Client();
-                                client_customer.client.Client_Number = Integer.parseInt(bodyOne.getClient_number());
-                                client_customer.customer = new Customer();
-                                client_customer.customer.Customer_Id = Integer.parseInt(bodyOne.getCustomerid());
-                                client_customers.add(client_customer);
-                            }*/
-
                             TransactionListener<List<Client>> onClientsSavedListener = new TransactionListener<List<Client>>() {
                                 @Override
                                 public void onResultReceived(List<Client> result) {
@@ -1131,7 +1097,6 @@ public class Login extends BaseActivity {
 
                                 @Override
                                 public boolean hasResult(BaseTransaction<List<Client>> transaction, List<Client> result) {
-                                    Delete.table(Client_Customer.class);
                                     client_customers.clear();
                                     for (int k = 0; k < clientResponse.getBody1().length; k++) {
                                         Client_Customer client_customer = new Client_Customer();
@@ -1145,20 +1110,20 @@ public class Login extends BaseActivity {
                                     if (client_customers != null && client_customers.size() > 0) {
                                         TransactionManager.getInstance()
                                                 .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(client_customers).result(onClientCustomerSavedListener)));
+                                        client_index = Integer.parseInt(clientResponse.getBody1()[clientResponse.getBody1().length - 1].getRowNo());
+                                        getClients();
                                     }
-
                                     return true;
                                 }
                             };
 
                             if (clients != null && clients.size() > 0) {
                                 count = count + "\n" + "Clients-" + clients.size();
-                                Delete.table(Client.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(clients).result(onClientsSavedListener)));
-                            } /*else {
+                            } else {
                                 getClientproduct();
-                            }*/
+                            }
                             return null;
                         }
 
@@ -1169,12 +1134,9 @@ public class Login extends BaseActivity {
                     }.execute();
 
 
-                } /*else {
-                    //failed to load clients
+                } else {
                     getClientproduct();
-                }*/
-
-                getClientproduct();
+                }
             }
 
             @Override

@@ -210,17 +210,27 @@ public class AdditionalVisit extends BaseFragment {
                         .queryList();
                 for(int i=0;i<clients.size();i++){
                     Client client=clients.get(i);
-                    ArrayList<Client_Customer> client_customers=(ArrayList<Client_Customer>) new Select().from(Client_Customer.class)
-                            .where(Condition.column(Client_Customer$Table.CLIENT_CLIENT_NUMBER).eq(client.Client_Number))
-                            .queryList();
+                    ArrayList<Client_Customer> client_customers= null;
+                    try {
+                        client_customers = (ArrayList<Client_Customer>) new Select().from(Client_Customer.class)
+                                .where(Condition.column(Client_Customer$Table.CLIENT_CLIENT_NUMBER).eq(client.Client_Number))
+                                .queryList();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     if(client_customers  == null || client_customers.size() == 0){
                         clients.remove(i--);
                        continue;
                     }
                     for(int j=0;j<client_customers.size();j++){
-                        Customer customer=new Select().from(Customer.class)
-                                .where(Condition.column(Customer$Table.CUSTOMER_ID).eq(client_customers.get(j).customer.Customer_Id))
-                                .querySingle();
+                        Customer customer= null;
+                        try {
+                            customer = new Select().from(Customer.class)
+                                    .where(Condition.column(Customer$Table.CUSTOMER_ID).eq(client_customers.get(j).customer.Customer_Id))
+                                    .querySingle();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         if(customer == null){
                             continue;
                         }

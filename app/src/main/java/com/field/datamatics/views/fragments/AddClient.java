@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.field.datamatics.R;
 import com.field.datamatics.models.*;
-import com.field.datamatics.views.adapters.AddClientAdapter;
 import com.field.datamatics.views.adapters.AddClientAdapter_;
 import com.field.datamatics.views.adapters.ClientListAdapter;
 
