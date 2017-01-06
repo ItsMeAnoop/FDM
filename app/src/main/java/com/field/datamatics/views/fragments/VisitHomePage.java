@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.field.datamatics.R;
 import com.field.datamatics.Services.ApiService;
@@ -564,7 +566,10 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
      * Function which decide to where to go back when user click on reached button.
      */
     private void moveBackFromReachedClick(){
-        if(isAdditional){
+        cv_reached.setEnabled(false);
+        cv_reached.setBackgroundColor(Color.LTGRAY);
+        Toast.makeText(getActivity(), "Data Successfully Recorded.", Toast.LENGTH_SHORT).show();
+        /*if(isAdditional){
             addFragment(TodaysVisitTabbed.getAdditionalVisitTabbed());
         }
         else if(isPending){
@@ -572,6 +577,6 @@ public class VisitHomePage extends BaseFragment implements View.OnClickListener 
         }
         else{
             addFragment(TodaysVisitTabbed.getInstance());
-        }
+        }*/
     }
 }

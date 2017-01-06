@@ -17,21 +17,21 @@
     <Button
         android:id="@+id/btnRemark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textColor="@color/white_color"
         android:background="@color/PrimaryColor"
         android:text="Set Remark"/>
     <Button
         android:id="@+id/btnRem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textColor="@color/white_color"
         android:background="@color/PrimaryColor"
         android:text="Set Reminder"/>
     <Button
         android:id="@+id/btnAddTopend"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textColor="@color/white_color"
         android:background="@color/PrimaryColor"
         android:text="Add to Pending"/>
