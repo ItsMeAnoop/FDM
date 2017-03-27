@@ -92,6 +92,8 @@ public class MonthlyVisit extends BaseFragment {
         month_position=c.get(Calendar.MONTH);
         spin_years.setSelection(year_position);
         spin_months.setSelection(month_position);
+
+        year_ = c.get(Calendar.YEAR)+"";
         if(month_position<9)
             month_="0"+(month_position+1)+"";
         else

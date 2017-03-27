@@ -688,7 +688,7 @@ public class Login extends BaseActivity {
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
 
             }
@@ -725,36 +725,23 @@ public class Login extends BaseActivity {
                                         RegionResponseBody body = regionResponse.getBody()[i];
                                         try {
                                             region.Userregion_Id = Integer.parseInt(body.getRegionid());
-                                        } catch (Exception e) {
-
-                                        }
+                                        } catch (Exception e) {}
                                         try {
                                             region.user = myuser;
-                                        } catch (Exception e) {
-
-                                        }
+                                        } catch (Exception e) {}
                                         try {
                                             region.Region = body.getRegion();
-                                        } catch (Exception e) {
-
-                                        }
+                                        } catch (Exception e) { }
                                         try {
-
                                             region.Reporting_Manager = body.getReporting_manager();
-                                        } catch (Exception e) {
-
-                                        }
+                                        } catch (Exception e) { }
                                         try {
                                             region.Remarks = body.getRemarks();
-                                        } catch (Exception e) {
-
-                                        }
+                                        } catch (Exception e) {}
                                         region.Date_From = body.getDate_from();
                                         region.Date_To = body.getDate_to();
                                         data.add(region);
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                 }
                             }
                             if (data != null && data.size() > 0) {
@@ -762,35 +749,23 @@ public class Login extends BaseActivity {
                                 Delete.table(UserRegion.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data).result(onRegionSavedListener)));
-                            } /*else {
-                                getCustomers();
-                            }*/
+                            }
                             return null;
                         }
-
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
                         }
                     }.execute();
-
-                } /*else {
-                    //call next function
-                    getCustomers();
-                }*/
-
-
+                }
                 //call next function
                 getCustomers();
             }
-
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
-
             }
-
             @Override
             public void onErrorMessage(String message) {
 
@@ -810,7 +785,6 @@ public class Login extends BaseActivity {
                 final CustomerResponse customerResponse = gson.fromJson(objects.toString(), CustomerResponse.class);
                 if (customerResponse.getStatus().equals(ApiConstants.STATUS)) {
                     new AsyncTask<Void, Void, Void>() {
-
                         @Override
                         protected Void doInBackground(Void... params) {
                             //save data to table
@@ -821,92 +795,45 @@ public class Login extends BaseActivity {
                                 CustomerResponseBody body = customerResponse.getBody()[i];
                                 try {
                                     customer.Customer_Id = Integer.parseInt(body.getCustomerid());
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
-
                                     customer.Customer_Name = body.getCustomername();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.Customer_Group = body.getCustomergroup();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.Address1 = body.getAddress1();
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.Street = body.getStreet();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.Location = body.getLocation();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.PO = Integer.parseInt(body.getCustomerid());
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     customer.Region = body.getRegion();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     customer.Geo_Cordinates = body.getGeocordinates();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     customer.Country = body.getCountry();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     if (body.getCustomerid().equals("1"))
                                         customer.status = true;
                                     else
                                         customer.status = false;
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     customer.Remarks = body.getRemarks_customer();
-
-                                } catch (Exception e) {
-
-                                }
-
+                                } catch (Exception e) {}
                                 data.add(customer);
                             }
-
                             if (data != null && data.size() > 0) {
                                 count = count + "\n" + "Customers-" + data.size();
                                 TransactionManager.getInstance()
@@ -930,13 +857,11 @@ public class Login extends BaseActivity {
                     getClients();
                 }
             }
-
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
-
             @Override
             public void onErrorMessage(String message) {
 
@@ -966,123 +891,66 @@ public class Login extends BaseActivity {
                                     Client client = new Client();
                                     try {
                                         client.Client_Number = Integer.parseInt(body.getClient_number());
-                                    } catch (Exception e) {
-                                    }
-
+                                    } catch (Exception e) { }
                                     try {
                                         client.Client_Prefix = body.getClientprefix();
-                                    } catch (Exception e) {
-                                    }
-
+                                    } catch (Exception e) { }
                                     try {
                                         client.Client_First_Name = body.getClientfirstname();
-                                    } catch (Exception e) {
-                                    }
-
+                                    } catch (Exception e) { }
                                     try {
                                         client.Client_Last_Name = body.getClientlastname();
-                                    } catch (Exception e) {
-                                    }
-
+                                    } catch (Exception e) {}
                                     try {
                                         client.Client_Gender = body.getClientgender();
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) { }
                                     try {
                                         client.Client_Email = body.getClientemail();
-                                    } catch (Exception e) {
-                                    }
-
+                                    } catch (Exception e) {  }
                                     try {
                                         client.Client_Phone = Long.parseLong(body.getClientphone());
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Client_Mobile = Long.parseLong(body.getClientphone());
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Client_Fax = body.getClientfax();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Speciality = body.getSpecialty();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Marketclass = body.getMarketclass();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.STEclass = body.getSteclass();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Type = body.getType();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Nationality = body.getNationality();
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         if (body.getStatus().equals("1"))
                                             client.Status = true;
                                         else
                                             client.Status = false;
-
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         if (body.getVisit().equals("1"))
                                             client.Visit = true;
                                         else
                                             client.Visit = false;
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Account_Manager = body.getAccountmanager();
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         client.Remarks = body.getRemarks();
-
-                                    } catch (Exception e) {
-
-                                    }
+                                    } catch (Exception e) {}
                                     clients.add(client);
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                             }
                             TransactionListener<List<Client>> onClientsSavedListener = new TransactionListener<List<Client>>() {
                                 @Override
@@ -1141,7 +1009,7 @@ public class Login extends BaseActivity {
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
 
@@ -1176,43 +1044,28 @@ public class Login extends BaseActivity {
                                 ClientproductResponseBody body = clientproductResponse.getBody()[i];
                                 try {
                                     client_product.Client_Productid_Id = Integer.parseInt(body.getClproductid());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.client = new Client();
                                     client_product.client.Client_Number = Integer.parseInt(body.getClientno());
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.product = new Product();
                                     client_product.product.Product_Number = body.getProductid();
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.customer = new Customer();
                                     client_product.customer.Customer_Id = Integer.parseInt(body.getCustomerid());
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.ExpiryDate = body.getExpirydate();
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.remarks = body.getRemarks();
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     client_product.status = body.getStatus();
-                                } catch (Exception e) {
-                                }
-
+                                } catch (Exception e) {}
                                 data.add(client_product);
                             }
                             if (data != null && data.size() > 0) {
@@ -1221,39 +1074,26 @@ public class Login extends BaseActivity {
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data)
                                                 .result(onClientProductSavedListener)));
-                            } /*else {
-                                //getClientworkcalander();
-                                getRoutePlan();
-                            }*/
+                            }
                             return null;
                         }
-
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
                         }
                     }.execute();
-
-
-                } /*else {
-                    //getClientworkcalander();
-                    getRoutePlan();
-                }*/
-
+                }
                 getRoutePlan();
-
             }
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
 
             @Override
             public void onErrorMessage(String message) {
-
-
             }
         });
 
@@ -1294,19 +1134,13 @@ public class Login extends BaseActivity {
                                 RoutePlanResponseBody body = routePlanResponse.getBody()[i];
                                 try {
                                     routePlan.Route_Plan_Number = Integer.parseInt(body.getRoutplanno());
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     routePlan.routeno = Integer.parseInt(body.getRouteno());
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Date = body.getDate();
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.status = Integer.parseInt(body.getStatus());
                                 } catch (Exception e) {
@@ -1314,108 +1148,56 @@ public class Login extends BaseActivity {
                                 }
                                 try {
                                     routePlan.Creation_Date = body.getCreateddate();
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Prepareduser = body.getPrepareduser();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.authuser = body.getAuthuser();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Auth_Date = body.getAuthdate();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Visittype = Integer.parseInt(body.getVisitype());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Remarks = body.getRemarks();
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Customer_Id = Integer.parseInt(body.getCustomerid());
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.User_Id = Integer.parseInt(body.getUserid());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Clientwork_Id = Integer.parseInt(body.getWorkcalanderid());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.PreparedBy = Integer.parseInt(body.getPreparedby());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.Client_Number = Integer.parseInt(body.getClientno());
-
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.AuthorizedBy = Integer.parseInt(body.getAuthorizedby());
-
-
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.client = new Client();
                                     routePlan.client.Client_Number = Integer.parseInt(body.getClientno());
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.customer = new Customer();
                                     routePlan.customer.Customer_Id = Integer.parseInt(body.getCustomerid());
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.client_work_cal = new Client_work_cal();
                                     routePlan.client_work_cal.Clientwork_Id = Integer.parseInt(body.getWorkcalanderid());
                                     routePlan.preparedBy = myuser;
-
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     routePlan.preparedBy = myuser;
-
-                                } catch (Exception e) {
-
-                                }
+                                } catch (Exception e) {}
                                 data.add(routePlan);
                             }
                             if (data != null && data.size() > 0) {
@@ -1427,9 +1209,7 @@ public class Login extends BaseActivity {
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data)
                                                 .result(onRoutePlanSavedListener)));
-                            } /*else {
-                                getReminder();
-                            }*/
+                            }
                             return null;
                         }
 
@@ -1438,18 +1218,14 @@ public class Login extends BaseActivity {
                             super.onPostExecute(aVoid);
                         }
                     }.execute();
-                } /*else {
-                    getReminder();
-                }*/
+                }
                 getReminder();
             }
 
             @Override
             public void onError(Object objects) {
-
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
-
             }
 
             @Override
@@ -1481,38 +1257,28 @@ public class Login extends BaseActivity {
                                 ReminderResponseBody body = reminderResponse.getBody()[i];
                                 try {
                                     reminder.Pkey_id = Integer.parseInt(body.getPkeyid());
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {    }
                                 try {
                                     reminder.date = body.getDate();
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     reminder.status = Integer.parseInt(body.getStatus());
-
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     reminder.message = body.getMessage();
-
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     reminder.Remarks = body.getRemarks();
-                                } catch (Exception e) {
-                                }
+                                } catch (Exception e) {}
                                 data.add(reminder);
                             }
-
                             if (data != null && data.size() > 0) {
                                 count = count + "\n" + "Reminder-" + data.size();
                                 Delete.table(Reminder.class);
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data)
                                                 .result(onReminderSavedListener)));
-                            }/* else {
-                                getAppoinments();
-                            }*/
+                            }
                             return null;
                         }
 
@@ -1521,18 +1287,13 @@ public class Login extends BaseActivity {
                             super.onPostExecute(aVoid);
                         }
                     }.execute();
-
-                } /*else {
-                    getAppoinments();
-                }*/
-
+                }
                 getAppoinments();
-
             }
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
 
@@ -1566,37 +1327,24 @@ public class Login extends BaseActivity {
                                     Appointment appointment = new Appointment();
                                     try {
                                         appointment.Appointment_Date = body.getAppdate();
-
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         appointment.client = new Client();
                                         appointment.client.Client_Number = Integer.parseInt(body.getClientno());
-
-
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         appointment.customer = new Customer();
                                         appointment.customer.Customer_Id = Integer.parseInt(body.getCustomerid());
-
-
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         appointment.routePlan = new RoutePlan();
                                         appointment.routePlan.Route_Plan_Number = Integer.parseInt(body.getRoutplanno());
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) {}
                                     try {
                                         appointment.Remarks = body.getRemarks();
-                                    } catch (Exception e) {
-                                    }
+                                    } catch (Exception e) {}
                                     data.add(appointment);
-                                } catch (Exception e) {
-
-                                }
-
+                                } catch (Exception e) {}
                             }
                             if (data != null && data.size() > 0) {
                                 count = count + "\n" + "Appointment-" + data.size();
@@ -1604,29 +1352,22 @@ public class Login extends BaseActivity {
                                 TransactionManager.getInstance()
                                         .addTransaction(new SaveModelTransaction<>(ProcessModelInfo.withModels(data)
                                                 .result(onAppointmentSavedListener)));
-                            } /*else {
-                                getSurveyQns();
-                            }*/
+                            }
                             return null;
                         }
-
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             super.onPostExecute(aVoid);
                         }
                     }.execute();
 
-                } /*else {
-                    getSurveyQns();
-                }*/
+                }
                 getSurveyQns();
-
-
             }
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
 
@@ -1659,61 +1400,38 @@ public class Login extends BaseActivity {
                                 SurveyMaster surveyMaster = new SurveyMaster();
                                 try {
                                     surveyMaster.Survey_Id = Integer.parseInt(surveyDetailsJson.getBody().get(r).getSurveyid());
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (NumberFormatException e) { }
                                 try {
                                     surveyMaster.Question = surveyDetailsJson.getBody().get(r).getQuestion();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     surveyMaster.Option1 = surveyDetailsJson.getBody().get(r).getOption1();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     surveyMaster.Option2 = surveyDetailsJson.getBody().get(r).getOption2();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     surveyMaster.Option3 = surveyDetailsJson.getBody().get(r).getOption3();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     surveyMaster.Option4 = surveyDetailsJson.getBody().get(r).getOption4();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     surveyMaster.Type = Integer.parseInt(surveyDetailsJson.getBody().get(r).getStatus());
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (NumberFormatException e) { }
                                 try {
                                     surveyMaster.Remarks = surveyDetailsJson.getBody().get(r).getRemarks();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     surveyMaster.surveynumber = surveyDetailsJson.getBody().get(r).getSurveynumber();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) { }
                                 try {
                                     surveyMaster.validFrom = surveyDetailsJson.getBody().get(r).getDatefrom();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) {}
                                 try {
                                     surveyMaster.validTo = surveyDetailsJson.getBody().get(r).getDateto();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                                } catch (Exception e) {}
                                 surveyMaster.save();
-
                             }
                             return null;
                         }
@@ -1723,21 +1441,17 @@ public class Login extends BaseActivity {
                             super.onPostExecute(aVoid);
                             Log.d("COUNT", count);
                             moveToNextActivity();
-                            //getClientWorkCalander();
                         }
                     }.execute();
 
                 } else {
                     moveToNextActivity();
-                    //getClientWorkCalander();
                 }
-
-
             }
 
             @Override
             public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
+                showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
 
             }
@@ -1749,79 +1463,6 @@ public class Login extends BaseActivity {
         });
 
     }
-    /*private void getClientWorkCalander(){
-        index="0";
-        Delete.table(Client_work_cal.class);
-        getClientWorkCalanderApiCall();
-    }
-
-	private void getClientWorkCalanderApiCall(){
-        //moveToNextActivity();
-        //Work colender API
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("encription_key", ApiConstants.ENCRYPTION_KEY);
-        params.put("mrid", mrid+"");
-        params.put("index", index);
-        ApiService.getInstance().makeApiCall(ApiConstants.AppViewClientcalenderDetails, params, new ApiCallbacks() {
-            @Override
-            public void onSuccess(Object objects) {
-                final WorkCalanderResponse workCalanderResponse = gson.fromJson(objects.toString(), WorkCalanderResponse.class);
-                if(workCalanderResponse.getStatus().equals("failure")){
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            moveToNextActivity();
-                        }
-                    },1000);
-                }
-                else{
-                    saveWorkCalenderData(workCalanderResponse);
-                    index=workCalanderResponse.getBody()[workCalanderResponse.getBody().length-1].getWorkcalenderid();
-                    getClientWorkCalanderApiCall();
-                }
-               //saveWorkCalenderData(workCalanderResponse);
-            }
-
-            @Override
-            public void onError(Object objects) {
-                showMessage("Loging and Syncing failed, Try again", tv_sign_in);
-                dissmissProgressDialog();
-            }
-
-            @Override
-            public void onErrorMessage(String message) {
-            }
-
-        });
-    }
-    private void saveWorkCalenderData(final WorkCalanderResponse workCalanderResponse){
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                WorkCalanderResponseBody[] body=workCalanderResponse.getBody();
-                for(int i=0;i<body.length;i++){
-                    Client_work_cal cal=new Client_work_cal();
-                    cal.Clientfirstname=body[i].getClientfirstname();
-                    cal.Customerid=body[i].getCustomerid();
-                    cal.Availabledays=body[i].getAvailabledays().toLowerCase();
-                    cal.Clientno=body[i].getClientno();
-                    cal.Fromtime=body[i].getFromtime();
-                    cal.Customername=body[i].getCustomername();
-                    cal.Totime=body[i].getTotime();
-                    cal.save();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                //moveToNextActivity();
-            }
-        }.execute();
-
-    }*/
-
     private void moveToNextActivity() {
         if (isLoginComplete)
             finish();

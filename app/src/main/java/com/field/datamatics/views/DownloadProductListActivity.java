@@ -229,7 +229,7 @@ public class DownloadProductListActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "file creacreation failed", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "file creacreation failed", Toast.LENGTH_SHORT).show();
                     }
                 });
                 finish();
@@ -241,21 +241,15 @@ public class DownloadProductListActivity extends BaseActivity {
         startService(SecondSyncService.getIntent(new SyncingCallBack() {
             @Override
             public void onPerecentage(int percentage,boolean isSuccess) {
-                if(!isSuccess){
-                    Toast.makeText(getApplicationContext(), "Syncing failed, Try again", Toast.LENGTH_LONG).show();
-                    finish();
-                }
                 tv_percentage.setText(percentage + "%");
-                if (isLoadAll) {
-                    if (percentage == 100) {
-                        Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        },200);
-                    }
+                if (percentage == 100) {
+                    Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    },200);
                 }
             }
         }, DownloadProductListActivity.this));
@@ -265,10 +259,6 @@ public class DownloadProductListActivity extends BaseActivity {
         startService(UpdateSyncService.getIntent(new SyncingCallBack() {
             @Override
             public void onPerecentage(int percentage,boolean isSuccess) {
-                if(!isSuccess){
-                    Toast.makeText(getApplicationContext(), "Syncing failed, Try again", Toast.LENGTH_LONG).show();
-                    finish();
-                }
                 tv_percentage.setText(percentage + "%");
                 if(percentage==100) {
                     Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();

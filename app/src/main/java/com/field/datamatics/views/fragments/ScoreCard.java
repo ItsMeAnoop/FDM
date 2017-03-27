@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -57,13 +58,13 @@ public class ScoreCard extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_score_card, container, false);
         setTitle("Scorecard");
         addFragmentTitle("ScoreCard");
-
-        calendar = Calendar.getInstance();
-        initializeViews(view);
-
         allMonths = getResources().getStringArray(R.array.months);
-        allYears = getResources().getStringArray(R.array.years);
-
+        //allYears = getResources().getStringArray(R.array.years);
+        calendar = Calendar.getInstance();
+        allYears = new String[2];
+        allYears[0] = calendar.get(Calendar.YEAR)+"";
+        allYears[1] = ((calendar.get(Calendar.YEAR)) + 1)+"";
+        initializeViews(view);
         score = new HashMap<>();
         DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
@@ -78,10 +79,10 @@ public class ScoreCard extends BaseFragment {
         spYear = (Spinner) view.findViewById(R.id.sp_year);
         pgScore = (DonutProgress) view.findViewById(R.id.pgMothlyScore);
 
-        final int pos;
-        if ((pos = calendar.get(Calendar.YEAR) - 2015) > -1) {
-            spYear.setSelection(pos);
-        }
+
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, allYears);
+        spYear.setAdapter(adapter);
+        spYear.setSelection(0);
         isLoading = true;// to prevent data loading when spinner is set for first time
         spMonth.setSelection(calendar.get(Calendar.MONTH));
 

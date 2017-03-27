@@ -33,14 +33,18 @@ import java.util.ArrayList;
  * Created by anoop on 10/11/15.
  */
 public class UpdateSyncService extends Service {
+    private int PUT_REMARK_API_RETRY = 3;
+    private int PUT_APP_LOG_API_RETRY = 3;
+    private int PUT_APPOINTMENT_API_RETRY = 3;
+    private int PUT_GEO_API_RETRY = 3;
+    private int PUT_MESSAGE_API_RETRY = 3;
+    private int PUT_VISIT_API_RETRY = 3;
     private Gson gson;
     private ArrayList<SyncAppLog> data;
     private ArrayList<SyncAppointment> app_data;
     private ArrayList<SyncGeo> geo_data;
     private ArrayList<SyncMessage> msg_data;
     private ArrayList<SyncRemarks>remark_data;
-   // private ArrayList<SyncRoutePlan> route_data;
-   // private ArrayList<SyncSurveyDetails> survey_data;
     private ArrayList<SyncVisitDetails> visit_data;
     private static SyncingCallBack callBack;
 
@@ -66,16 +70,11 @@ public class UpdateSyncService extends Service {
         return null;
     }
     private void readAllData(){
-        data= (ArrayList<SyncAppLog>) new Select().from(SyncAppLog.class).queryList();
-        app_data= (ArrayList<SyncAppointment>) new Select().from(SyncAppointment.class).queryList();
-        geo_data= (ArrayList<SyncGeo>) new Select().from(SyncGeo.class).queryList();
-        msg_data=(ArrayList<SyncMessage>) new Select().from(SyncMessage.class).queryList();
-        visit_data= (ArrayList<SyncVisitDetails>) new Select().from(SyncVisitDetails.class).queryList();
         remark_data= (ArrayList<SyncRemarks>) new Select().from(SyncRemarks.class).queryList();
         syncRemark();
-
     }
     private void syncRemark(){
+        PUT_REMARK_API_RETRY--;
         callBack.onPerecentage(0,true);
         if(remark_data!=null&&remark_data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(remark_data.get(0).remarks,CommonSubmitJson.class);
@@ -91,13 +90,15 @@ public class UpdateSyncService extends Service {
                         Delete.table(SyncAppLog.class);
                         syncAppLog();
                     }
-
                 }
-
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(0,false);
-                    stopSelf();
+                    if(PUT_REMARK_API_RETRY >= 0){
+                        syncAppLog();
+                    }
+                    else {
+                        callBack.onPerecentage(0, true);
+                    }
                 }
 
                 @Override
@@ -108,11 +109,13 @@ public class UpdateSyncService extends Service {
 
         }
         else{
+            data= (ArrayList<SyncAppLog>) new Select().from(SyncAppLog.class).queryList();
             syncAppLog();
         }
     }
     private void syncAppLog(){
-        callBack.onPerecentage(0,true);
+        PUT_APP_LOG_API_RETRY--;
+        callBack.onPerecentage(5,true);
         if(data!=null&&data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(data.get(0).log_details,CommonSubmitJson.class);
             ApiService.getInstance().makeApiCall(ApiConstants.AppLogDetails, commonSubmitJson, new ApiCallbacks() {
@@ -127,13 +130,16 @@ public class UpdateSyncService extends Service {
                         Delete.table(SyncAppLog.class);
                         syncAppointment();
                     }
-
                 }
 
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(0,false);
-                    stopSelf();
+                    if(PUT_APP_LOG_API_RETRY >= 0){
+                        syncAppLog();
+                    }
+                    else{
+                        callBack.onPerecentage(5,true);
+                    }
                 }
 
                 @Override
@@ -144,11 +150,13 @@ public class UpdateSyncService extends Service {
 
         }
         else{
+            app_data= (ArrayList<SyncAppointment>) new Select().from(SyncAppointment.class).queryList();
             syncAppointment();
         }
 
     }
     private void syncAppointment(){
+        PUT_APPOINTMENT_API_RETRY--;
         callBack.onPerecentage(20,true);
         if(app_data!=null&&app_data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(app_data.get(0).appointment_details,CommonSubmitJson.class);
@@ -164,30 +172,31 @@ public class UpdateSyncService extends Service {
                         Delete.table(SyncAppointment.class);
                         syncGeo();
                     }
-
-
                 }
-
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(0,false);
-                    stopSelf();
+                    if(PUT_APPOINTMENT_API_RETRY >= 0){
+                        syncAppointment();
+                    }
+                    else{
+                        callBack.onPerecentage(2,true);
+                    }
                 }
-
                 @Override
                 public void onErrorMessage(String message) {
 
                 }
             });
-
         }
         else{
+            geo_data= (ArrayList<SyncGeo>) new Select().from(SyncGeo.class).queryList();
             syncGeo();
         }
 
     }
 
     private void syncGeo(){
+        PUT_GEO_API_RETRY--;
         callBack.onPerecentage(40,true);
         if(geo_data!=null&&geo_data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(geo_data.get(0).geo_details,CommonSubmitJson.class);
@@ -203,16 +212,16 @@ public class UpdateSyncService extends Service {
                         Delete.table(SyncGeo.class);
                         syncMessages();
                     }
-
-
                 }
-
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(0,false);
-                    stopSelf();
+                    if(PUT_GEO_API_RETRY >= 0){
+                     syncGeo();
+                    }
+                    else {
+                        callBack.onPerecentage(40, true);
+                    }
                 }
-
                 @Override
                 public void onErrorMessage(String message) {
 
@@ -221,12 +230,13 @@ public class UpdateSyncService extends Service {
 
         }
         else{
+            msg_data=(ArrayList<SyncMessage>) new Select().from(SyncMessage.class).queryList();
             syncMessages();
-
         }
 
     }
     private void syncMessages(){
+        PUT_MESSAGE_API_RETRY--;
         callBack.onPerecentage(60,true);
         if(msg_data!=null&&msg_data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(msg_data.get(0).message_details,CommonSubmitJson.class);
@@ -242,14 +252,15 @@ public class UpdateSyncService extends Service {
                         Delete.table(SyncMessage.class);
                         syncVisitDetails();
                     }
-
-
                 }
-
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(0,false);
-                    stopSelf();
+                    if(PUT_MESSAGE_API_RETRY >= 0){
+                        syncMessages();
+                    }
+                    else{
+                        callBack.onPerecentage(60,true);
+                    }
                 }
 
                 @Override
@@ -260,10 +271,12 @@ public class UpdateSyncService extends Service {
 
         }
         else{
+            visit_data= (ArrayList<SyncVisitDetails>) new Select().from(SyncVisitDetails.class).queryList();
             syncVisitDetails();
         }
     }
     private void syncVisitDetails(){
+        PUT_VISIT_API_RETRY--;
         callBack.onPerecentage(80,true);
         if(visit_data!=null&&visit_data.size()>0){
             CommonSubmitJson commonSubmitJson=gson.fromJson(visit_data.get(0).visit_details,CommonSubmitJson.class);
@@ -280,14 +293,17 @@ public class UpdateSyncService extends Service {
                         callBack.onPerecentage(100,true);
                         stopSelf();
                     }
-
-
                 }
 
                 @Override
                 public void onError(Object objects) {
-                    callBack.onPerecentage(100,true);
-                    stopSelf();
+                    if(PUT_VISIT_API_RETRY >= 0){
+                        syncVisitDetails();
+                    }
+                    else {
+                        callBack.onPerecentage(100, true);
+                        stopSelf();
+                    }
 
                 }
 
@@ -296,14 +312,12 @@ public class UpdateSyncService extends Service {
 
                 }
             });
-
         }
         else{
             callBack.onPerecentage(100,true);
             stopSelf();
         }
     }
-
     private void nextSchedule(){
         try {
 

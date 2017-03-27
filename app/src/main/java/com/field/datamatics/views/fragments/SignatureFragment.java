@@ -564,10 +564,19 @@ public class SignatureFragment extends BaseFragment implements View.OnTouchListe
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 if (pd.isShowing()) pd.dismiss();
-
+                String clientId = PreferenceUtil.getIntsance().getCLIENT_ID();
+                String customerId = PreferenceUtil.getIntsance().getCUSTOMER_ID();
+                try {
+                    if(routePlan.Route_Plan_Number != -1){
+                        clientId = routePlan.Client_Number+"";
+                        customerId = routePlan.Customer_Id+"";
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 String apnmntNumber = appointmentNumber > 0 ? String.valueOf(appointmentNumber) : "0";
-                final VisitModel visitModel = new VisitModel(PreferenceUtil.getIntsance().getCLIENT_ID(),
-                        PreferenceUtil.getIntsance().getCUSTOMER_ID(),PreferenceUtil.getIntsance().getUSER_ID(),
+                final VisitModel visitModel = new VisitModel(clientId,
+                        customerId,PreferenceUtil.getIntsance().getUSER_ID(),
                         apnmntNumber, String.valueOf(routePlan.Route_Plan_Number),
                         visitedDetails.Visited_Date,
                         visitedDetails.checkintime, visitedDetails.checkouttime,
