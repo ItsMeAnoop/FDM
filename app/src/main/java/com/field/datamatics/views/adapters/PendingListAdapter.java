@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 10/18/2015.
+ * Pending list adapter
  */
 public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.ViewHolder> {
     private ArrayList<JoinClientRoutePlan> data;

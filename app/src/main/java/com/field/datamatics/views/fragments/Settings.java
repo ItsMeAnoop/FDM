@@ -40,6 +40,7 @@ import java.io.File;
 
 /**
  * Created by anoop on 11/10/15.
+ * Settings screen logic
  */
 public class Settings extends BaseFragment {
 

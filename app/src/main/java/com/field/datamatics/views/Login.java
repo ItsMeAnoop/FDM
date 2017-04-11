@@ -113,6 +113,7 @@ import retrofit.client.Response;
 
 /**
  * Created by anoop on 28/9/15.
+ * Login page logic
  */
 public class Login extends BaseActivity {
     private TextView tv_sign_in;
@@ -428,6 +429,11 @@ public class Login extends BaseActivity {
     };
 
 
+    /**
+     * Check login with api call
+     * @param user_name
+     * @param password
+     */
 
     private void checkLogin(String user_name, final String password) {
         if (!NetworkStatusUtil.getInstance().isNetworkAvailable()) {
@@ -701,6 +707,9 @@ public class Login extends BaseActivity {
 
     }
 
+    /**
+     * user region api call
+     */
     private void getUserRegion() {
         //UserRegion API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -773,6 +782,9 @@ public class Login extends BaseActivity {
         });
     }
 
+    /**
+     * customer api call
+     */
     private void getCustomers() {
         //Customer API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -870,6 +882,9 @@ public class Login extends BaseActivity {
 
     }
 
+    /**
+     * cllient list api call
+     */
     private void getClients() {
         //Clientproduct relationship API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -1022,6 +1037,9 @@ public class Login extends BaseActivity {
 
     }
 
+    /**
+     * client - product api call
+     */
     private void getClientproduct() {
         //Clientproduct relationship API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -1099,7 +1117,9 @@ public class Login extends BaseActivity {
 
     }
 
-
+    /**
+     * route plan api
+     */
     private void getRoutePlan() {
         //routeplan ApI
 
@@ -1235,6 +1255,9 @@ public class Login extends BaseActivity {
         });
     }
 
+    /**
+     * remainder api
+     */
     private void getReminder() {
         //Reminder API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -1304,6 +1327,9 @@ public class Login extends BaseActivity {
 
     }
 
+    /**
+     * appointment api
+     */
     private void getAppoinments() {
         //Appoinment API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -1379,6 +1405,9 @@ public class Login extends BaseActivity {
     }
 
 
+    /**
+     * Survey Qns api
+     */
     private void getSurveyQns() {
         //UserRegion API
         HashMap<String, String> params = new HashMap<String, String>();
@@ -1463,6 +1492,10 @@ public class Login extends BaseActivity {
         });
 
     }
+
+    /**
+     * finish ogin and move to product download screen.
+     */
     private void moveToNextActivity() {
         if (isLoginComplete)
             finish();

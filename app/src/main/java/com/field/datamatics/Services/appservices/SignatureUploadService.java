@@ -23,6 +23,7 @@ import java.util.Calendar;
 
 /**
  * Created by USER on 11/29/2015.
+ * Service to upload signature to server
  */
 public class SignatureUploadService extends Service{
     public static String signature_path;

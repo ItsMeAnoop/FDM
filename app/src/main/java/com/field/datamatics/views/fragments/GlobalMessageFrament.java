@@ -49,6 +49,7 @@ import retrofit.client.Response;
 
 /**
  * Created by Jith on 29/10/2015.
+ * Global message fragment
  */
 public class GlobalMessageFrament extends BaseFragment {
     private RecyclerView recyclerView;
@@ -74,6 +75,10 @@ public class GlobalMessageFrament extends BaseFragment {
         return view;
     }
 
+    /**
+     * bind view elements
+     * @param view
+     */
     private void initializeViews(View view) {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
@@ -156,6 +161,9 @@ public class GlobalMessageFrament extends BaseFragment {
 
     }
 
+    /**
+     * load data from DB to set in view
+     */
     private class loadData extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {

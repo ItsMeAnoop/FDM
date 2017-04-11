@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 22/9/15.
+ * Client list adapter
  */
 public class ClientListAdapter extends RecyclerView.Adapter<ClientListAdapter.ViewHolder> {
     private ArrayList<String> data;

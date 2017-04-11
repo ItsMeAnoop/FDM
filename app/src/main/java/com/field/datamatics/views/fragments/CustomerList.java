@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 14/10/15.
+ * Customer list screen logic
  */
 public class CustomerList extends BaseFragment {
     private RecyclerView rv_list;

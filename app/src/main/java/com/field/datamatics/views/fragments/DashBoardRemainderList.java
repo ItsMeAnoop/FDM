@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 20/10/2015.
+ * Remainder list screen logic
  */
 public class DashBoardRemainderList extends BaseFragment {
     private RecyclerView recyclerView;
@@ -50,6 +51,9 @@ public class DashBoardRemainderList extends BaseFragment {
         return view;
     }
 
+    /**
+     * load data from DB to set in view
+     */
     private class loadData extends AsyncTask<Void, Void, String> {
 
         @Override

@@ -37,6 +37,7 @@ import java.util.List;
 
 /**
  * Created by anoop on 22/9/15.
+ * Client list screen logic
  */
 public class ClientList extends BaseFragment {
     private RecyclerView rv_list;
@@ -76,6 +77,10 @@ public class ClientList extends BaseFragment {
         adapter = new TodaysClientAdapter(getActivity(),data);
         rv_list.setAdapter(adapter);
     }
+
+    /**
+     * Load data from DB to set up screen data
+     */
     private class loadData extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -143,6 +148,10 @@ public class ClientList extends BaseFragment {
             dissmissProgressDialog();
         }
     }
+
+    /**
+     * Search logic
+     */
     private void searchManagement(){
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override

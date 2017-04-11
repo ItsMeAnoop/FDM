@@ -17,6 +17,7 @@ import java.io.File;
 
 /**
  * Created by Anoop on 29-05-2016.
+ * Image viewer dialog
  */
 public class ImageViewer {
     private static ImageViewer instance=new ImageViewer();

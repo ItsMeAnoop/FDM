@@ -15,6 +15,7 @@ import java.io.File;
 
 /**
  * Created by Jith on 10/21/2015.
+ * Brochure list adapter
  */
 public class BrochureListAdapter extends BaseAdapter {
 

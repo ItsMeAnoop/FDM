@@ -38,6 +38,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Visited fragment logic
  */
 public class VisitedFragment extends BaseFragment {
 

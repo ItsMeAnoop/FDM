@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 11/10/15.
+ * Reminder list adapter
  */
 public class MainRemainderListAdapter extends RecyclerView.Adapter<MainRemainderListAdapter.Holder> {
     private ArrayList<Reminder> data;

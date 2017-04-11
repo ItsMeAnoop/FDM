@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Anoop on 12-06-2016.
+ * Additional visited adapter
  */
 public class AdditionalVisitedAdapter extends RecyclerView.Adapter<AdditionalVisitedAdapter.ViewHolder> {
     private ArrayList<JoinClientRoutePlan> data=new ArrayList<>();

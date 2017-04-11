@@ -17,6 +17,7 @@ import com.field.datamatics.views.MainActivity;
 
 /**
  * Created by USER on 12/27/2015.
+ * Time spent graph logic
  */
 public class TimeSpendGraph extends BaseFragment {
     private LinearLayout container_weeks,container_days;

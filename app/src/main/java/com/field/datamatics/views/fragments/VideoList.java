@@ -35,6 +35,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 22/10/2015.
+ * Video list screen logic
  */
 public class VideoList extends BaseFragment {
     private GridView grid;

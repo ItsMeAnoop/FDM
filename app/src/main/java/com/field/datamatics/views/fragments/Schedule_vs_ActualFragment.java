@@ -16,6 +16,7 @@ import com.field.datamatics.views.adapters.MyPagerAdapter;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Scedule Vs Actual screen logic
  */
 public class Schedule_vs_ActualFragment extends BaseFragment {
 

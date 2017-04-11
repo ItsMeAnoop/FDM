@@ -27,6 +27,7 @@ import java.util.Date;
 
 /**
  * Created by USER on 12/28/2015.
+ * Area coverage graph logic
  */
 public class AreaCoverageGraph extends BaseFragment {
 

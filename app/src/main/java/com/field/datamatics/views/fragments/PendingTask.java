@@ -43,6 +43,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 26/10/2015.
+ * Pending task screen logic
  */
 public class PendingTask extends BaseFragment {
     private RecyclerView recyclerView;
@@ -84,6 +85,10 @@ public class PendingTask extends BaseFragment {
         return view;
     }
 
+    /**
+     * bind view elements
+     * @param view
+     */
     private void initializeViews(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -145,6 +150,9 @@ public class PendingTask extends BaseFragment {
 
     }
 
+    /**
+     * Read data from DB
+     */
     private class loadData extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -243,6 +251,9 @@ public class PendingTask extends BaseFragment {
         }
     }
 
+    /**
+     * Search management logic
+     */
     private void searchManagement(){
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override

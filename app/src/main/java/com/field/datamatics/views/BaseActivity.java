@@ -20,6 +20,7 @@ import java.io.PrintWriter;
 
 /**
  * Created by anoop on 20/9/15.
+ * Base activity
  */
 public class BaseActivity extends AppCompatActivity {
     private ProgressDialog dialog;

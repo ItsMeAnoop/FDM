@@ -88,6 +88,7 @@ import java.util.List;
 
 /**
  * Created by sreejith on 11/3/2015.
+ * Map view logic
  */
 public class MapFragment extends BaseFragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {

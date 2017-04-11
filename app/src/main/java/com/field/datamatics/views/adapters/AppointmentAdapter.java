@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 11/10/15.
+ * Appointment adapter
  */
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.ViewHolder> {
     private ArrayList<com.field.datamatics.database.Appointment> data;

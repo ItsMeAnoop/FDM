@@ -15,6 +15,7 @@ import java.io.File;
 
 /**
  * Created by Anoop on 12-06-2016.
+ * Add to pending dialog view and its implementation
  */
 public class AddToPendingDialog {
     private static AddToPendingDialog instance;

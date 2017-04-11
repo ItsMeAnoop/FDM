@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 /**
  * Created by anoop on 27/9/15.
+ * Navigation adapter - pager
  */
 public class MyPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;

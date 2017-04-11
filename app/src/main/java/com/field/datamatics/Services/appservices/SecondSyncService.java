@@ -66,6 +66,7 @@ import java.util.List;
 
 /**
  * Created by anoop on 4/11/15.
+ * Service to fetch data from server second time.
  */
 public class SecondSyncService extends Service {
     private int GET_REGION_API_TRY = 3;
@@ -206,7 +207,9 @@ public class SecondSyncService extends Service {
         }
     };
 
-
+    /**
+     * User region api implementation
+     */
     private void getUserRegion() {
         GET_REGION_API_TRY--;
         //UserRegion API
@@ -287,6 +290,9 @@ public class SecondSyncService extends Service {
         });
     }
 
+    /**
+     * Customer api implementation
+     */
     private void getCustomers() {
         //Customer API
         GET_CUSTOMER_API_TRY--;
@@ -394,6 +400,9 @@ public class SecondSyncService extends Service {
 
     }
 
+    /**
+     * Client api implementation
+     */
     private void getClients() {
         //Clientproduct relationship API
         GET_CLIENT_API_TRY--;
@@ -551,6 +560,9 @@ public class SecondSyncService extends Service {
 
     }
 
+    /**
+     * Client product api implementation
+     */
     private void getClientproduct() {
         //Clientproduct relationship API
         GET_CLIENT_PRODUCT--;
@@ -633,6 +645,9 @@ public class SecondSyncService extends Service {
 
     }
 
+    /**
+     * Route plan api implementation
+     */
 
     private void getRoutePlan() {
         //routeplan ApI
@@ -769,6 +784,10 @@ public class SecondSyncService extends Service {
             }
         });
     }
+
+    /**
+     * Survey Qn api implementation
+     */
     private void getSurveyQns(){
         //UserRegion API
         GET_SURVEY_QNS_API_TRY--;
@@ -852,6 +871,10 @@ public class SecondSyncService extends Service {
             }
         });
     }
+
+    /**
+     * Function finish sync function
+     */
     private void finishSyncing(){
         callBack.onPerecentage(100,true);
         stopSelf();

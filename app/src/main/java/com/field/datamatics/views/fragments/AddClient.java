@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 12/10/15.
+ * Add client screen logic
  */
 public class AddClient extends BaseFragment {
     //private RecyclerView rv_list;
@@ -52,15 +53,6 @@ public class AddClient extends BaseFragment {
     }
 
     private void registerEvents() {
-        /*adapter.setOnItemClickListener(new AddClientAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-
-
-
-            }
-        });*/
         tv_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

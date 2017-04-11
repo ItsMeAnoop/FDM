@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 10/18/2015.
+ * Schedule & Actual adapter
  */
 public class ScheduleActualAdapter extends RecyclerView.Adapter<ScheduleActualAdapter.ViewHolder> {
     private ArrayList<JoinClientRoutePlan> data;

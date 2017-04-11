@@ -58,6 +58,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 18/10/2015.
+ * Home page screen logic
  */
 public class VisitHomePage extends BaseFragment implements View.OnClickListener {
     private CardView cv_reached;

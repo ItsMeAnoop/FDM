@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 /**
  * Created by anoop on 11/10/15.
+ * Score card adapter
  */
 public class ScoreCardAdapter extends BaseAdapter {
 

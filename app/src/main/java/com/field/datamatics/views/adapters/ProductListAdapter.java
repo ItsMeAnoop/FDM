@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 18/10/2015.
+ * Product list adapter
  */
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
     private ArrayList<Product> data;

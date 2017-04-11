@@ -45,6 +45,7 @@ import java.util.List;
 
 /**
  * Created by Anoop on 29-05-2016.
+ * Additional visit screen logic
  */
 public class AdditionalVisit extends BaseFragment {
     private RecyclerView recyclerView;
@@ -83,6 +84,10 @@ public class AdditionalVisit extends BaseFragment {
         return view;
     }
 
+    /**
+     * bing view
+     * @param view
+     */
     private void initializeViews(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -196,6 +201,10 @@ public class AdditionalVisit extends BaseFragment {
         recyclerView.setAdapter(adapter);
 
     }
+
+    /**
+     * load initial data
+     */
     private void loadData(){
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -358,6 +367,10 @@ public class AdditionalVisit extends BaseFragment {
             }
         }.execute();
     }
+
+    /**
+     * mange search logic
+     */
     private void searchManagement(){
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override

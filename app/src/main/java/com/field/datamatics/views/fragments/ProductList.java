@@ -46,6 +46,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 18/10/2015.
+ * Product list screen logic
  */
 public class ProductList extends BaseFragment {
     private RecyclerView recyclerView;

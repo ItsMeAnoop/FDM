@@ -88,6 +88,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 10/18/2015.
+ * Signature capture screen logic
  */
 public class SignatureFragment extends BaseFragment implements View.OnTouchListener {
 

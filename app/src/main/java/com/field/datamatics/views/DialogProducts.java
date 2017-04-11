@@ -35,6 +35,7 @@ import java.util.List;
 
 /**
  * Created by Jithz on 12/20/2015.
+ * Product dialog
  */
 public class DialogProducts implements ItemSelectedListener {
 

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 7/10/15.
+ * Dash board adapter
  */
 public class DashBoardAdapter extends BaseAdapter {
 

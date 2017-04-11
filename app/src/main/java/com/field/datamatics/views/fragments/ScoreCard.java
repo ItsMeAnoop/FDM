@@ -33,6 +33,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 10/26/2015.
+ * Score card screen logic
  */
 public class ScoreCard extends BaseFragment {
     private GridView gridview;

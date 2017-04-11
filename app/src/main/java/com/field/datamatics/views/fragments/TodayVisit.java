@@ -45,6 +45,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 17/10/2015.
+ * Today visit screen logic
  */
 public class TodayVisit extends BaseFragment {
     private RecyclerView recyclerView;

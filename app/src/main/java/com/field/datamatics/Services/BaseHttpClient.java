@@ -7,6 +7,7 @@ import com.loopj.android.http.RequestParams;
 
 /**
  * Created by USER on 11/15/2015.
+ * Implement HttpClient object
  */
 public class BaseHttpClient {
     private static String BASE_URL= ApiConstants.BASE_URL;

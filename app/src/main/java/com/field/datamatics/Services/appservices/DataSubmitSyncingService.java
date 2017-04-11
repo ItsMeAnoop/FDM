@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 /**
  * Created by anoop on 8/11/15.
+ * service to sync data to server
  */
 public class DataSubmitSyncingService extends Service {
     private String encription_key = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5";

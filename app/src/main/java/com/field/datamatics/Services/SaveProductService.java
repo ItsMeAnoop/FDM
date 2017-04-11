@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Anoop on 06-07-2016.
+ * Service to save product list in DB
  */
 public class SaveProductService extends IntentService {
     public SaveProductService(){

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 12/10/15.
+ * Make route plan adapter
  */
 public class MakeRoutePlanAdapter extends BaseAdapter {
 

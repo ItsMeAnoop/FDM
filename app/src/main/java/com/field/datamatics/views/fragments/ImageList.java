@@ -37,6 +37,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 22/10/2015.
+ * Image list view logic
  */
 public class ImageList extends BaseFragment {
     private GridView grid;
@@ -90,6 +91,10 @@ public class ImageList extends BaseFragment {
         return view;
     }
 
+    /**
+     * Set up list and progress bar
+     * @param view
+     */
     private void setUp(View view) {
         grid = (GridView) view.findViewById(R.id.grid);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -101,6 +106,9 @@ public class ImageList extends BaseFragment {
         grid.setAdapter(adapter);
     }
 
+    /**
+     * register events in screen
+     */
     private void registerEvents() {
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,6 +142,9 @@ public class ImageList extends BaseFragment {
     }
 
 
+    /**
+     * load image files
+     */
     private class loadImageFiles extends AsyncTask<Void, Void, Boolean> {
 
         @Override

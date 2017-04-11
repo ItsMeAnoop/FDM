@@ -32,6 +32,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Smaple issued screen logic
  */
 public class SamplesIssuedFragment extends BaseFragment {
 

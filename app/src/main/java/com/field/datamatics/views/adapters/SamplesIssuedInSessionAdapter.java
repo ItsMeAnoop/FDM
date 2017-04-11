@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Sample issued session adapter
  */
 public class SamplesIssuedInSessionAdapter extends RecyclerView.Adapter<SamplesIssuedInSessionAdapter.ViewHolder> {
 

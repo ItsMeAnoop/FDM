@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 4/7/15.
+ * Monthly visited adapter
  */
 public class MonthlyVisitAdapter extends BaseAdapter {
 

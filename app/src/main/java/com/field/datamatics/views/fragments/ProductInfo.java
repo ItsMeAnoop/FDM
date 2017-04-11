@@ -13,6 +13,7 @@ import com.field.datamatics.database.Product;
 
 /**
  * Created by Jithz on 4/7/2016.
+ * Product info screen logic
  */
 public class ProductInfo extends BaseFragment {
 

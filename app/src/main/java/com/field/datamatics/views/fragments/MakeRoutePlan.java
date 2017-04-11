@@ -45,6 +45,7 @@ import java.util.Date;
 
 /**
  * Created by anoop on 12/10/15.
+ * Make route plan screen logic
  */
 public class MakeRoutePlan extends BaseFragment {
     private Spinner spin_months, spin_years;
@@ -150,6 +151,9 @@ public class MakeRoutePlan extends BaseFragment {
         }
     }
 
+    /**
+     * Grid view set up
+     */
     private void setGridView() {
 
         try {

@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 15/10/15.
+ * Take new appointment screen logic
  */
 public class TakeNewAppointment extends BaseFragment {
     private RecyclerView rv_list;

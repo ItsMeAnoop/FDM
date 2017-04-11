@@ -20,6 +20,7 @@ import com.field.datamatics.views.MainActivity;
 
 /**
  * Created by anoop on 20/9/15.
+ * Base fragment class
  */
 public class BaseFragment extends Fragment {
 

@@ -38,6 +38,7 @@ import java.util.Comparator;
 
 /**
  * Created by Anoop on 22-11-2016.
+ * Customer list dialog
  */
 public class CustomerListDialog {
     private static CustomerListDialog instance;

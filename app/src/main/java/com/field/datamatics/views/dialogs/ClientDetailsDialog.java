@@ -14,6 +14,7 @@ import com.field.datamatics.database.AdditionalVisits;
 
 /**
  * Created by Anoop on 10-08-2016.
+ * Client detail dialog
  */
 public class ClientDetailsDialog {
     private static ClientDetailsDialog instance;

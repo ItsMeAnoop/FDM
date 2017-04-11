@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 10/18/2015.
+ * Survey list adapter
  */
 public class SurveyListAdapter extends RecyclerView.Adapter<SurveyListAdapter.ViewHolder> {
     private ArrayList<SurveyMaster> data;

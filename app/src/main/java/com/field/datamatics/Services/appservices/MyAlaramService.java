@@ -8,7 +8,8 @@ import android.widget.Toast;
 import com.field.datamatics.views.DownloadProductListActivity;
 
 /**
- * Created by Anoop on 10-07-2016.
+ * Created by Anoop on 10-07-2016.\
+ * Service to set alarm to sycn
  */
 public class MyAlaramService extends IntentService {
     public MyAlaramService(){

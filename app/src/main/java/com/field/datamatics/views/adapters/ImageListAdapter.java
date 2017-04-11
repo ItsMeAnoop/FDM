@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 27/9/15.
+ * Image list adapter
  */
 public class ImageListAdapter extends BaseAdapter {
 

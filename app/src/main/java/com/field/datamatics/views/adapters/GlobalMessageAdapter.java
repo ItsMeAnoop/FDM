@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 28/10/2015.
+ * Message list dapter
  */
 public class GlobalMessageAdapter extends RecyclerView.Adapter<GlobalMessageAdapter.Holder> {
     private ArrayList<GlobalMessages> data;

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Anoop on 26-11-2016.
+ * Customer list adapter
  */
 public class CustomerListAdapter extends BaseAdapter {
     Context activity;

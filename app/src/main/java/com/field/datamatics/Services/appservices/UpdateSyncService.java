@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 10/11/15.
+ * Service update offline data to server
  */
 public class UpdateSyncService extends Service {
     private int PUT_REMARK_API_RETRY = 3;
@@ -73,6 +74,10 @@ public class UpdateSyncService extends Service {
         remark_data= (ArrayList<SyncRemarks>) new Select().from(SyncRemarks.class).queryList();
         syncRemark();
     }
+
+    /**
+     * sync remarks api implementation
+     */
     private void syncRemark(){
         PUT_REMARK_API_RETRY--;
         callBack.onPerecentage(0,true);
@@ -113,6 +118,10 @@ public class UpdateSyncService extends Service {
             syncAppLog();
         }
     }
+
+    /**
+     * sync log api implementation
+     */
     private void syncAppLog(){
         PUT_APP_LOG_API_RETRY--;
         callBack.onPerecentage(5,true);
@@ -155,6 +164,10 @@ public class UpdateSyncService extends Service {
         }
 
     }
+
+    /**
+     * Sync appointment api implementation
+     */
     private void syncAppointment(){
         PUT_APPOINTMENT_API_RETRY--;
         callBack.onPerecentage(20,true);
@@ -195,6 +208,9 @@ public class UpdateSyncService extends Service {
 
     }
 
+    /**
+     * Sync location api implementation
+     */
     private void syncGeo(){
         PUT_GEO_API_RETRY--;
         callBack.onPerecentage(40,true);
@@ -235,6 +251,10 @@ public class UpdateSyncService extends Service {
         }
 
     }
+
+    /**
+     * sync message api implementation
+     */
     private void syncMessages(){
         PUT_MESSAGE_API_RETRY--;
         callBack.onPerecentage(60,true);
@@ -275,6 +295,10 @@ public class UpdateSyncService extends Service {
             syncVisitDetails();
         }
     }
+
+    /**
+     * sync visit details api implementation
+     */
     private void syncVisitDetails(){
         PUT_VISIT_API_RETRY--;
         callBack.onPerecentage(80,true);

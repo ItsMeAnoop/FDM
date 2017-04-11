@@ -17,6 +17,7 @@ import java.io.File;
 
 /**
  * Created by Jith on 10/26/2015.
+ * Report screen logic
  */
 public class ReportsFragment extends BaseFragment implements View.OnClickListener {
 

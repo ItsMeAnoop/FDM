@@ -33,6 +33,7 @@ import java.util.Date;
 
 /**
  * Created by anoop on 20/9/15.
+ * Monthly visit logic
  */
 public class MonthlyVisit extends BaseFragment {
     private LinearLayout container_view;
@@ -108,6 +109,10 @@ public class MonthlyVisit extends BaseFragment {
         super.onResume();
         monthlyVisitAdapter.notifyDataSetChanged();
     }
+
+    /**
+     * Grid view set up
+     */
     private void setGridView(){
         container_view.setVisibility(View.GONE);
         try {
@@ -223,6 +228,9 @@ public class MonthlyVisit extends BaseFragment {
 
     }
 
+    /**
+     * Register events
+     */
     private void registerEvents() {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -281,6 +289,10 @@ public class MonthlyVisit extends BaseFragment {
 
     }
 
+    /**
+     * read clients from db
+     * @param day_
+     */
     private void readClientList(final String day_){
         new AsyncTask<Void,RoutePlan,RoutePlan>(){
             @Override
@@ -317,6 +329,9 @@ public class MonthlyVisit extends BaseFragment {
         }.execute();
     }
 
+    /**
+     * Monthly visit calender logic
+     */
     private void createMonthlyCalander(){
         new AsyncTask<Void,Void,Void>(){
             @Override

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 25/10/15.
+ * client adapter
  */
 public class AddClientAdapter_ extends BaseAdapter {
     private Activity activity;

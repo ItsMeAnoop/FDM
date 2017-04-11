@@ -13,6 +13,7 @@ import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by anoop on 14/11/15.
+ * Service to upload medias to server
  */
 public class UploadMediaService {
     private static UploadMediaService instance=new UploadMediaService();

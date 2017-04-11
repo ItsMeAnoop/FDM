@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 12/10/15.
+ * Client list adapter
  */
 public class AddClientAdapter extends RecyclerView.Adapter<AddClientAdapter.Holder>{
     private ArrayList<MakeRoutePlan> data;

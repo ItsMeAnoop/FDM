@@ -93,6 +93,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * Created by anoop on 7/10/15.
+ * Dashboard logic
  */
 public class DashBoardNewDesign extends BaseFragment implements View.OnClickListener, ProductSelectedFinishedListener {
     private GridView grid;
@@ -210,6 +211,10 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         return view;
     }
 
+    /**
+     * Bind view elements
+     * @param view
+     */
     private void initializeViews(View view) {
         lineChart = (LineChart) view.findViewById(R.id.lineChart);
         btnScheduleVsActual = (FancyButton) view.findViewById(R.id.btnSheduleVsActual);
@@ -301,6 +306,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
             addFragment(f);
     }
 
+    /**
+     * Line chart logic
+     */
     private void configureLineChart() {
 
         lineChart.setDescription("");
@@ -346,6 +354,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
 
     }
 
+    /**
+     * Visit by client chart logic
+     */
     private void configureVisitByClientChart() {
         visitsByClientChart.setDescription("");
         XAxis xAxis = visitsByClientChart.getXAxis();
@@ -369,6 +380,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         yAxis.setValueFormatter(formatter);
     }
 
+    /**
+     * sample chart logic
+     */
     private void configureSampleChart() {
         samplesChart.setDescription("");
         XAxis xAxis = samplesChart.getXAxis();
@@ -392,6 +406,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         yAxis.setValueFormatter(formatter);
     }
 
+    /**
+     * Chart logic
+     */
     private void configureSampleCatChart() {
         samplesChartCat.setDescription("");
         XAxis xAxis = samplesChartCat.getXAxis();
@@ -416,7 +433,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         yAxis.setValueFormatter(formatter);
     }
 
-
+    /**
+     * time spent chart configuration
+     */
     private void configureTimeSpentChart() {
         timeSpentChart.setDescription("");
         XAxis xAxis = timeSpentChart.getXAxis();
@@ -428,6 +447,9 @@ public class DashBoardNewDesign extends BaseFragment implements View.OnClickList
         timeSpentChart.getLegend().setEnabled(false);
     }
 
+    /**
+     * switch chart logic
+     */
     private void switchGraphs() {
         /**.......Changes 03/01/16 Start.................*/
         if (isDaily) {

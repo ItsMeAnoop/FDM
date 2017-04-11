@@ -29,6 +29,7 @@ import java.util.TimeZone;
 
 /**
  * Created by anoop on 11/10/15.
+ * Take an appointment screenlogic
  */
 public class TakeAnAppointment extends BaseFragment {
     private RecyclerView rv_list;

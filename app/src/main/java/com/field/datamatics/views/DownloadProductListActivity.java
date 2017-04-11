@@ -32,6 +32,7 @@ import java.net.URLConnection;
 
 /**
  * Created by USER on 12/13/2015.
+ * Download product activity screen logic
  */
 public class DownloadProductListActivity extends BaseActivity {
     private TextView tv_percentage;

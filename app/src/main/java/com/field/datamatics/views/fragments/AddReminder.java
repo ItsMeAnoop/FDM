@@ -39,6 +39,7 @@ import java.util.TimeZone;
 
 /**
  * Created by Jith on 10/22/2015.
+ * Add remainder screen logic
  */
 public class AddReminder extends BaseFragment {
 
@@ -81,6 +82,9 @@ public class AddReminder extends BaseFragment {
         return f;
     }
 
+    /**
+     * save remainder
+     */
     void save() {
         mContainer.shouldUpdateReminder = true;
         Utilities.hideKeyboard(getActivity());
@@ -167,12 +171,18 @@ public class AddReminder extends BaseFragment {
         }
     }
 
+    /**
+     * show date picker
+     */
     void showDatePicker() {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
 
     }
 
+    /**
+     * open date picker
+     */
     void showTimePicker() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
@@ -280,6 +290,11 @@ public class AddReminder extends BaseFragment {
         }
     }
 
+    /**
+     * get calender Url info
+     * @param act
+     * @return
+     */
     private String getCalendarUriBase(Activity act) {
 
         String calendarUriBase = null;

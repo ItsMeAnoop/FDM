@@ -45,6 +45,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 17/10/2015.
+ * Survey screen logic
  */
 public class TakeSurvey extends BaseFragment {
 

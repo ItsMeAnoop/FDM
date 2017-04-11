@@ -34,6 +34,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 22/10/2015.
+ * Brochure list screen logic
  */
 public class BrochureList extends BaseFragment {
     private GridView grid;
@@ -85,6 +86,10 @@ public class BrochureList extends BaseFragment {
         return view;
     }
 
+    /**
+     * bind view elements
+     * @param view
+     */
     private void initializeViews(View view) {
         grid = (GridView) view.findViewById(R.id.grid);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -121,6 +126,9 @@ public class BrochureList extends BaseFragment {
         });
     }
 
+    /**
+     * Load files service
+     */
     private class loadFiles extends AsyncTask<Void, Void, Boolean> {
 
         @Override

@@ -17,6 +17,7 @@ import com.field.datamatics.views.MainActivity;
 
 /**
  * Created by USER on 12/28/2015.
+ * Visit done screen logic
  */
 public class VisitDoneGraph extends BaseFragment {
     private LinearLayout container_weeks,container_days;

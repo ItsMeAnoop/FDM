@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Sample issued adapter
  */
 public class SamplesIssuedAdapter extends RecyclerView.Adapter<SamplesIssuedAdapter.ViewHolder> {
 

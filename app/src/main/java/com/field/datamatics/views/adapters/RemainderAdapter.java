@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 27/9/15.
+ * Remainder adapter
  */
 public class RemainderAdapter extends RecyclerView.Adapter<RemainderAdapter.Holder>{
     private ArrayList<String> data;

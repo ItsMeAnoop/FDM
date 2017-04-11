@@ -10,6 +10,7 @@ import retrofit.client.OkClient;
 
 /**
  * Created by anoop on 15/10/15.
+ * Retrofit base implementation
  */
 public class BaseService {
 

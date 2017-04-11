@@ -46,6 +46,7 @@ import java.util.Locale;
 
 /**
  * Created by anoop on 27/9/15.
+ * MR Actios view logic
  */
 public class MrActions extends BaseFragment implements TakeSurvey.OnSurveyFinishedListener {
     private LinearLayout grid_1;
@@ -173,6 +174,9 @@ public class MrActions extends BaseFragment implements TakeSurvey.OnSurveyFinish
         return view;
     }
 
+    /**
+     * Set up grid view
+     */
     private void setUP() {
         animFadein = AnimationUtils.loadAnimation(getActivity(),
                 R.anim.blink);
@@ -196,6 +200,9 @@ public class MrActions extends BaseFragment implements TakeSurvey.OnSurveyFinish
         grid_9.startAnimation(animFadein);
     }
 
+    /**
+     * Register listeners
+     */
     private void registerEvents() {
         grid_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,6 +293,9 @@ public class MrActions extends BaseFragment implements TakeSurvey.OnSurveyFinish
         });
     }
 
+    /**
+     * Note dialog
+     */
     private void showNotesDialog() {
         SharedPreferences.Editor edit = AppControllerUtil.getPrefsResume().edit();
         edit.putInt(Constants.PREF_CURRENT_ACTIVITY, Constants.STAT_NOTES);
@@ -307,6 +317,12 @@ public class MrActions extends BaseFragment implements TakeSurvey.OnSurveyFinish
         notesDialog.show();
     }
 
+    /**
+     * Return media path
+     * @param type
+     * @return
+     * @throws IOException
+     */
     public Uri getMediaPathUri(int type) throws IOException {
         String directory, prefix, extension;
 

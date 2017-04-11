@@ -46,6 +46,7 @@ import java.util.HashMap;
 
 /**
  * Created by Jith on 21/10/2015.
+ * Product details screen logic
  */
 public class ProductDetails extends BaseFragment implements OnClickListener {
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by anoop on 27/9/15.
+ * Sample adapter
  */
 public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.Holder>{
     private ArrayList<String> data;

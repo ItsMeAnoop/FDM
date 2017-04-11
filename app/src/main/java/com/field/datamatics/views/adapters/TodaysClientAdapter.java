@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Jith on 10/18/2015.
+ * Today client list adapter
  */
 public class TodaysClientAdapter extends RecyclerView.Adapter<TodaysClientAdapter.ViewHolder> {
     private ArrayList<JoinClientRoutePlan> data;

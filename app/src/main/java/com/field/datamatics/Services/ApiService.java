@@ -27,6 +27,7 @@ import retrofit.http.QueryMap;
 
 /**
  * Created by anoop on 15/10/15.
+ * API service general design
  */
 public class ApiService extends BaseService {
     private static ApiService instance = new ApiService();
@@ -157,6 +158,12 @@ public class ApiService extends BaseService {
         public void sendRemark(@Body CommonSubmitJson commonSubmitJson, @Path("link") String link, Callback<JsonObject> callback);
     }
 
+    /**
+     * Function which make API call based on api type
+     * @param type
+     * @param objects
+     * @param callbacks
+     */
     public void makeApiCall(String type, Object objects, final ApiCallbacks callbacks) {
         String myUrl="";
         if(PreferenceUtil.getIntsance().isTesting()){

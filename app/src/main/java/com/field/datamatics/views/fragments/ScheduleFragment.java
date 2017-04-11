@@ -37,6 +37,7 @@ import java.util.List;
 
 /**
  * Created by Jith on 11/8/2015.
+ * Schedule job screen logic
  */
 public class ScheduleFragment extends BaseFragment {
 

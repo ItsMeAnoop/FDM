@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Anoop on 07-08-2016.
+ * Additional visited list logic
  */
 public class AdditionalVisitedList extends BaseFragment {
     private RecyclerView recyclerView;
@@ -45,6 +46,11 @@ public class AdditionalVisitedList extends BaseFragment {
         loadData();
         return view;
     }
+
+    /**
+     * Bind view elements
+     * @param view
+     */
     private void initializeViews(View view) {
         search_layout= (RelativeLayout) view.findViewById(R.id.search_layout);
         search_layout.setVisibility(View.GONE);
@@ -92,6 +98,9 @@ public class AdditionalVisitedList extends BaseFragment {
 
     }
 
+    /**
+     * load data from DB to to set in view
+     */
     private void loadData(){
         showProgressDialog();
         new AsyncTask<Void, Void, Void>() {
