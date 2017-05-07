@@ -225,7 +225,6 @@ public class ApiService extends BaseService {
                 @Override
                 public void success(JsonObject s, Response response) {
                     callbacks.onSuccess(s);
-
                 }
 
                 @Override
