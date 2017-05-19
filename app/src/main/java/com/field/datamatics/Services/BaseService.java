@@ -16,8 +16,8 @@ public class BaseService {
 
     public RestAdapter getRestAdapter(){
         OkHttpClient httpClient = new OkHttpClient();
-        httpClient.setReadTimeout(120, TimeUnit.SECONDS);
-        httpClient.setConnectTimeout(120, TimeUnit.SECONDS);
+        httpClient.setReadTimeout(180, TimeUnit.SECONDS);
+        httpClient.setConnectTimeout(180, TimeUnit.SECONDS);
 
         RestAdapter adapter=new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)

@@ -1121,6 +1121,7 @@ public class Login extends BaseActivity {
      * route plan api
      */
     private void getRoutePlan() {
+        //Toast.makeText(Login.this, "get route plan", Toast.LENGTH_SHORT).show();
         //routeplan ApI
 
         final Calendar c = Calendar.getInstance();
@@ -1140,6 +1141,7 @@ public class Login extends BaseActivity {
         ApiService.getInstance().makeApiCall(ApiConstants.AppViewRoutePlaneDetails, params, new ApiCallbacks() {
             @Override
             public void onSuccess(Object objects) {
+                //Toast.makeText(Login.this, "get route plan S", Toast.LENGTH_SHORT).show();
                 final RoutePlanResponse routePlanResponse = gson.fromJson(objects.toString(), RoutePlanResponse.class);
                 if (routePlanResponse.getStatus().equals(ApiConstants.STATUS)) {
                     new AsyncTask<Void, Void, Void>() {
@@ -1244,6 +1246,7 @@ public class Login extends BaseActivity {
 
             @Override
             public void onError(Object objects) {
+                //Toast.makeText(Login.this, "get route plan F", Toast.LENGTH_SHORT).show();
                 showMessage("Login and Syncing failed, Try again", tv_sign_in);
                 dissmissProgressDialog();
             }
@@ -1497,17 +1500,22 @@ public class Login extends BaseActivity {
      * finish ogin and move to product download screen.
      */
     private void moveToNextActivity() {
-        if (isLoginComplete)
-            finish();
-        isLoginComplete = true;
-        myuser.save();
-        dissmissProgressDialog();
-        Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
-        PreferenceUtil.getIntsance().setLastSyncDate(Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm a"));
-        AppControllerUtil.getPrefs().edit().putString("user", et_user_name.getText().toString()).apply();
-        PreferenceUtil.getIntsance().setSyncManul(false);
-        SetAlarm();
-        android.os.Process.killProcess(android.os.Process.myPid());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (isLoginComplete)
+                    finish();
+                isLoginComplete = true;
+                myuser.save();
+                dissmissProgressDialog();
+                Toast.makeText(getApplicationContext(), "Successfully Synced", Toast.LENGTH_LONG).show();
+                PreferenceUtil.getIntsance().setLastSyncDate(Utilities.dateToString(Calendar.getInstance(), "yyyy-MM-dd hh:mm a"));
+                AppControllerUtil.getPrefs().edit().putString("user", et_user_name.getText().toString()).apply();
+                PreferenceUtil.getIntsance().setSyncManul(false);
+                SetAlarm();
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        },5000);
     }
 
     public void SetAlarm()
